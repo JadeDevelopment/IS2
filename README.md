@@ -1,11 +1,13 @@
 # Jade Development
 
-## 
+## Herramientas de desarrollo
 
-Proyecto desarrollado en
 CherryPy (Python)
+
 PostgreSQL
+
 JQuery
+
 Ajax
 
 ## Integrantes
