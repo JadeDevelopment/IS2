@@ -2,7 +2,7 @@
 
 ## Herramientas de desarrollo
 
-CherryPy (Python)
+Ruby on Rails
 
 PostgreSQL
 
