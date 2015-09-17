@@ -1,0 +1,9 @@
+createdb seayc; --creamos la base de datos
+
+CREATE TABLE interesado();
+CREATE TABLE ponente();
+CREATE TABLE coordinador();
+CREATE TABLE interesado();
+
+
+
