@@ -1,9 +1,19 @@
-createdb seayc; --creamos la base de datos
 
-CREATE TABLE interesado();
-CREATE TABLE ponente();
-CREATE TABLE coordinador();
-CREATE TABLE interesado();
+--Base de datos para SEAyC
 
+createdb seayc
+
+CREATE TABLE Notificacion(
+Id INT PRIMARY KEY,
+Fecha DATE,
+Mensaje VARCHAR(500)
+
+);
+
+CREATE TABLE AreasEspecializacion(
+Id INT PRIMARY KEY,
+RfcPonente VARCHAR(13),
+Area VARCHAR(50)
+);
 
 
