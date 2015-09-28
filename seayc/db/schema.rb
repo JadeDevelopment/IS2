@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150927193819) do
+ActiveRecord::Schema.define(version: 20150928031922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "defacebook", force: :cascade do |t|
+    t.string "nombre",    limit: 100, null: false
+    t.text   "contenido",             null: false
+  end
+
+  add_index "defacebook", ["contenido"], name: "defacebook_contenido_key", unique: true, using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -24,7 +31,13 @@ ActiveRecord::Schema.define(version: 20150927193819) do
   end
 
   create_table "prueba", force: :cascade do |t|
-    t.string "algo", limit: 20
   end
+
+  create_table "usuario", force: :cascade do |t|
+    t.string "correo",     limit: 50, null: false
+    t.string "contrasena", limit: 20, null: false
+  end
+
+  add_index "usuario", ["correo"], name: "usuario_correo_key", unique: true, using: :btree
 
 end
