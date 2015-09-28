@@ -4,7 +4,7 @@
 createdb seayc
 
 CREATE TABLE Notificacion(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 Fecha DATE,
 Mensaje VARCHAR(500)
 
@@ -35,13 +35,13 @@ INSERT INTO AreasEspecializacion(RfcPonente,Area ) VALUES (
 
 
 CREATE TABLE AreaDeEspecialidad(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 AreaEspecialidad VARCHAR(70),
 IdFormacionAcademica INTEGER
 );
 
 CREATE TABLE CursosDeActualizacion(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreCurso VARCHAR(70),
 IdFormacionAcademica INTEGER
 );
@@ -82,54 +82,54 @@ null,
 );
 
 CREATE TABLE ExperienciaAcademica(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 RfcPonente VARCHAR(13)
 );
 
 CREATE TABLE ExperienciaDocente(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreExperienciaDocente VARCHAR(100),
 IdExperienciaAcademica INTEGER,
 FOREIGN KEY(IdExperienciaAcademica) REFERENCES ExperienciaAcademica(Id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE CargoAcademico(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreCargoAcademico VARCHAR(100),
 IdExperienciaAcademica INTEGER,
 FOREIGN KEY(IdExperienciaAcademica) REFERENCES ExperienciaAcademica(Id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE CargoAcademicoAdmin(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreCargoAcademicoAdmin VARCHAR(100),
 IdExperienciaAcademica INTEGER,
 FOREIGN KEY(IdExperienciaAcademica) REFERENCES ExperienciaAcademica(Id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE RevisorDeTesis(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreRevisorDeTesis VARCHAR(100),
 IdExperienciaAcademica INTEGER,
 FOREIGN KEY(IdExperienciaAcademica) REFERENCES ExperienciaAcademica(Id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Publicaciones(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombrePublicaciones VARCHAR(100),
 IdExperienciaAcademica INTEGER,
 FOREIGN KEY(IdExperienciaAcademica) REFERENCES ExperienciaAcademica(Id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Ponencias(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombrePonencias VARCHAR(100),
 IdExperienciaAcademica INTEGER,
 FOREIGN KEY(IdExperienciaAcademica) REFERENCES ExperienciaAcademica(Id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Conferencias(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreConferencias VARCHAR(100),
 IdExperienciaAcademica INTEGER,
 FOREIGN KEY(IdExperienciaAcademica) REFERENCES ExperienciaAcademica(Id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -137,35 +137,35 @@ FOREIGN KEY(IdExperienciaAcademica) REFERENCES ExperienciaAcademica(Id) ON UPDAT
 
 
 CREATE TABLE Congresos(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreCongresos VARCHAR(100),
 IdExperienciaAcademica INTEGER,
 FOREIGN KEY(IdExperienciaAcademica) REFERENCES ExperienciaAcademica(Id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE CursosImpartidos(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreCursosImpartidos VARCHAR(100),
 IdExperienciaAcademica INTEGER,
 FOREIGN KEY(IdExperienciaAcademica) REFERENCES ExperienciaAcademica(Id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE DireccionTesis(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreDireccionTesis VARCHAR(100),
 IdExperienciaAcademica INTEGER,
 FOREIGN KEY(IdExperienciaAcademica) REFERENCES ExperienciaAcademica(Id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE AsesoriasImpartidas(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreAsesoriasImpartidas VARCHAR(100),
 IdExperienciaAcademica INTEGER,
 FOREIGN KEY(IdExperienciaAcademica) REFERENCES ExperienciaAcademica(Id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE TutoriasImpartidas(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreTutoriasImpartidas VARCHAR(100),
 IdExperienciaAcademica INTEGER,
 FOREIGN KEY(IdExperienciaAcademica) REFERENCES ExperienciaAcademica(Id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -173,19 +173,19 @@ FOREIGN KEY(IdExperienciaAcademica) REFERENCES ExperienciaAcademica(Id) ON UPDAT
 
 
 CREATE TABLE ExperienciaProfesional(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 RfcPonente VARCHAR(13)NOT NULL
 );
 
 CREATE TABLE EntidadAcademica(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreEntidadAcademica VARCHAR(70),
 IdExperienciaProfesional INTEGER,
 FOREIGN KEY(IdExperienciaProfesional) REFERENCES ExperienciaProfesional(Id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Empresa(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreEmpresa VARCHAR(70),
 IdExperienciaProfesional INTEGER,
 FOREIGN KEY(IdExperienciaProfesional) REFERENCES ExperienciaProfesional(Id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -193,7 +193,7 @@ FOREIGN KEY(IdExperienciaProfesional) REFERENCES ExperienciaProfesional(Id) ON U
 
 
 CREATE TABLE Reconocimientos(
-Id INT PRIMARY KEY ,
+Id SERIAL PRIMARY KEY ,
 RfcPonente VARCHAR(13)NOT NULL
 );
 
@@ -253,21 +253,21 @@ FOREIGN KEY(IdPonente) REFERENCES Ponente(Id) ON UPDATE CASCADE ON DELETE CASCAD
 );
 
 CREATE TABLE CelularInteresado(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 Celular INT,
 IdInteresado INT,
 FOREIGN KEY(IdInteresado) REFERENCES Interesado(Id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE TelefonoInteresado(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 Telefono INT,
 IdInteresado INT,
 FOREIGN KEY(IdInteresado) REFERENCES Interesado(Id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE CorreoElectronicoInteresado(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 CorreoElectronico VARCHAR(30),
 IdInteresado INT,
 FOREIGN KEY(IdInteresado) REFERENCES Interesado(Id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -275,7 +275,7 @@ FOREIGN KEY(IdInteresado) REFERENCES Interesado(Id) ON UPDATE CASCADE ON DELETE 
 
 
 CREATE TABLE Contenido(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NumeroTema INT,
 Tema VARCHAR(100),
 NumeroHoras INTEGER,
@@ -469,7 +469,7 @@ FOREIGN KEY(IdComiteAcademico) REFERENCES ComiteAcademico(Id) ON UPDATE CASCADE 
 
 
 CREATE TABLE RequisitosIngreso(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreRequisitosIngreso VARCHAR(1000),
 IdPonente INTEGER,
 IdActividad INTEGER,
@@ -479,7 +479,7 @@ FOREIGN KEY(IdActividad) REFERENCES Actividad(Id) ON UPDATE CASCADE ON DELETE CA
 
 
 CREATE TABLE RequisitosPermanencia(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreRequisitosPermanencia VARCHAR(1000),
 IdPonente INT,
 IdActividad INT,
@@ -488,7 +488,7 @@ FOREIGN KEY(IdActividad) REFERENCES Actividad(Id) ON UPDATE CASCADE ON DELETE CA
 );
 
 CREATE TABLE RequisitosEgreso(
-Id INT PRIMARY KEY,
+Id SERIAL PRIMARY KEY,
 NombreRequisitosEgreso VARCHAR(1000),
 IdPonente INT,
 IdActividad INT,
@@ -531,7 +531,7 @@ FOREIGN KEY(IdActividad) REFERENCES Actividad(Id) ON UPDATE CASCADE ON DELETE CA
 
 
 CREATE TABLE CelularCurriculum(
-Id INT,
+Id SERIAL PRIMARY KEY,
 IdCurriculumVitae INT,
 Celular INT,
 FOREIGN KEY(IdCurriculumVitae) REFERENCES CurriculumVitae(Id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -539,7 +539,7 @@ FOREIGN KEY(IdCurriculumVitae) REFERENCES CurriculumVitae(Id) ON UPDATE CASCADE 
 
 
 CREATE TABLE TelefonoCurriculum(
-Id INT,
+Id SERIAL PRIMARY KEY,
 IdCurriculumVitae INT,
 Telefono INT,
 FOREIGN KEY(IdCurriculumVitae) REFERENCES CurriculumVitae(Id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -547,7 +547,7 @@ FOREIGN KEY(IdCurriculumVitae) REFERENCES CurriculumVitae(Id) ON UPDATE CASCADE 
 
 
 CREATE TABLE CorreoCurriculum(
-Id INT,
+Id SERIAL PRIMARY KEY,
 IdCurriculumVitae INT,
 CorreoElectronico VARCHAR(40),
 FOREIGN KEY(IdCurriculumVitae) REFERENCES CurriculumVitae(Id) ON UPDATE CASCADE ON DELETE CASCADE
