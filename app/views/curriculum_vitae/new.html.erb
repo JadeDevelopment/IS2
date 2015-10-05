@@ -1,0 +1,99 @@
+<h1>CurriculumVitae#new</h1>
+<%= form_for @cv, url: curriculum_vitae_index_path do |f| %>
+  <p>
+    <%= f.label :rfc %><br>
+    <%= f.text_field :rfc %>
+  </p>
+  <p>
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+  </p>
+  <p>
+    <%= f.label :appaterno %><br>
+    <%= f.text_field :appaterno %>
+  </p>
+  <p>
+    <%= f.label :apmaterno %><br>
+    <%= f.text_field :apmaterno %>
+  </p>
+  <p>
+    <%= f.label :fecha_nacimiento %><br>
+    <%= f.date_field :fecha_nacimiento %>
+  </p>
+  <p>
+    <%= f.label :numero %><br>
+    <%= f.number_field :numero, in: 1..1000%>
+  </p>
+  <p>
+    <%= f.label :calle %><br>
+    <%= f.text_field :calle %>
+  </p>
+  <p>
+    <%= f.label :colonia %><br>
+    <%= f.text_field :colonia %>
+  </p>
+  <p>
+    <%= f.label :delegacion %><br>
+    <%= f.text_field :delegacion %>
+  </p>
+  <p>
+    <%= f.label :ciudad %><br>
+    <%= f.text_field :ciudad %>
+  </p>
+  <p>
+    <%= f.label :cp %><br>
+    <%= f.number_field :cp, in: 00001...99999 %>
+  </p>
+  <p>
+    <%= f.label :institucion %><br>
+    <%= f.text_field :institucion %>
+  </p>
+  <p>
+  	<%= f.label :areas_especializacion_id %><br>
+    <%= f.collection_select(:areas_especializacion_id, @areasespecializacion, :id, :area) %>
+  </p>
+  <div id="formaciones">
+    <div>
+      <%= link_to 'Agregar más formaciones academicas', '#', :id => 'my-link' %>
+    </div>
+    <% @cv.formacion_academica.each do |formacionacademica| %>
+    <%= f.fields_for formacionacademica, index: formacionacademica.id do |fa| %>
+      <div id="formacion">
+      <div class="field">
+        <%= fa.label :area_especialidad %><br>
+        <%= fa.text_field :area_especialidad %>
+      </div>
+
+      <div class="field">
+        <%= fa.label :ultimo_grado %><br>
+        <%= fa.text_field :ultimo_grado %>
+      </div>
+
+      <div>
+        <%= fa.label :año %><br>
+        <%= fa.text_field :año %>
+      </div>
+
+      <div class="field">
+        <%= fa.label :entidad_academica %><br>
+        <%= fa.text_field :entidad_academica %>
+      </div>
+      </div>
+    <% end %>
+    <% end %>
+
+  </div>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+<%= javascript_include_tag "jquery-2.1.3.min" %>
+<script>
+    $(document).ready(function() {
+      $('#my-link').click(function(event){
+        $('#formaciones').append('<div id="formacion"><div class="field"><label for="curriculum_vitae_formacion_academica__area_especialidad">Area especialidad</label><br><input type="text" name="curriculum_vitae[formacion_academica][][area_especialidad]" id="curriculum_vitae_formacion_academica__area_especialidad" /></div><div class="field"><label for="curriculum_vitae_formacion_academica__ultimo_grado">Ultimo grado</label><br><input type="text" name="curriculum_vitae[formacion_academica][][ultimo_grado]" id="curriculum_vitae_formacion_academica__ultimo_grado" /></div><div><label for="curriculum_vitae_formacion_academica__año">Año</label><br><input type="text" name="curriculum_vitae[formacion_academica][][año]" id="curriculum_vitae_formacion_academica__año" /></div><div class="field"><label for="curriculum_vitae_formacion_academica__entidad_academica">Entidad academica</label><br><input type="text" name="curriculum_vitae[formacion_academica][][entidad_academica]" id="curriculum_vitae_formacion_academica__entidad_academica" /></div></div>');
+        event.preventDefault(); // Prevent link from following its href
+      });
+    });
+</script>

@@ -11,16 +11,82 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150928041303) do
+ActiveRecord::Schema.define(version: 20151003034305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "posts", force: :cascade do |t|
-    t.string   "title"
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string   "namespace"
     t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+
+  create_table "admin_users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "areas_especializacions", force: :cascade do |t|
+    t.string   "area"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "curriculum_vitaes", force: :cascade do |t|
+    t.string   "rfc"
+    t.string   "nombre"
+    t.string   "apmaterno"
+    t.string   "appaterno"
+    t.date     "fecha_nacimiento"
+    t.integer  "numero"
+    t.string   "calle"
+    t.string   "colonia"
+    t.string   "delegacion",             default: "?"
+    t.string   "ciudad"
+    t.integer  "cp"
+    t.string   "institucion"
+    t.integer  "areas_especializacion_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "curriculum_vitaes", ["areas_especializacion_id"], name: "index_curriculum_vitaes_on_areas_especializacion_id", using: :btree
+
+  create_table "formacion_academicas", force: :cascade do |t|
+    t.string   "area_especialidad"
+    t.string   "ultimo_grado"
+    t.integer  "año"
+    t.string   "entidad_academica"
+    t.integer  "curriculum_vitae_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "formacion_academicas", ["curriculum_vitae_id"], name: "index_formacion_academicas_on_curriculum_vitae_id", using: :btree
+
+  add_foreign_key "curriculum_vitaes", "areas_especializacions"
+  add_foreign_key "formacion_academicas", "curriculum_vitaes"
 end

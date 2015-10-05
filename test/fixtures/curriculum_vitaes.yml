@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rfc: MyString
+  nombre: MyString
+  apmaterno: MyString
+  appaterno: MyString
+  fecha_nacimiento: 2015-10-01
+  numero: 1
+  calle: MyString
+  colonia: MyString
+  delegacion: MyString
+  ciudad: MyString
+  cp: 1
+  Institucion: MyString
+  areasespecializacion_id: 
+
+two:
+  rfc: MyString
+  nombre: MyString
+  apmaterno: MyString
+  appaterno: MyString
+  fecha_nacimiento: 2015-10-01
+  numero: 1
+  calle: MyString
+  colonia: MyString
+  delegacion: MyString
+  ciudad: MyString
+  cp: 1
+  Institucion: MyString
+  areasespecializacion_id: 

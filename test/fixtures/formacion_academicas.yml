@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  area_especialidad: MyString
+  ultimo_grado: MyString
+  anio: 1
+  entidad_academica: MyString
+  curriculum_vitae_id: 
+
+two:
+  area_especialidad: MyString
+  ultimo_grado: MyString
+  anio: 1
+  entidad_academica: MyString
+  curriculum_vitae_id: 
