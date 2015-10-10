@@ -65,4 +65,17 @@ class CurriculumVitaeController < ApplicationController
     def parametros_f
       params.require(:curriculum_vitae).permit!
     end
+
+
+  #Actualiza el CV:
+  def updateCurriculumVitae
+      @post = CurriculumVitae.find(params[:id])
+
+      if @post.update_attributes(params.require(:curriculum_vitae).permit(:rfc, :nombre, :appaterno, :apmaterno, :fecha_nacimiento, :numero, :calle, :colonia, :delegacion, :ciudad, :cp, :institucion, :areas_especializacion_id, :formacion_academica)) 
+         redirect_to :action => :show, :id => @curriculum_vitae.id
+      else
+        return
+      end
+  end
+
 end
