@@ -1,0 +1,37 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,600,700,300,800);
+
+
+/*************************
+*******Typography******
+**************************/
+
+body {
+  background: #fff;
+  font-family: 'Open Sans', sans-serif;
+  color:#4e4e4e;
+  line-height: 22px;
+}
+
+.form-cv{
+  padding-top: 35px;
+  border-top-width: 0;
+  border-bottom: 0;
+  border-right-width: 2px;
+  border-left-width: 2px;
+  border-style: solid;
+  pad
+}
+
+#form-start{
+	border-top-width: 2px;
+}
+
+#form-end{
+  border-bottom-width: 2px;
+  margin-bottom: 30px;
+}
+
+.titulo-cv{
+  margin: auto;
+  text-align: center;
+}
