@@ -36,19 +36,61 @@
     </div>
 
     <div class="row">
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-2">
         <%= f.label :fecha_nacimiento %>:
-        <%= f.date_field :fecha_nacimiento, class: "form-control-horizontal", :required => true %>
+        <%= f.date_field :fecha_nacimiento, class: "form-control-horizontal", :required => true , max: "1996-12-31"%>
+      </div>
+      <div clas="col-sm-2 col-md-8">
+        <label>Teléfono</label><br>
+      </div>
+      <div class="form-group telefono-cv">
+        <label for="telefono_c"> Casa:</label>
+        <input type="number" value="" name="telefono" id="telefono_c">
+      </div>
+      <div class="form-group telefono-cv">
+        <label for="telefono_o">Oficina:</label>
+        <input type="number" value="" name="telefono" id="telefono_o">
+      </div>
+      <div class="form-group telefono-cv">
+        <label for="telefono_ce">Celular:</label>
+        <input type="number" value="" name="telefono">
       </div>
     </div>
-  <p>
-    <%= f.label :numero %><br>
-    <%= f.number_field :numero, in: 1..1000%>
-  </p>
-  <p>
-    <%= f.label :calle %><br>
-    <%= f.text_field :calle %>
-  </p>
+
+    <div class="row">
+      <div class="form-group col-md-5">
+        <br>
+        <label for="correo" class="col-sm-2">Correo Electrónico: </label>
+        <div class="col-sm-10">
+          <input type="text" value="" name="correo" id="correo" required="required" pattern=".*@.*" placeholder="exmaple@domain.ext" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>¿Desea que se publique en internet como contacto de información académica para los interesados?</label>
+        <label for="si">Sí</label>
+        <input type="radio" name="imprimir" id="si" checked="true"> 
+        <label for="no">No</label>
+        <input type="radio" id="no" name="imprimir">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <%= f.label :numero, class: "col-sm-2 label-control" %>
+        <div class="col-sm-9 ">
+          <%= f.number_field :numero, class: "form-control", :required => true , in: 1..9999%>
+        </div>
+      </div>
+
+      <div class="form-group col-md-8">
+        <%= f.label :calle %>:
+        <%= f.text_field :calle, class: "form-control-horizontal", :required => true %>
+      </div>
+    </div>
+
+    <div class="row">
+    </div>
   <p>
     <%= f.label :colonia %><br>
     <%= f.text_field :colonia %>
@@ -112,42 +154,6 @@
   <p>
     <%= f.submit %>
   </p>
-
-          <div class="form-group">
-            <label for="apellido_p">Apellido Paterno:</label>
-            <input type="text" value="" name="apellido_p" id="apellido_p"required="required" pattern="^[A-Z][a-z]+(\s[a-z])*+(\s[A-Z][a-z]+)*$" placeholder="Pérez">
-          </div>
-
-          <div class="form-group-sm">
-            <label for="apellido_m">Apellido Materno:</label>
-            <input type="text" value="" name="apellido_m" id="apellido_m" required="required" pattern="^[A-Z][a-z]+(\s[a-z])*+(\s[A-Z][a-z]+)*$" placeholder="López" class="form-control input-cv">
-          </div>
-
-          <div class="form-group">
-            <label for="fecha_nacimiento">Fecha de nacimiento:</label>
-            <input type="date" value="" name="fecha_nacimiento" id="fecha_nacimiento" max="1996-12-31">
-          </div>
-
-          <div class="form-group">
-            <label>Teléfono</label><br>
-            <label for="telefono_c"> Casa:</label>
-            <input type="number" value="" name="telefono" id="telefono_c">
-            <label for="telefono_o">Oficina:</label>
-            <input type="number" value="" name="telefono" id="telefono_o">
-            <label for="telefono_ce">Celular:</label>
-            <input type="number" value="" name="telefono">
-          </div>
-
-          <div class="form-group">
-            <label for="correo">Correo Electrónico:</label>
-            <input type="text" value="" name="correo" id="correo" required="required" pattern=".*@.*" placeholder="exmaple@domain.ext">
-          </div>
-
-          <div class="form-group">
-            <label>¿Desea que se publique en internet como contacto de información académica para los interesados?</label>
-            <label for="si">Sí</label><input type="radio" name="imprimir" id="si" checked="true"> 
-            <label for="no">No</label><input type="radio" id="no" name="imprimir">
-          </div>
 
           <label for="direccion">Dirección (opcional):</label>
           <input type="text" value="" name="direccion" id="direccion"><br>
