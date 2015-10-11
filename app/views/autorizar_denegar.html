@@ -1,0 +1,191 @@
+<!--<html>
+	<head>
+		<title>Solicitud de Curso</title>
+		<link rel="stylesheet" type="text/css" href="style_for.css">
+	</head>
+	<body>
+		<h1 align="center">Solicitud de Curso</h1>
+
+		<form action="formulari_sol.html" method="post">
+			Apellidos:<br>
+			<input class="textf" type="text" name="apellidos" size="25" required>
+			<br><br>
+			Nombre(s):<br>
+			<input class="textf" type="text" name="noms" size="25" required>
+			<br><br>
+			Sexo:&nbsp;
+			<input type="radio" name="rop" value="male" checked="true"> Masculino &nbsp;&nbsp;&nbsp; <input type="radio" name="rop" value="female"> Femenino
+			<br><br>
+			Domicilio:<br>
+			<input class="textf" type="text" name="domicilio" size="25" required>
+			<br><br>
+			Carrera:<br>
+			<input class="textf" type="text" name="carrera" size="25" required>
+			<br><br>
+			Institucion Academico:<br>
+
+			<input class="textf" type="text" name="inst_ac" size="25">
+			<br><br>
+			Curso a proponer:<br>
+			<input class="textf" type="text" name="curso" size="25" required>
+			<br><br>
+			Descripcion:<br>
+			<textarea rows="10" cols="50" name="desc" ></textarea>
+			<br><br>
+
+			<input type="submit" value="Enviar Solicitud">
+		</form>
+	</body>
+</html> -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>Autorización del curso</title>
+  
+<style type="text/css" media="all">
+	@import "style.css";
+</style>
+<style type="text/css" media="all">
+	@import "style_for.css";
+</style>
+</head>
+<body>
+<div id="farouter">
+	<div id="outer">
+		<div id="wrap">
+			<div id="headermain">
+				<img src="https://www.unam.mx/sites/all/themes/unam/logo.png">
+			</div>
+
+			<div id="hmenu">
+				<div id="hnav">
+					<ul id="navlist">
+						<li><a href="ind">Actividades de Curso</a></li>
+						<li><a href="#">Cursos</a></li>
+						<li><a href="#">Solicitudes</a></li>
+						<li><a href="" id="active">Solicitud en Linea</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div id="main">
+				<div id="content">
+					<div id="nav">
+						<h1>Propuesta de un curso</h1>
+						<hr>
+						<div>&nbsp;Llene el formato de solicitud. Luego al enviar ser&aacute; puesto a revisi&oacute;n para la aprobaci&oacute;n</div><br>
+						<form class="cform" action="#" method="post">
+							<h2 align="center">I.	INFORMACI&Oacute;N PARA LA OPERACI&Oacute;N Y LOG&Iacute;STICA</h2>
+							* Nombre de la actividad: <input class="textf" type="text" name="noms" value="chris" size="25" readonly="true" required>
+							<br><br>
+							* Tipo: &nbsp;&nbsp;
+							<input type="radio" name="tip" value="taller"> Taller &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value="seminario">Seminario &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value="curso" > Curso &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value="diplomado" > Diplomado &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value=""> Otro:&nbsp; <input type="text" name="ot_tipo" size="18">
+							<br><br>
+							* Modalidad:&nbsp;&nbsp;
+							<input type="radio" name="mod" value="presencial" > Presencial &nbsp;&nbsp;&nbsp; <input type="radio" name="mod" value="semi-presencial">Semi Presencial &nbsp;&nbsp;&nbsp; <input type="radio" name="mod" value="en linea" > En Linea
+							<br><br>
+							* Fecha Inicio: <input type="date" name="f_ini"> &nbsp;&nbsp;&nbsp; * Fecha Fin: <input type="date" name="f_fin"><br><br>
+							
+
+							* Lugar:
+							<input class="textf" type="text" name="lugar" size="25" readonly="true" required>
+							<br><br>
+							* Numero de Sesiones:
+							<input type="text" name="num_ses" size="3" readonly="true" required>
+							&nbsp;&nbsp;
+							* Numero de Horas:
+							<input  type="text" name="num_hr" size="3" readonly="true" required>
+							&nbsp;&nbsp;
+							* Minimo inscritos:
+							<input  type="text" name="min_ins" size="3" readonly="true" required>
+							&nbsp;&nbsp;
+							* Maximo inscritos:
+							<input type="text" name="max_ins" size="3" readonly="true" required>
+							&nbsp;&nbsp;<br><br>
+							* Costo General: $
+							<input type="text" name="c_gen" size="5" readonly="true" required>
+							&nbsp;&nbsp;* Costo Para Estudiantes: $ <input type="text" name="c_est" size="5" readonly="true" required> MXN &nbsp;&nbsp;
+
+							* Pago propuesto a docentes (Por hora): $ <input type="text" name="p_x_hr" size="5" readonly="true" required> MXN<br><br>
+
+							* Material de apoyo requerido para clases:
+							<input class="textf" type="text" name="mat_apoyo" size="25" readonly="true" required><br><br>
+
+							* Equipo de c&oacute;mputo y software requerido: 
+							<input class="textf" type="text" name="eq_comp" size="25" readonly="true" required><br><br>
+
+							* Material requerido a los alumnos: 
+							<input class="textf" type="text" name="mat_req" size="25" readonly="true" required><br><br>
+
+							* Material de apoyo para los alumnos: 
+							<input class="textf" type="text" name="mat_ap" size="25" readonly="true" required><br><br>
+
+							<h2 align="center">II. INFORMACI&Oacute;N ACAD&Eacute;MICA</h2>
+							<br>
+
+							<div style="position: inherit; float: left; margin-right:10px; ">* Descripcion del Curso:</div>
+							<textarea rows="10" cols="80" name="desc" ></textarea><br><br>
+
+							* Objetivo General:
+							<input class="textf" type="text" name="ob_g" size="25" readonly="true" required><br><br>
+
+							* Objetivo Especifico: 
+							<input class="textf" type="text" name="ob_e" size="25" readonly="true" required><br><br>
+
+							<div style="position: inherit; float: left; margin-right:10px; ">* Metas:</div> 
+							<textarea rows="10" cols="80" name="metas" ></textarea><br><br>
+
+							* Campo de Conocimiento:
+							<input class="textf" type="text" name="campo_con" size="25" readonly="true" required><br><br>
+
+							* Dirigido a: 
+							<input class="textf" type="text" name="dir_a" size="25" readonly="true" required><br><br>
+
+							<hr>
+							<h3>* Datos del Docente:</h3>
+							
+							Nombre:
+							<input class="textf" type="text" name="doc_nom" size="25" readonly="true" required><br><br>
+							Grado:
+							<input class="textf" type="text" name="doc_grado" size="25" readonly="true" required><br><br>
+							Cargo:
+							<input class="textf" type="text" name="doc_cargo" size="25" readonly="true" required><br><br>
+							Entidad o Empresa actual de adscripci&oacute;n:
+							<input class="textf" type="text" name="doc_ent" size="25" readonly="true" required><br><br>
+							<hr>
+
+							<div style="position: inherit; float: left; margin-right:10px; ">* Requisitos de Evaluaci&oacute;n:</div>
+							<textarea rows="10" cols="80" name="r_eval" ></textarea><br><br>
+
+							* Requisitos de ingreso: 
+							<input class="textf" type="text" name="r_ing" size="25" readonly="true" required><br><br>
+							* Requisitos de permanencia: 
+							<input class="textf" type="text" name="r_perm" size="25" readonly="true" required><br><br>
+							* Requisitos de egreso: 
+							<input class="textf" type="text" name="r_eg" size="25" readonly="true" required><br><br>
+
+							<div style="position: inherit; float: left; margin-right:10px; ">* Bibliografia:</div>
+							<textarea rows="8" cols="60" name="r_eval"></textarea><br><br>
+
+							
+							<br>
+						</form>
+						<div style="text-align:center;"><input type="submit" value="Enviar Solicitud" style="vertical-align:middle"> <input type="submit" value="Enviar Solicitud" style="vertical-align:middle"></div>
+						<br>
+					</div>
+				</div>
+				
+			</div>
+
+			<div id="clearer">&nbsp;</div>
+			<div id="footer">
+
+			</div> <!-- END footer -->
+		</div> <!-- END wrap -->
+	</div> <!-- END outer -->
+</div> <!-- END farouter -->
+
+</body>
+</html>
