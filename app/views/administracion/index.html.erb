@@ -1,0 +1,15 @@
+<h1>Listado de cursos propuestos</h1>
+
+<table>
+  <tr>
+    <th>Nombre del curso</th>
+    <th></th>
+  </tr>
+
+  <% @actividads.each do |actividad| %>
+    <tr>
+      <td><%= actividad.Nombre %></td>
+      <td><%= link_to 'Ver', :action => :show, :id => actividad.id %></td>
+    </tr>
+  <% end %>
+</table>
