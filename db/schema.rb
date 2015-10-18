@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151009185458) do
+ActiveRecord::Schema.define(version: 20151012173944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,16 @@ ActiveRecord::Schema.define(version: 20151009185458) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "correo_curriculums", force: :cascade do |t|
+    t.string   "correo"
+    t.string   "publicacion",         default: "t"
+    t.integer  "curriculum_vitae_id"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "correo_curriculums", ["curriculum_vitae_id"], name: "index_correo_curriculums_on_curriculum_vitae_id", using: :btree
+
   create_table "curriculum_vitaes", force: :cascade do |t|
     t.string   "rfc"
     t.string   "nombre"
@@ -77,12 +87,13 @@ ActiveRecord::Schema.define(version: 20151009185458) do
 
   create_table "curso_de_actualizacions", force: :cascade do |t|
     t.string   "nombre_curso"
-    t.integer  "formacion_academica_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "año"
+    t.integer  "curriculum_vitae_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
-  add_index "curso_de_actualizacions", ["formacion_academica_id"], name: "index_curso_de_actualizacions_on_formacion_academica_id", using: :btree
+  add_index "curso_de_actualizacions", ["curriculum_vitae_id"], name: "index_curso_de_actualizacions_on_curriculum_vitae_id", using: :btree
 
   create_table "formacion_academicas", force: :cascade do |t|
     t.string   "area_especialidad"
@@ -105,8 +116,9 @@ ActiveRecord::Schema.define(version: 20151009185458) do
 
   add_index "reconocimientos", ["curriculum_vitae_id"], name: "index_reconocimientos_on_curriculum_vitae_id", using: :btree
 
+  add_foreign_key "correo_curriculums", "curriculum_vitaes"
   add_foreign_key "curriculum_vitaes", "areas_especializacions"
-  add_foreign_key "curso_de_actualizacions", "formacion_academicas"
+  add_foreign_key "curso_de_actualizacions", "curriculum_vitaes"
   add_foreign_key "formacion_academicas", "curriculum_vitaes"
   add_foreign_key "reconocimientos", "curriculum_vitaes"
 end

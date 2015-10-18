@@ -12,26 +12,17 @@ body {
   line-height: 22px;
 }
 
-.form-cv{
+#form-cv{
   padding-top: 35px;
-  border-top-width: 0;
-  border-bottom: 0;
-  border-right-width: 2px;
-  border-left-width: 2px;
+}
+
+body > section {
+  padding: 70px 0;
+}
+
+.form-cv{
+  border-width:  2px;
   border-style: solid;
-  pad
-}
-
-#form-start{
-	border-top-width: 2px;
-}
-
-#form-end{
-  border-bottom-width: 2px;
-  margin-bottom: 30px;
-}
-
-.titulo-cv{
-  margin: auto;
-  text-align: center;
+  padding-left: 40px;
+  padding-right: 40px;
 }
