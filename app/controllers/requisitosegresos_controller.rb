@@ -1,0 +1,2 @@
+class RequisitosegresosController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class RequisitosingresosController < ApplicationController
+end

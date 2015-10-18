@@ -1,0 +1,2 @@
+class AreaacademicasController < ApplicationController
+end

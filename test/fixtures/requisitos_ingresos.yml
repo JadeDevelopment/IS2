@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  NombreRequisitosIngreso: MyText
+  IdPonente: 1
+  IdActividad: MyString
+  integer: MyString
+
+two:
+  NombreRequisitosIngreso: MyText
+  IdPonente: 1
+  IdActividad: MyString
+  integer: MyString
