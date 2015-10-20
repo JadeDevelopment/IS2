@@ -1,2 +1,99 @@
-<h1>CurriculumVitae#show</h1>
-<p>Find me in app/views/curriculum_vitae/show.html.erb</p>
+<section id="form-cv">
+  <div class="container">
+    <div class="row">
+      <div class="form-horizontal form-cv">
+        <h2>Datos personales</h2>
+
+        <div class="row2">
+          <div class="col-sm-1">
+          </div>
+          <div class="col-sm-3">
+            <div class="col-xs-4">RFC</div>
+            <div class="col-xs-8"> <%= @cv.rfc %> </div>
+          </div>
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-6">
+            <div class="col-xs-4">Nombre(s)</div>
+            <div class="col-xs-8"> <%= @cv.nombre %> </div>
+           </div>
+        </div>
+        
+        <div class="row2">
+          <div class="col-sm-6">
+            <div class="col-xs-4">Apellido Materno</div>
+            <div class="col-xs-8"> <%= @cv.apmaterno %> </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="col-xs-4">Apellido Paterno</div>
+            <div class="col-xs-8"> <%= @cv.appaterno %> </div>
+          </div>
+        </div>
+    
+        <div class="row2">
+          <div class="col-sm-6">
+            <div class="col-xs-4">Fecha de Nacimiento </div>
+            <div class="col-xs-8"> <%= @cv.fecha_nacimiento %> </div>
+          </div>
+
+          <div class="col-sm-5" id="telefonos">
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="col-sm-6">
+            <div class="col-xs-4">Correo Electrónico:</div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="col-xs-7">¿Desea que se publique ...</div>
+            <div class="col-xs-5">
+            </div>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="col-sm-5">
+            <div class="col-xs-4">Calle</div>
+            <div class="col-xs-8 "> <%= @cv.calle %> </div>
+          </div>
+
+          <div class="col-sm-2">
+            <div class="col-xs-3">No</div>
+            <div class="col-xs-9"> <% @cv.numero %> </div>
+          </div>
+          
+          <div class="col-sm-5">
+            <div class="col-xs-3">Colonia</div>
+            <div class="col-xs-9"> <%= @cv.colonia %> </div>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="col-sm-4">
+            <div class="col-xs-3">Delegacion</div>
+            <div class="col-xs-9"> <%= @cv.delegacion %> </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="col-xs-3">Ciudad</div>
+            <div class="col-xs-9"> <%= @cv.ciudad %> </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="col-xs-3 ">CP</div>
+            <div class="col-xs-9"> <%= @cv.cp %> </div>
+          </div>
+          <div class="col-sm-1">
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="col-sm-4">
+            <div class="col-xs-3">Institución</div>
+            <div class="col-xs-9"> <%= @cv.institucion %> </div>
+          </div>
+          <div class="col-sm-5"> <%= @cv.areas_especializacion_id %> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

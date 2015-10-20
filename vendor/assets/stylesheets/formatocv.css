@@ -13,16 +13,40 @@ body {
 }
 
 #form-cv{
-  padding-top: 35px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
-body > section {
-  padding: 70px 0;
+.row2{
+  margin-right: 0px;
+  margin-left: 0px;
+}
+.row2:before,
+.row2:after {
+  display: table;
+  content: " ";
+}
+.row2:after{
+  clear: both;
 }
 
 .form-cv{
   border-width:  2px;
   border-style: solid;
-  padding-left: 40px;
-  padding-right: 40px;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+@media(min-width: 990px){
+  .form-cv {
+    border-width:  2px;
+    border-style: solid;
+    padding-left: 35px;
+    margin-left: 7%;
+    margin-right: 7%;
+  }
+
+  .input-cv {
+    margin-left: -35px;
+  }
 }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012173944) do
+ActiveRecord::Schema.define(version: 20151019011739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,16 @@ ActiveRecord::Schema.define(version: 20151012173944) do
 
   add_index "curso_de_actualizacions", ["curriculum_vitae_id"], name: "index_curso_de_actualizacions_on_curriculum_vitae_id", using: :btree
 
+  create_table "experiencia_profesionals", force: :cascade do |t|
+    t.string   "entidad"
+    t.text     "experiencia"
+    t.integer  "curriculum_vitae_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "experiencia_profesionals", ["curriculum_vitae_id"], name: "index_experiencia_profesionals_on_curriculum_vitae_id", using: :btree
+
   create_table "formacion_academicas", force: :cascade do |t|
     t.string   "area_especialidad"
     t.string   "ultimo_grado"
@@ -116,9 +126,20 @@ ActiveRecord::Schema.define(version: 20151012173944) do
 
   add_index "reconocimientos", ["curriculum_vitae_id"], name: "index_reconocimientos_on_curriculum_vitae_id", using: :btree
 
+  create_table "telefono_curriculums", force: :cascade do |t|
+    t.integer  "num_telefono"
+    t.integer  "curriculum_vitae_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "telefono_curriculums", ["curriculum_vitae_id"], name: "index_telefono_curriculums_on_curriculum_vitae_id", using: :btree
+
   add_foreign_key "correo_curriculums", "curriculum_vitaes"
   add_foreign_key "curriculum_vitaes", "areas_especializacions"
   add_foreign_key "curso_de_actualizacions", "curriculum_vitaes"
+  add_foreign_key "experiencia_profesionals", "curriculum_vitaes"
   add_foreign_key "formacion_academicas", "curriculum_vitaes"
   add_foreign_key "reconocimientos", "curriculum_vitaes"
+  add_foreign_key "telefono_curriculums", "curriculum_vitaes"
 end

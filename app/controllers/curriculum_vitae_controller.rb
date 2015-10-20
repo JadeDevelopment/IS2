@@ -50,7 +50,7 @@ class CurriculumVitaeController < ApplicationController
         @r = Reconocimiento.new(r) #creamos un objeto a partir de los parametros requeridos
         @r.curriculum_vitae_id = @cv.id #asignamos el id del curriculum al que pertenece
 
-        if @r.valid? #si es valido lo guardamos
+        if @r.nombre_reconocimiento.blank? == false #si es valido lo guardamos
           @r.save!
         end
       end
@@ -59,7 +59,7 @@ class CurriculumVitaeController < ApplicationController
       @correos.each do |cor|
         begin
           @cor = CorreoCurriculum.new(cor)
-          rescue ActiveRecord::CatchAll
+        rescue ActiveRecord::CatchAll
           #Only comes in here if nothing else catches the error
           @cor = CurriculumVitae.build
         end
@@ -70,6 +70,38 @@ class CurriculumVitaeController < ApplicationController
           @cv.destroy   #si esta repetidos se destruye el curriculum y se regresa a la pagina anterior
           flash[:notice] = "Formacion Academica no valido"
           redirect_to new_curriculum_vitae_path
+        end
+      end
+
+      @cursos = parametros_f[:curso_de_actualizacion]
+      puts @cursos.to_json
+      @cursos.each do |curso|
+        @curso = CursoDeActualizacion.new(curso)
+        @curso.curriculum_vitae_id = @cv.id
+
+        if @curso.nombre_curso.blank? == false
+          @curso.save!
+        end
+      end
+
+      @telefonos = parametros_f[:telefono_curriculum]
+      puts @telefonos.to_json
+      @telefonos.each do |tel|
+        @tel = TelefonoCurriculum.new(tel)
+        @tel.curriculum_vitae_id = @cv.id
+
+        if @tel.valid? #si es valido lo guardamos
+          @tel.save!
+        end
+      end
+
+      @expprofs = parametros_f[:experiencia_profesional]
+      @expprofs.each do |exp|
+        @exp = ExperienciaProfesional.new(exp)
+        @exp.curriculum_vitae_id = @cv.id
+
+        if @exp.valid?
+          @exp.save!
         end
       end
     else #si ya existe regresa a la pagina anterior
@@ -83,7 +115,12 @@ class CurriculumVitaeController < ApplicationController
   end
 
   def show
+    @cv = CurriculumVitae.find(params[:id])
+  end
 
+  def edit
+    @cv = CurriculumVitae.find(params[:id])
+    @areasespecializacion = AreasEspecializacion.all
   end
 
   private
@@ -94,17 +131,5 @@ class CurriculumVitaeController < ApplicationController
     def parametros_f
       params.require(:curriculum_vitae).permit!
     end
-
-
-  #Actualiza el CV:
-  def updateCurriculumVitae
-      @post = CurriculumVitae.find(params[:id])
-
-      if @post.update_attributes(params.require(:curriculum_vitae).permit(:rfc, :nombre, :appaterno, :apmaterno, :fecha_nacimiento, :numero, :calle, :colonia, :delegacion, :ciudad, :cp, :institucion, :areas_especializacion_id, :formacion_academica)) 
-         redirect_to :action => :show, :id => @curriculum_vitae.id
-      else
-        return
-      end
-  end
 
 end
