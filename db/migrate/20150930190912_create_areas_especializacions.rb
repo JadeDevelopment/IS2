@@ -3,7 +3,7 @@ class CreateAreasEspecializacions < ActiveRecord::Migration
     create_table :areas_especializacions do |t|
       t.string :area
 
-      t.timestamps null: false
+      t.timestamps 
     end
   end
 end

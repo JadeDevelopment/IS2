@@ -3,7 +3,7 @@ class CreateSedes < ActiveRecord::Migration
     create_table :sedes do |t|
       t.text :NombreSede
 
-      t.timestamps null: false
+      t.timestamps 
     end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012220849) do
+ActiveRecord::Schema.define(version: 20151020191706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20151012220849) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "area_academicas", force: :cascade do |t|
-    t.text     "NombreArea"
+    t.text     "nombrearea"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -99,14 +99,14 @@ ActiveRecord::Schema.define(version: 20151012220849) do
   end
 
   create_table "contenidos", force: :cascade do |t|
-    t.integer  "NumeroTema"
-    t.text     "Tema"
-    t.integer  "NumeroHoras"
-    t.text     "NombrePonente"
-    t.date     "Fecha"
-    t.integer  "IdPonente"
-    t.text     "Subtemas"
-    t.text     "Bibliografia"
+    t.integer  "numerotema"
+    t.text     "tema"
+    t.integer  "numerohoras"
+    t.text     "nombreponente"
+    t.date     "fechainicio"
+    t.date     "fechafinal"
+    t.text     "subtemas"
+    t.text     "bibliografia"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20151012220849) do
   add_index "curso_de_actualizacions", ["formacion_academica_id"], name: "index_curso_de_actualizacions_on_formacion_academica_id", using: :btree
 
   create_table "disciplinas", force: :cascade do |t|
-    t.text     "NombreDisciplina"
+    t.text     "nombredisciplina"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -159,19 +159,19 @@ ActiveRecord::Schema.define(version: 20151012220849) do
   add_index "formacion_academicas", ["curriculum_vitae_id"], name: "index_formacion_academicas_on_curriculum_vitae_id", using: :btree
 
   create_table "materia", force: :cascade do |t|
-    t.text     "NombreMateria"
+    t.text     "nombremateria"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   create_table "modalidads", force: :cascade do |t|
-    t.text     "NombreModalidad"
+    t.text     "nombremodalidad"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
   create_table "publico_dirigidos", force: :cascade do |t|
-    t.text     "NombrePublico"
+    t.text     "nombrepublico"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -186,38 +186,38 @@ ActiveRecord::Schema.define(version: 20151012220849) do
   add_index "reconocimientos", ["curriculum_vitae_id"], name: "index_reconocimientos_on_curriculum_vitae_id", using: :btree
 
   create_table "requisitos_egresos", force: :cascade do |t|
-    t.text     "NombreRequisitosEgreso"
-    t.integer  "IdPonente"
-    t.integer  "IdActividad"
+    t.text     "nombrerequisitosegreso"
+    t.integer  "idponente"
+    t.integer  "idactividad"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
   create_table "requisitos_ingresos", force: :cascade do |t|
-    t.text     "NombreRequisitosIngreso"
-    t.integer  "IdPonente"
-    t.string   "IdActividad"
+    t.text     "nombrerequisitosingreso"
+    t.integer  "idponente"
+    t.string   "idactividad"
     t.string   "integer"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
 
   create_table "requisitos_permanencia", force: :cascade do |t|
-    t.text     "NombreRequisitosPermanencia"
-    t.integer  "IdPonente"
-    t.integer  "IdActividad"
+    t.text     "nombrerequisitospermanencia"
+    t.integer  "idponente"
+    t.integer  "idactividad"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
 
   create_table "sedes", force: :cascade do |t|
-    t.text     "NombreSede"
+    t.text     "nombresede"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tipos", force: :cascade do |t|
-    t.text     "NombreTipo"
+    t.text     "nombretipo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

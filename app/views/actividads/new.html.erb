@@ -1,151 +1,189 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<head>
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
-<title>Propuesta de Curso</title>
-  
-<style type="text/css" media="all">
-	@import "style.css";
-</style>
-<style type="text/css" media="all">
-	@import "style_for.css";
-</style>
-</head>
+
 <body>
-<div id="farouter">
-	<div id="outer">
-		<div id="wrap">
-			<div id="headermain">
-				<img src="https://www.unam.mx/sites/all/themes/unam/logo.png">
-			</div>
-
-			<div id="hmenu">
-				<div id="hnav">
-					<ul id="navlist">
-						<li><a href="index.html">Proximos Cursos</a></li>
-						<li><a href="#">Actividades de Curso</a></li>
-						<li><a href="#">Cat&aacute;logo de Curso</a></li>
-						<li><a href="#">Formas de Pago</a></li>
-						<li><a href="" id="active">Solicitud en Linea</a></li>
-					</ul>
+	<div id="farouter">
+		<div id="outer">
+			<div id="wrap">
+				<div id="headermain">
+					<img src="https://www.unam.mx/sites/all/themes/unam/logo.png">
 				</div>
-			</div>
 
-			<div id="main">
-				<div id="content">
-					<div id="nav">
+				<div id="hmenu">
+					<div id="hnav">
+						<ul id="navlist">
+							<li><a href="index.html">Proximos Cursos</a></li>
+							<li><a href="#">Actividades de Curso</a></li>
+							<li><a href="#">Cat&aacute;logo de Curso</a></li>
+							<li><a href="#">Formas de Pago</a></li>
+							<li><a href="" id="active">Solicitud en Linea</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<section>
+					<% if flash[:notice].blank? == false %>
+    					<p><%= flash[:notice] %></p>
+  					<% end %>
+
+  					<%= form_for @actividads, url: {action: "create"}  do |f| %>
+
+						<div id="main">
+							<div id="content">
+							<div id="nav">
 						<h1>Propuesta de un curso</h1>
 						<hr>
-						<div>&nbsp;Llene el formato de solicitud. Luego al enviar ser&aacute; puesto a revisi&oacute;n para la aprobaci&oacute;n</div><br>
-						<form class="cform" action="#" method="post">
+
+						<div align="center"> 
+							&nbsp;Llene el formato de solicitud. Luego al enviar ser&aacute; puesto a revisi&oacute;n para la aprobaci&oacute;n.</div><br>
+						
+
 							<h2 align="center">I.	INFORMACI&Oacute;N PARA LA OPERACI&Oacute;N Y LOG&Iacute;STICA</h2>
-							* Nombre de la actividad: <input class="textf" type="text" name="noms" size="25" required>
+
+							<%= f.label :Nombre %><br>
+							&nbsp;&nbsp;
+
+							 <%= f.text_field :nombre, class: "cform", :required => true, :pattern => '^[A-Z][a-z]+(\s[a-z])*+(\s[A-Z][a-z]+)*$'%>
+							
 							<br><br>
-							* Tipo: &nbsp;&nbsp;
-							<input type="radio" name="tip" value="taller"> Taller &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value="seminario">Seminario &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value="curso" > Curso &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value="diplomado" > Diplomado &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value=""> Otro:&nbsp; <input type="text" name="ot_tipo" size="18">
+
+							<%= f.label :Tipo %><br>
+							
+							<br>
+							<%= f.collection_select(:idtipo, Tipo.all, :id, :nombretipo) %>
+
+							
 							<br><br>
-							* Modalidad:&nbsp;&nbsp;
-							<input type="radio" name="mod" value="presencial" > Presencial &nbsp;&nbsp;&nbsp; <input type="radio" name="mod" value="semi-presencial">Semi Presencial &nbsp;&nbsp;&nbsp; <input type="radio" name="mod" value="en linea" > En Linea
+							<%= f.label :Modalidad %><br>
+							&nbsp;&nbsp;
+							<%= f.collection_select(:idmodalidad, @modalidad, :id, :nombremodalidad) %>
+
+
+							
 							<br><br>
-							* Fecha Inicio: <input type="date" name="f_ini"> &nbsp;&nbsp;&nbsp; * Fecha Fin: <input type="date" name="f_fin"><br><br>
+							 <%= f.label :Fecha_de_inicio %><br>
+							  <%= f.date_field :fechainicio, class: "form-control-horizontal", :required => true , max: "1996-12-31"%>
+
+							  &nbsp;&nbsp;&nbsp; 
+							  <%= f.label :Fecha_de_fin %><br>
+							  <%= f.date_field :fechafinal, class: "form-control-horizontal", :required => true , max: "1996-12-31"%>
+
+							  <br><br>
 							
 
-							* Lugar:
-							<input class="textf" type="text" name="lugar" size="25" required>
+							 <%= f.label :Sede %><br>
+							 <%= f.collection_select(:idsede, Sede.all, :id, :nombresede) %>
+							
 							<br><br>
-							* Numero de Sesiones:
-							<input type="text" name="num_ses" size="3" required>
+							 <%= f.label :Aula %><br>
+    						<%= f.text_field :aula %>
+
+							 <%= f.label :Numero_de_sesiones %><br>
+    						<%= f.number_field :numerosesiones, in: 00001...99999 %>
+							
 							&nbsp;&nbsp;
-							* Numero de Horas:
-							<input  type="text" name="num_hr" size="3" required>
+
+							<%= f.label :Numero_de_horas %><br>
+    						<%= f.number_field :duracionhoras, in: 00001...99999 %>
+
 							&nbsp;&nbsp;
-							* Minimo inscritos:
-							<input  type="text" name="min_ins" size="3" required>
+
+							
+							<%= f.label :Minimo_de_inscritos %><br>
+    						<%= f.number_field :cupominimo, in: 00001...99999 %>
+
 							&nbsp;&nbsp;
-							* Maximo inscritos:
-							<input type="text" name="max_ins" size="3" required>
+
+							<%= f.label :Máximo_de_inscritos %><br>
+    						<%= f.number_field :cupomaximo, in: 00001...99999 %>
+
 							&nbsp;&nbsp;<br><br>
-							* Costo General: $
-							<input type="text" name="c_gen" size="5" required>
-							&nbsp;&nbsp;* Costo Para Estudiantes: $ <input type="text" name="c_est" size="5" required> MXN &nbsp;&nbsp;
+
+							<%= f.label :Costo_publico_general %><br>
+    						$<%= f.number_field :costogeneral, in: 00001...99999 %>MXN
+
+							&nbsp;&nbsp;
+
+							
+							<%= f.label :Costo_para_alumnos %><br>
+    						<%= f.number_field :costoalumnos, in: 00001...99999 %> MXN 
+
+							&nbsp;&nbsp;
 
 							* Pago propuesto a docentes (Por hora): $ <input type="text" name="p_x_hr" size="5" required> MXN<br><br>
 
-							* Material de apoyo requerido para clases:
-							<input class="textf" type="text" name="mat_apoyo" size="25" required><br><br>
+							
+							<%= f.label :Material_de_apoyo_requerido_para_clases %>:
+							<%= f.text_field :materialdidactico, :placeholder => "Proyector, Bocinas, Computadoras, Software especial etc." %>
+							
+							<br><br>
 
-							* Equipo de c&oacute;mputo y software requerido: 
-							<input class="textf" type="text" name="eq_comp" size="25" required><br><br>
+							<%= f.label :Material_requerido_a_los_alumnos %>
+							<%= f.text_field :materialesdealumnos, :placeholder => "Los alumnos deberán llevar memorias USB etc."%>
 
-							* Material requerido a los alumnos: 
-							<input class="textf" type="text" name="mat_req" size="25" required><br><br>
 
-							* Material de apoyo para los alumnos: 
-							<input class="textf" type="text" name="mat_ap" size="25" required><br><br>
+							<%= f.label :Material_de_apoyo_para_los_alumnos %>
+							<%= f.text_field :materialesparaalumnos, :placeholder => "Se les proporcionará a los alumnos carpetas, CD's etc."%>
 
+							<br><br>
+		
 							<h2 align="center">II. INFORMACI&Oacute;N ACAD&Eacute;MICA</h2>
 							<br>
 
-							<div style="position: inherit; float: left; margin-right:10px; ">* Descripcion del Curso:</div>
-							<textarea rows="10" cols="80" name="desc" ></textarea><br><br>
+							<div style="position: inherit; float: left; margin-right:10px; ">
+							<%= f.label :Descripcion_del_Curso %>:
+												
+							</div>
+							<%= f.text_field :descripcion %>
+							<br><br>
 
-							* Objetivo General:
-							<input class="textf" type="text" name="ob_g" size="25" required><br><br>
-
-							* Objetivo Especifico: 
-							<input class="textf" type="text" name="ob_e" size="25" required><br><br>
-
-							<div style="position: inherit; float: left; margin-right:10px; ">* Metas:</div> 
-							<textarea rows="10" cols="80" name="metas" ></textarea><br><br>
-
-							* Campo de Conocimiento:
-							<input class="textf" type="text" name="campo_con" size="25" required><br><br>
-
-							* Dirigido a: 
-							<input class="textf" type="text" name="dir_a" size="25" required><br><br>
-
-							<hr>
-							<h3>* Datos del Docente:</h3>
+							<%= f.label :Objetivo_general %>:
 							
-							Nombre:
-							<input class="textf" type="text" name="doc_nom" size="25" required><br><br>
-							Grado:
-							<input class="textf" type="text" name="doc_grado" size="25" required><br><br>
-							Cargo:
-							<input class="textf" type="text" name="doc_cargo" size="25" required><br><br>
-							Entidad o Empresa actual de adscripci&oacute;n:
-							<input class="textf" type="text" name="doc_ent" size="25" required><br><br>
-							<hr>
+							<%= f.text_field :objetivogeneral %>
+							<br><br>
 
-							<div style="position: inherit; float: left; margin-right:10px; ">* Requisitos de Evaluaci&oacute;n:</div>
-							<textarea rows="10" cols="80" name="r_eval" ></textarea><br><br>
+							
+							<%= f.label :Objetivo_Especifico %>
+							<%= f.text_field :objetivoespecifico %>
+							<br><br>
 
-							* Requisitos de ingreso: 
-							<input class="textf" type="text" name="r_ing" size="25" required><br><br>
-							* Requisitos de permanencia: 
-							<input class="textf" type="text" name="r_perm" size="25" required><br><br>
-							* Requisitos de egreso: 
-							<input class="textf" type="text" name="r_eg" size="25" required><br><br>
+							<div style="position: inherit; float: left; margin-right:10px; ">
+								<%= f.label :Metas %>
+							</div> 
+							
+							<%= f.text_field :metas %>
 
-							<div style="position: inherit; float: left; margin-right:10px; ">* Bibliografia:</div>
-							<textarea rows="8" cols="60" name="r_eval"></textarea><br><br>
+							<br><br>
+
+							<!-- aqui va la 2a parte dell gedit-->
+
+							
+							
+							<br><br>
+
+							
+
+							<br><br>
 
 							<div style="text-align:center;"><input type="submit" value="Enviar Solicitud" style="vertical-align:middle"></div>
 							<br>
-						</form>
+						
 						<br>
+						</div>
+						</div>
+						</div>
+						<% end %>
+					</section>
 					</div>
 				</div>
 				
 			</div>
 
+		
 			<div id="clearer">&nbsp;</div>
 			<div id="footer">
 
 			</div> <!-- END footer -->
-		</div> <!-- END wrap -->
-	</div> <!-- END outer -->
-</div> <!-- END farouter -->
-
+	
 </body>
 </html>

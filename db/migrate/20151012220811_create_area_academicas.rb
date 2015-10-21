@@ -3,7 +3,7 @@ class CreateAreaAcademicas < ActiveRecord::Migration
     create_table :area_academicas do |t|
       t.text :NombreArea
 
-      t.timestamps null: false
+      t.timestamps 
     end
   end
 end

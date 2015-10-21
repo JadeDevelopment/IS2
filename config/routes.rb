@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
 
    get "actividads/showSolicitud/:id" => "actividads#showSolicitud"
-  # get "actividads" => "actividads#index"
+   
+     # get "actividads" => "actividads#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

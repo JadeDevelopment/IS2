@@ -3,7 +3,7 @@ class CreateModalidads < ActiveRecord::Migration
     create_table :modalidads do |t|
       t.text :NombreModalidad
 
-      t.timestamps null: false
+      t.timestamps 
     end
   end
 end

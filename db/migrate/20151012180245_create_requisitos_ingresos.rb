@@ -6,7 +6,7 @@ class CreateRequisitosIngresos < ActiveRecord::Migration
       t.string :IdActividad
       t.string :integer
 
-      t.timestamps null: false
+      t.timestamps 
     end
   end
 end

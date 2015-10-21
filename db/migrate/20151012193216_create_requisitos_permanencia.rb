@@ -5,7 +5,7 @@ class CreateRequisitosPermanencia < ActiveRecord::Migration
       t.integer :IdPonente
       t.integer :IdActividad
 
-      t.timestamps null: false
+      t.timestamps 
     end
   end
 end

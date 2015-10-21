@@ -34,7 +34,7 @@ class CreateActividads < ActiveRecord::Migration
       t.integer :IdSede
       t.text :evaluacion
 
-      t.timestamps null: false
+      t.timestamps 
     end
   end
 end

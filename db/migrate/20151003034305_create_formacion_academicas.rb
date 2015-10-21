@@ -7,7 +7,7 @@ class CreateFormacionAcademicas < ActiveRecord::Migration
       t.string :entidad_academica
       t.references :curriculum_vitae, index: true, foreign_key: true
 
-      t.timestamps null: false
+      t.timestamps 
     end
   end
 end

@@ -3,7 +3,7 @@ class CreateDisciplinas < ActiveRecord::Migration
     create_table :disciplinas do |t|
       t.text :NombreDisciplina
 
-      t.timestamps null: false
+      t.timestamps 
     end
   end
 end

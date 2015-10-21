@@ -4,7 +4,7 @@ class CreateCursoDeActualizacions < ActiveRecord::Migration
       t.string :nombre_curso
       t.references :formacion_academica, index: true, foreign_key: true
 
-      t.timestamps null: false
+      t.timestamps 
     end
   end
 end
