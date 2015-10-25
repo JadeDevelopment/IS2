@@ -64,8 +64,7 @@
 					<ul id="navlist">
 						<li><a href="ind">Actividades de Curso</a></li>
 						<li><a href="#">Cursos</a></li>
-						<li><a href="#">Solicitudes</a></li>
-						<li><a href="" id="active">Solicitud en Linea</a></li>
+						<li><a href="" id="active">Solicitudes</a></li>
 					</ul>
 				</div>
 			</div>
@@ -78,15 +77,15 @@
 						<div>&nbsp;Llene el formato de solicitud. Luego al enviar ser&aacute; puesto a revisi&oacute;n para la aprobaci&oacute;n</div><br>
 						<form class="cform" action="#" method="post">
 							<h2 align="center">I.	INFORMACI&Oacute;N PARA LA OPERACI&Oacute;N Y LOG&Iacute;STICA</h2>
-							* Nombre de la actividad: <input class="textf" type="text" name="noms" value="chris" size="25" readonly="true" required>
+							* Nombre de la actividad: <input class="textf" type="text" name="noms" value="chs" size="25" readonly="true" required>
 							<br><br>
 							* Tipo: &nbsp;&nbsp;
-							<input type="radio" name="tip" value="taller"> Taller &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value="seminario">Seminario &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value="curso" > Curso &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value="diplomado" > Diplomado &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value=""> Otro:&nbsp; <input type="text" name="ot_tipo" size="18">
+							<input type="radio" name="tip" value="taller"> Taller &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value="seminario">Seminario &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value="curso" checked="true"> Curso &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value="diplomado" > Diplomado &nbsp;&nbsp;&nbsp; <input type="radio" name="tip" value="" > Otro:&nbsp; <input type="text" name="ot_tipo" size="18" readonly="true">
 							<br><br>
 							* Modalidad:&nbsp;&nbsp;
-							<input type="radio" name="mod" value="presencial" > Presencial &nbsp;&nbsp;&nbsp; <input type="radio" name="mod" value="semi-presencial">Semi Presencial &nbsp;&nbsp;&nbsp; <input type="radio" name="mod" value="en linea" > En Linea
+							<input type="radio" name="mod" value="presencial" checked="true"> Presencial &nbsp;&nbsp;&nbsp; <input type="radio" name="mod" value="semi-presencial">Semi Presencial &nbsp;&nbsp;&nbsp; <input type="radio" name="mod" value="en linea" > En Linea
 							<br><br>
-							* Fecha Inicio: <input type="date" name="f_ini"> &nbsp;&nbsp;&nbsp; * Fecha Fin: <input type="date" name="f_fin"><br><br>
+							* Fecha Inicio: <input type="text" name="f_ini" readonly="true" value="10/08/2014"> &nbsp;&nbsp;&nbsp; * Fecha Fin: <input type="text" name="f_fin" value="12/08/2014" readonly="true"><br><br>
 							
 
 							* Lugar:
@@ -126,7 +125,7 @@
 							<br>
 
 							<div style="position: inherit; float: left; margin-right:10px; ">* Descripcion del Curso:</div>
-							<textarea rows="10" cols="80" name="desc" ></textarea><br><br>
+							<textarea rows="10" cols="80" name="desc" readonly="true"></textarea><br><br>
 
 							* Objetivo General:
 							<input class="textf" type="text" name="ob_g" size="25" readonly="true" required><br><br>
@@ -135,7 +134,7 @@
 							<input class="textf" type="text" name="ob_e" size="25" readonly="true" required><br><br>
 
 							<div style="position: inherit; float: left; margin-right:10px; ">* Metas:</div> 
-							<textarea rows="10" cols="80" name="metas" ></textarea><br><br>
+							<textarea rows="10" cols="80" name="metas" readonly="true"></textarea><br><br>
 
 							* Campo de Conocimiento:
 							<input class="textf" type="text" name="campo_con" size="25" readonly="true" required><br><br>
@@ -157,7 +156,7 @@
 							<hr>
 
 							<div style="position: inherit; float: left; margin-right:10px; ">* Requisitos de Evaluaci&oacute;n:</div>
-							<textarea rows="10" cols="80" name="r_eval" ></textarea><br><br>
+							<textarea rows="10" cols="80" name="r_eval" readonly="true"></textarea><br><br>
 
 							* Requisitos de ingreso: 
 							<input class="textf" type="text" name="r_ing" size="25" readonly="true" required><br><br>
@@ -167,12 +166,13 @@
 							<input class="textf" type="text" name="r_eg" size="25" readonly="true" required><br><br>
 
 							<div style="position: inherit; float: left; margin-right:10px; ">* Bibliografia:</div>
-							<textarea rows="8" cols="60" name="r_eval"></textarea><br><br>
+							<textarea rows="8" cols="60" name="r_eval" readonly="true"></textarea><br><br>
 
 							
 							<br>
 						</form>
-						<div style="text-align:center;"><input type="submit" value="Enviar Solicitud" style="vertical-align:middle"> <input type="submit" value="Enviar Solicitud" style="vertical-align:middle"></div>
+						<br>
+						<div style="text-align:center;"><button style="vertical-align:middle">Solicitud Anterior</button> &nbsp;&nbsp;&nbsp;&nbsp; <button style="vertical-align:middle">Aprobar</button> <button style="vertical-align:middle">Denegar</button> &nbsp;&nbsp;&nbsp;&nbsp; <button style="vertical-align:middle">Solicitud Siguiente</button> </div>
 						<br>
 					</div>
 				</div>

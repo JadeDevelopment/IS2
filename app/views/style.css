@@ -442,13 +442,26 @@ div{
 	border-color: yellow;
 	}
 
+#nav form.er {
+	margin: 0 200px 0 200px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: yellow;
+	font-family: 'Arial';
+	line-height: 1.7em;
+	padding-left: 3%;
+	vertical-align: middle;
+	text-align: left;
+	background-color: #eee;
+	}
+
 #nav input#s {
 	width: 40%;
 	background: #eee;
 	border: 9px none #999;
 	color: #000;
 	}
-
+	
 
 #nav ul li h2 {
   	font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
