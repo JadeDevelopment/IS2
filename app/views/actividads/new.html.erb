@@ -1,7 +1,5 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-
-<body>
+<html>
+	<body>	
 	<div id="farouter">
 		<div id="outer">
 			<div id="wrap">
@@ -69,50 +67,64 @@
 							  <%= f.date_field :fechafinal, class: "form-control-horizontal", :required => true , max: "1996-12-31"%>
 
 							  <br><br>
-							
 
+							   &nbsp;&nbsp;&nbsp; 
+							 <%= f.label :Dias %><br>
+							 <%= f.text_field :dias, class: "form-control-horizontal", :required => true , max: "1996-12-31"%>
+							
+							 <br><br>
+
+							   &nbsp;&nbsp;&nbsp; 
+							 <%= f.label :Horario_propuesto %><br>
+							 <%= f.text_field :horario, class: "form-control-horizontal", :required => true , max: "1996-12-31"%>
+							
+							 <br><br>
+
+							   &nbsp;&nbsp;&nbsp; 
+							 <%= f.label :Dias_de_duracion %><br>
+							 <%= f.text_field :duracion, class: "form-control-horizontal", :required => true , max: "1996-12-31"%>
+							 <br><br>
 							 <%= f.label :Sede %><br>
 							 <%= f.collection_select(:idsede, Sede.all, :id, :nombresede) %>
 							
 							<br><br>
-							 <%= f.label :Aula %><br>
-    						<%= f.text_field :aula %>
+							
 
 							 <%= f.label :Numero_de_sesiones %><br>
     						<%= f.number_field :numerosesiones, in: 00001...99999 %>
-							
+							<br><br>
 							&nbsp;&nbsp;
 
 							<%= f.label :Numero_de_horas %><br>
     						<%= f.number_field :duracionhoras, in: 00001...99999 %>
-
+    						<br><br>
 							&nbsp;&nbsp;
 
 							
 							<%= f.label :Minimo_de_inscritos %><br>
     						<%= f.number_field :cupominimo, in: 00001...99999 %>
-
+    						<br><br>
 							&nbsp;&nbsp;
 
 							<%= f.label :Máximo_de_inscritos %><br>
     						<%= f.number_field :cupomaximo, in: 00001...99999 %>
-
-							&nbsp;&nbsp;<br><br>
+    						<br><br>
+							&nbsp;&nbsp;
 
 							<%= f.label :Costo_publico_general %><br>
     						$<%= f.number_field :costogeneral, in: 00001...99999 %>MXN
-
+    						<br><br>
 							&nbsp;&nbsp;
 
 							
 							<%= f.label :Costo_para_alumnos %><br>
     						<%= f.number_field :costoalumnos, in: 00001...99999 %> MXN 
-
+							<br><br>
 							&nbsp;&nbsp;
 
-							* Pago propuesto a docentes (Por hora): $ <input type="text" name="p_x_hr" size="5" required> MXN<br><br>
+							Pago propuesto a docentes (Por hora): $ <input type="text" name="p_x_hr" size="5" required> MXN
 
-							
+							<br><br>
 							<%= f.label :Material_de_apoyo_requerido_para_clases %>:
 							<%= f.text_field :materialdidactico, :placeholder => "Proyector, Bocinas, Computadoras, Software especial etc." %>
 							
@@ -121,7 +133,7 @@
 							<%= f.label :Material_requerido_a_los_alumnos %>
 							<%= f.text_field :materialesdealumnos, :placeholder => "Los alumnos deberán llevar memorias USB etc."%>
 
-
+							<br><br>
 							<%= f.label :Material_de_apoyo_para_los_alumnos %>
 							<%= f.text_field :materialesparaalumnos, :placeholder => "Se les proporcionará a los alumnos carpetas, CD's etc."%>
 
@@ -153,37 +165,233 @@
 							
 							<%= f.text_field :metas %>
 
-							<br><br>
+							<br><br>							
 
-							<!-- aqui va la 2a parte dell gedit-->
-
+							<%= f.label :Area_academica %>
 							
-							
-							<br><br>
-
-							
+							<%= f.collection_select(:idareaacademica, AreaAcademica.all, :id, :nombrearea) %>
 
 							<br><br>
 
-							<div style="text-align:center;"><input type="submit" value="Enviar Solicitud" style="vertical-align:middle"></div>
-							<br>
+								<%= f.label :Dirigido_a %>
+							<%= f.collection_select(:idpublicodirigido, PublicoDirigido.all, :id, :nombrepublico) %>
+
+					
+
+				
+							
+							<br><br>
+							<h3> Datos del Cuerpo Docente:</h3>
+							
+							
+							<br><br>	
+							Nombre:
+							
+							<br><br>
+
+							Grado:
+							
+							<br><br>
+							
+							Cargo:
+							<input class="textf" type="text" name="doc_cargo" size="25" required>
+							<br><br>
+
+							Entidad o Empresa actual de adscripci&oacute;n:
+							
+							<br><br>
+							<hr>
+
+							<div style="position: inherit; float: left; margin-right:10px; ">
+							<%= f.label :Procesos_de_Evaluación %>
+
+							</div>
+							<%= f.text_field :evaluacion, :placeholder => "Se evaluará con Examenes, exposiciones etc."%>
+							
+
+							<br><br>
+
 						
-						<br>
-						</div>
-						</div>
-						</div>
-						<% end %>
-					</section>
+							<div class="row1" id="req_ingreso">
+            					<div class="form-group">
+              						<label for="actividad_telefono_curriculum_num_telefono" class="col-xs-2 control-label">Requisitos de ingreso</label>
+              							<div class="col-xs-8">
+                							<input type="text" value="" name="actividad[requisitos_ingreso][][nombrerequisitosingreso]" id="actividad_telefono_curriculum_num_telefono" class="form-control">
+              							</div>
+            					</div>
+          					</div>
+							<br><br>
+
+							<div class="row2" id="req_permanencia">
+            					<div class="form-group">
+              						<label for="actividad_telefono_curriculum_num_telefono" class="col-xs-2 control-label">Requisitos de permanencia</label>
+              							<div class="col-xs-8">
+                							<input type="text" value="" name="actividad[requisitos_permanencia][][nombrerequisitospermanencia]" id="actividad_telefono_curriculum_num_telefono" class="form-control">
+              							</div>
+            					</div>
+          					</div>
+          					<br><br>	
+
+          					<div class="row3" id="req_egreso">
+            					<div class="form-group">
+              						<label for="actividad_telefono_curriculum_num_telefono" class="col-xs-2 control-label">Requisitos de egreso</label>
+              							<div class="col-xs-8">
+                							<input type="text" value="" name="actividad[requisitos_egreso][][nombrerequisitosegreso]" id="actividad_telefono_curriculum_num_telefono" class="form-control">
+              							</div>
+            					</div>
+          					</div>
+							
+				
+							 <div id="contenidoycalendarizacion"> 
+							 	<br><br>
+          				        <h4>Contenido y Calendarización</h4>
+
+
+          				        
+								RFC del ponente:
+              					
+								<br><br>
+								Nombre_del_ponente:
+								<br><br>
+
+
+          						<div id="contenido">
+            						<div class="row2">
+              							<div class="col-sm-5">
+                							<div class="form-group">
+                								<div class="col-xs-1">
+                  									</div>
+                  								<label for="actividad_contenido__numero_de_tema" class="col-xs-2 control-label">Numero de tema</label>
+                  									<div class="col-xs-9">
+                    									<input type="number" name="actividad[contenido][][numerotema]" id="actividad_contenido__area_especialidad" class="form-control-horizontal" required />
+                  									</div>
+                							</div>
+              							</div>
+
+              							<div class="col-sm-5">
+                							<div class="form-group">
+                  								<label for="actividad_contenido__ultimo_grado" class="col-xs-3 control-label">Nombre del tema</label>
+                  									<div class="col-xs-9">
+                    									<input type="text" name="actividad[contenido][][tema]" id="  actividad_contenido__ultimo_grado" class="form-control-horizontal" required />
+                  									</div>
+                							</div>
+              							</div>
+            						</div>
+
+            						<div class="row2">
+              							<div class="col-sm-1"></div>
+              								<div class="col-sm-5">
+                								<div class="form-group">
+                  									<div class="col-xs-1">
+                  									</div>
+                  									<label for="actividad_contenido__año" class="col-xs-2 control-label">Subtema</label>
+                  								<div class="col-xs-7">
+                    								<input type="text" name="actividad[contenido][][subtemas]" id="actividad_contenido__año" class="form-control" required />
+                  								</div>
+                							</div>
+              							</div>
+
+              							<div class="col-md-5">
+                							<div class="form-group">
+                  								<label for="actividad_contenido__entidad_academica" class="col-xs-3 control-label">Numero de horas por tema</label>
+                  								<div class="col-xs-9">
+                    								<input type="text" name="actividad[contenido][][numerohoras]" id="actividad_contenido__entidad_academica" class="form-control" required />
+                  								</div>
+                							</div>
+              							</div>
+            						</div>
+
+            						<div class="row3">
+              							<div class="col-sm-1"></div>
+              								<div class="col-sm-5">
+                								<div class="form-group">
+                  									<div class="col-xs-1">
+                  									</div>
+                  									<label for="actividad_contenido__año" class="col-xs-2 control-label">Fecha de inicio del tema</label>
+                  								<div class="col-xs-7">
+                    								<input type="text" name="actividad[contenido][][fechainicio]" id="actividad_contenido__año" class="form-control" required />
+                  								</div>
+                							</div>
+              							</div>
+
+              							<div class="col-md-5">
+                							<div class="form-group">
+                  								<label for="actividad_contenido__entidad_academica" class="col-xs-3 control-label">Fecha de fin de tema</label>
+                  								<div class="col-xs-9">
+                    								<input type="text" name="actividad[contenido][][fechafinal]" id="actividad_contenido__entidad_academica" class="form-control" required />
+                  								</div>
+                							</div>
+              							</div>
+            						</div>
+
+									<div class="row4">
+										<div class="col-sm-1">
+          									<div class="col-sm-5"></div>
+          										<%= link_to 'Agregar otro tema', '#', :id => 'my-link' %>
+        								</div>
+        							</div>
+	          				
+
+	          					</div> <!--termina contenido -->
+
+        					</div> <!--fin contenidoycalendarizacion -->
+							
+        					<div class="row5">
+              					<div class="col-sm-1"></div>
+              					<div class="col-sm-1"></div>
+              					<div class="col-sm-5">
+                					<div class="form-group">
+                  						<div class="col-xs-1">
+                  						</div>
+                  						<label for="actividad_contenido__año" class="col-xs-2 control-label">Bibliografía</label>
+                  						<div class="col-xs-7">
+                    						<input type="text" value="" name="actividad[contenido][][bibliografia]" id="actividad_telefono_curriculum_num_telefono" class="form-control">
+                  						</div>
+                					</div>
+              					</div>	
+            				</div>
+			
+
+            				<br><br>
+							<div class="row6" style="text-align:center;">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-5">
+								<input type="submit" value="Enviar Solicitud" style="vertical-align:middle">
+								</div>
+							</div>
+
+          						
+							
+					
 					</div>
 				</div>
-				
 			</div>
+		<% end %>
+		</section>
+	</div>
+</div>
+	
+</div>
 
 		
 			<div id="clearer">&nbsp;</div>
 			<div id="footer">
 
 			</div> <!-- END footer -->
-	
-</body>
+	</body>
 </html>
+
+
+	<%= javascript_include_tag "jquery-2.1.3.min" %>
+
+<script>
+    $(document).ready(function() {
+      $('#my-link').click(function(event){
+        $('#contenidoycalendarizacion').append('<div id="contenido"><div class="row2"><div class="col-sm-5"><div class="form-group"><div class="col-xs-1"></div><label for="actividad_contenido__numero_de_tema" class="col-xs-2 control-label">Numero de tema</label><div class="col-xs-9"><input type="number" name="actividad[contenido][][numerotema]" id="actividad_contenido__area_especialidad" class="form-control-horizontal" required /></div></div></div><div class="col-sm-5"><div class="form-group"><label for="actividad_contenido__ultimo_grado" class="col-xs-3 control-label">Nombre del tema</label><div class="col-xs-9"><input type="text" name="actividad[contenido][][tema]" id="  actividad_contenido__ultimo_grado" class="form-control-horizontal" required /></div></div></div></div><div class="row2"><div class="col-sm-1"></div><div class="col-sm-5"><div class="form-group"><div class="col-xs-1"></div><label for="actividad_contenido__año" class="col-xs-2 control-label">Subtema</label><div class="col-xs-7"><input type="text" name="actividad[contenido][][subtemas]" id="actividad_contenido__año" class="form-control" required /></div></div></div><div class="col-md-5"><div class="form-group"><label for="actividad_contenido__entidad_academica" class="col-xs-3 control-label">Numero de horas por tema</label><div class="col-xs-9"><input type="text" name="actividad[contenido][][numerohoras]" id="actividad_contenido__entidad_academica" class="form-control" required /></div></div></div></div><div class="row3"><div class="col-sm-1"></div><div class="col-sm-5"><div class="form-group"><div class="col-xs-1"></div><label for="actividad_contenido__año" class="col-xs-2 control-label">Fecha de inicio del tema</label><div class="col-xs-7"><input type="text" name="actividad[contenido][][fechainicio]" id="actividad_contenido__año" class="form-control" required /></div></div></div><div class="col-md-5"><div class="form-group"><label for="actividad_contenido__entidad_academica" class="col-xs-3 control-label">Fecha de fin de tema</label><div class="col-xs-9"><input type="text" name="actividad[contenido][][fechafinal]" id="actividad_contenido__entidad_academica" class="form-control" required /></div><div><a href="#" id="delete-cont">eliminar</a></div></div></div></div></div></div></div>').on('click', '#delete-cont', function (e) { 
+          $(this).parent().parent().parent().remove();
+          e.preventDefault();});
+        $( "#contenido .row2 div .form-group div .primero" ).last().focus();
+        event.preventDefault(); // Prevent link from following its href
+      });
+	});
+</script>

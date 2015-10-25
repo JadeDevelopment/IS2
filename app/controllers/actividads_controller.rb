@@ -11,11 +11,7 @@ class ActividadsController < ApplicationController
   	#	 :cupomaximo => 10, :cupominimo => 5, :metas => 'Metas', :costogeneral => 4005.5, :costoalumnos => 229.2, :materialesparaalumnos => 'Recipientes', 
   	#	 :materialesdealumnos => 'Bata', :idcontenido => 1, :idponente => 1, :idtipo => 1, :idmodalidad => 1, :idareaacademica => 1, :idmateria => 1, :iddisciplina => 1, :idpublicodirigido => 1, :idsede => 1, :evaluacion => 'Examenes')
 
-   
-
-
   	@actividad = Actividad.find(params[:id])
-
 
   end
 
@@ -28,60 +24,9 @@ class ActividadsController < ApplicationController
   end
 
   def new
-
-  Tipo.create!(:nombretipo => 'Curso')
-    Tipo.create!(:nombretipo => 'Diplomado')
-    Tipo.create!(:nombretipo => 'Curso Diplomado')
-    Tipo.create!(:nombretipo => 'Coloquio')
-    Tipo.create!(:nombretipo => 'Taller')
-    Tipo.create!(:nombretipo => 'Jornada')
-    Tipo.create!(:nombretipo => 'Seminario')
-
-    AreasEspecializacion.create!(:area => 'Matemáticas')
-    AreasEspecializacion.create!(:area => 'Física')
-    AreasEspecializacion.create!(:area => 'Biologia')
-    AreasEspecializacion.create!(:area => 'Computación')
-
-    Modalidad.create!(:nombremodalidad => 'Presencial')
-    Modalidad.create!(:nombremodalidad => 'Semi Presencial')
-    Modalidad.create!(:nombremodalidad => 'En linea')
-
-     AreaAcademica.create!(:nombrearea => 'Ciencias Fisico-Matemáticas')
-     AreaAcademica.create!(:nombrearea => 'Ciencias Biológicas, Químicas y de la Salud')
-     AreaAcademica.create!(:nombrearea => 'Ciencias Sociales')
-     AreaAcademica.create!(:nombrearea => 'Humanidades y de las Artes')
-     AreaAcademica.create!(:nombrearea => 'Formación Pedagógica')
-
-     Materium.create!(:nombremateria => 'Biología')
-     Materium.create!(:nombremateria => 'Física')
-     Materium.create!(:nombremateria => 'Matemáticas')
-     Materium.create!(:nombremateria => 'Actuaría')
-
-
-     Disciplina.create!(:nombredisciplina => 'Analisis Biogeográfico')
-     Disciplina.create!(:nombredisciplina => 'Arácnidos de México (Biología)')
-     Disciplina.create!(:nombredisciplina => 'Bioestadística')
-     Disciplina.create!(:nombredisciplina => 'Ciencias Naturales')
-     Disciplina.create!(:nombredisciplina => 'Cómputo')
-     Disciplina.create!(:nombredisciplina => 'Dibujo de la Naturaleza (Ilustración)')
-     Disciplina.create!(:nombredisciplina => 'Fauna Silvestre')
-     Disciplina.create!(:nombredisciplina => 'Genética Forense')
-     Disciplina.create!(:nombredisciplina => 'Gestión de Fondos y Administración de Proyectos')
-     Disciplina.create!(:nombredisciplina => 'Herramientas en AVE')
-     Disciplina.create!(:nombredisciplina => 'Impacto Ambiental')
-     Disciplina.create!(:nombredisciplina => 'Informática')
-     Disciplina.create!(:nombredisciplina => 'Latex y Knitr')
-     Disciplina.create!(:nombredisciplina => 'Matemáticas')
-     Disciplina.create!(:nombredisciplina => 'Metodología Lean-Agile')
-     Disciplina.create!(:nombredisciplina => 'Solvencia II')
-
-     PublicoDirigido.create!(:nombrepublico => 'Alumnos')
-     PublicoDirigido.create!(:nombrepublico => 'Profesores')
-     PublicoDirigido.create!(:nombrepublico => 'Iniciativa Privada')
-     PublicoDirigido.create!(:nombrepublico => 'Sector público')
-
-     
+  
     @actividads = Actividad.new 
+
     @tipo = Tipo.all
     @areas_especializacion = AreasEspecializacion.all
     @modalidad = Modalidad.all
@@ -89,13 +34,45 @@ class ActividadsController < ApplicationController
     @materia = Materium.all
     @disciplina = Disciplina.all
     @publico_dirigido = PublicoDirigido.all
-
-
   end
 
   def create
-    @actividads = Actividad.new(params[:actividad])
+
+    @paramss = parametros_f
+    puts @paramss
+
+    @actividad = Actividad.new(parametros)  #creamos un objeto 'actividad' a partir de los parametros requeridos
+    puts @actividad.to_json
+
+    if @actividad.save!  #verificamos si se puede guardar
+      puts @actividad.to_json
+
+      @co = parametros_f[:contenido] #sacamos toda la info de 'contenidos'
+       puts @co.to_json
+
+      @co.each do |f| #multiples 
+
+        @f = Contenido.new(f)  #creamos una tupla de la tabla 'contenido' a partir de los parametros requeridos
+        @f.actividad_id = @actividad.id #le asignamos el id del curriculum al que pertenece
+
+        if @f.valid? #verificamos que sea valido
+          @f.save!  #guardamos
+        else
+          @actividad.destroy   #si esta repetidos se destruye el curriculum y se regresa a la pagina anterior
+          flash[:notice] = "Contenido y calendarizacion no valido"
+          redirect_to new_actividad_path
+        end
+      end
+    end
   end
 
+  private
+    def parametros
+      params.require(:actividad).permit(:autorizado, :nombre, :nombremodulo, :descripcion, :duracionhoras, :numerosesiones, :objetivoespecifico, :objetivogeneral, :materialdidactico, :dias, :horario, :aula, :duracion, :fechainicio, :fechafinal, :cupomaximo, :cupominimo, :metas, :costogeneral, :costoalumnos, :materialesparaalumnos, :materialesdealumnos, :idcontenido, :idponente, :idtipo, :idmodalidad, :idareaacademica, :idmateria, :iddisciplina, :idpublicodirigido, :idsede, :evaluacion)
+    end
 
+    def parametros_f
+      params.require(:actividad).permit!
+    end
 end
+
