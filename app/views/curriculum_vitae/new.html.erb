@@ -1,3 +1,48 @@
+<header id="header">
+  <div class="top-bar">
+    <div class="container">
+      <div class="row">
+        <!-- Application logo -->
+        <div class="col-sm-10 col-sm-offset-1" id="headermain">
+          <a class="navbar-brand" href="index" id="logo-unam">
+            <img src="https://www.unam.mx/sites/all/themes/unam/logo.png">
+          </a>
+        </div>
+      </div>
+    </div><!--/.container-->
+  </div><!--/.top-bar-->
+
+  <nav class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Inicio</a></li>
+              <li><a href="#">Próximos Cursos</a></li>
+              <li><a href="#">Actividades en Curso</a></li>
+              <li><a href="#">Catálogo Cursos</a></li>
+              <li><a href="#">Acerca de</a></li>
+              <li class="active"><%= link_to "Mi Cuenta", ponente_path(current_ponente.id) %></li>
+              <li><%= link_to "Salir", destroy_ponente_session_path, :method => 'delete' %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div><!--/.container-->
+  </nav><!--/nav-->
+</header><!--/header-->
+
 <section id="form-cv">
   <% if flash[:notice].blank? == false %>
     <p><%= flash[:notice] %></p>
@@ -61,7 +106,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_telefono_curriculum_num_telefono" class="col-xs-2 control-label">Telefono</label>
               <div class="col-xs-8">
-                <input type="number" value="" name="curriculum_vitae[telefono_curriculum][][num_telefono]" id="curriculum_vitae_telefono_curriculum_num_telefono" class="form-control">
+                <input type="text" value="" name="curriculum_vitae[telefono_curriculum][][num_telefono]" id="curriculum_vitae_telefono_curriculum_num_telefono" class="form-control" pattern="[0-9.]+" placeholder="55XXXXXX">
               </div>
             </div>
           </div>
@@ -357,7 +402,7 @@
         event.preventDefault();
       });
       $('#my-link-4').click(function(event){
-        $('#telefonos').append('<div class="form-group"><label for="curriculum_vitae_telefono_num_telefono" class="col-xs-2 control-label">Telefono</label><div class="col-xs-8"><input type="number" value="" name="curriculum_vitae[telefono][][num_telefono]" id="curriculum_vitae_telefono" required></div><div class="col-xs-2"><a href="#" id="offsite">elimina</a></div></div>').on('click', '#offsite', function (e) { 
+        $('#telefonos').append('<div class="form-group"><label for="curriculum_vitae_telefono_curriculum_num_telefono" class="col-xs-2 control-label">Telefono</label><div class="col-xs-8"><input type="number" value="" name="curriculum_vitae[telefono][][num_telefono]" id="curriculum_vitae_telefono" required></div><div class="col-xs-2"><a href="#" id="offsite">elimina</a></div></div>').on('click', '#offsite', function (e) { 
           $(this).parent().parent().remove();
           e.preventDefault();});
         $( "#telefonos .form-group div input" ).last().focus();

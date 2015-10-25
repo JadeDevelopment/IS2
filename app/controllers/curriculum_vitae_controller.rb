@@ -1,10 +1,14 @@
 class CurriculumVitaeController < ApplicationController
+  before_action :authenticate_ponente!
   def index
 
   end
 
   def new
-    # CurriculumVitae.destroy_all
+    if current_ponente.curriculum_vitae_id
+      @ponente = Ponente.find(current_ponente.id)
+      redirect_to @ponente
+    end
 
     @cv = CurriculumVitae.new
     @cv.delegacion = ""
@@ -18,12 +22,16 @@ class CurriculumVitaeController < ApplicationController
   def create
     @paramss = parametros_f
     puts @paramss
+    @poenten = Ponente.find(current_ponente.id)
 
   	@cv = CurriculumVitae.new(parametros)  #creamos un objeto curriculum vitae a partir de los parametros requeridos
     puts @cv.to_json
 
     if @cv.save!  #verificamos si se puede guardar
       puts @cv.to_json
+
+      @poenten.update(curriculum_vitae_id: @cv.id)
+
 
       @fa = parametros_f[:formacion_academica] #sacamos todos las formaciones academicas a partir de los parametros dados
       puts @fa.to_json
@@ -106,20 +114,33 @@ class CurriculumVitaeController < ApplicationController
       end
     else #si ya existe regresa a la pagina anterior
       flash[:notice] = "Curriculum no valido"
-      redirect_to new_curriculum_vitae_path
+      render template: "curriculum_vitae/new"
     end
-
-    redirect_to curriculum_vitae_index_path  #si se pudo guardar manda al index
-#    puts @cv.to_json
-
+    redirect_to  @poenten#si se pudo guardar manda al index
   end
 
   def show
-    @cv = CurriculumVitae.find(params[:id])
+    begin
+      @cv = CurriculumVitae.find(params[:id])
+    rescue
+      @cv = Ponente.find(current_ponente.curriculum_vitae_id)
+    end
+    
+    unless @cv.id == current_ponente.curriculum_vitae_id
+      redirect_to :back, :alert => "No puedes acceder."
+    end
   end
 
   def edit
-    @cv = CurriculumVitae.find(params[:id])
+    begin
+      @cv = CurriculumVitae.find(params[:id])
+    rescue
+      @cv = Ponente.find(current_ponente.curriculum_vitae_id)
+    end
+    
+    unless @cv.id == current_ponente.curriculum_vitae_id
+      redirect_to :back, :alert => "No puedes acceder."
+    end
     @areasespecializacion = AreasEspecializacion.all
   end
 
@@ -131,5 +152,4 @@ class CurriculumVitaeController < ApplicationController
     def parametros_f
       params.require(:curriculum_vitae).permit!
     end
-
 end
