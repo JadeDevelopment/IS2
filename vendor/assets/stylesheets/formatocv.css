@@ -12,26 +12,41 @@ body {
   line-height: 22px;
 }
 
+#form-cv{
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.row2{
+  margin-right: 0px;
+  margin-left: 0px;
+}
+.row2:before,
+.row2:after {
+  display: table;
+  content: " ";
+}
+.row2:after{
+  clear: both;
+}
+
 .form-cv{
-  padding-top: 35px;
-  border-top-width: 0;
-  border-bottom: 0;
-  border-right-width: 2px;
-  border-left-width: 2px;
+  border-width:  2px;
   border-style: solid;
-  pad
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
-#form-start{
-	border-top-width: 2px;
-}
+@media(min-width: 990px){
+  .form-cv {
+    border-width:  2px;
+    border-style: solid;
+    padding-left: 35px;
+    margin-left: 7%;
+    margin-right: 7%;
+  }
 
-#form-end{
-  border-bottom-width: 2px;
-  margin-bottom: 30px;
-}
-
-.titulo-cv{
-  margin: auto;
-  text-align: center;
+  .input-cv {
+    margin-left: -35px;
+  }
 }
