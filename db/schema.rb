@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20151020191706) do
     t.float    "costoalumnos"
     t.text     "materialesparaalumnos"
     t.text     "materialesdealumnos"
-    t.integer  "idcontenido"
     t.integer  "idponente"
     t.integer  "idtipo"
     t.integer  "idmodalidad"
@@ -99,6 +98,7 @@ ActiveRecord::Schema.define(version: 20151020191706) do
   end
 
   create_table "contenidos", force: :cascade do |t|
+    t.integer  "actividad_id"
     t.integer  "numerotema"
     t.text     "tema"
     t.integer  "numerohoras"
@@ -110,6 +110,18 @@ ActiveRecord::Schema.define(version: 20151020191706) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  add_index "contenidos", ["actividad_id"], name: "index_contenidos_on_actividad_id", using: :btree
+
+  create_table "correo_curriculums", force: :cascade do |t|
+    t.string   "correo"
+    t.string   "publicacion",         default: "t"
+    t.integer  "curriculum_vitae_id"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "correo_curriculums", ["curriculum_vitae_id"], name: "index_correo_curriculums_on_curriculum_vitae_id", using: :btree
 
   create_table "curriculum_vitaes", force: :cascade do |t|
     t.string   "rfc"
@@ -146,6 +158,16 @@ ActiveRecord::Schema.define(version: 20151020191706) do
     t.datetime "updated_at",       null: false
   end
 
+  create_table "experiencia_profesionals", force: :cascade do |t|
+    t.string   "entidad"
+    t.text     "experiencia"
+    t.integer  "curriculum_vitae_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "experiencia_profesionals", ["curriculum_vitae_id"], name: "index_experiencia_profesionals_on_curriculum_vitae_id", using: :btree
+
   create_table "formacion_academicas", force: :cascade do |t|
     t.string   "area_especialidad"
     t.string   "ultimo_grado"
@@ -168,6 +190,17 @@ ActiveRecord::Schema.define(version: 20151020191706) do
     t.text     "nombremodalidad"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "prueba", force: :cascade do |t|
+    t.string "algo", limit: 20
   end
 
   create_table "publico_dirigidos", force: :cascade do |t|
@@ -216,12 +249,22 @@ ActiveRecord::Schema.define(version: 20151020191706) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "telefono_curriculums", force: :cascade do |t|
+    t.integer  "num_telefono"
+    t.integer  "curriculum_vitae_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "telefono_curriculums", ["curriculum_vitae_id"], name: "index_telefono_curriculums_on_curriculum_vitae_id", using: :btree
+
   create_table "tipos", force: :cascade do |t|
     t.text     "nombretipo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "contenidos", "actividads"
   add_foreign_key "curriculum_vitaes", "areas_especializacions"
   add_foreign_key "curso_de_actualizacions", "formacion_academicas"
   add_foreign_key "formacion_academicas", "curriculum_vitaes"

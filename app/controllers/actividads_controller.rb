@@ -11,6 +11,7 @@ class ActividadsController < ApplicationController
   	#	 :cupomaximo => 10, :cupominimo => 5, :metas => 'Metas', :costogeneral => 4005.5, :costoalumnos => 229.2, :materialesparaalumnos => 'Recipientes', 
   	#	 :materialesdealumnos => 'Bata', :idcontenido => 1, :idponente => 1, :idtipo => 1, :idmodalidad => 1, :idareaacademica => 1, :idmateria => 1, :iddisciplina => 1, :idpublicodirigido => 1, :idsede => 1, :evaluacion => 'Examenes')
 
+   
   	@actividad = Actividad.find(params[:id])
 
   end
@@ -63,6 +64,57 @@ class ActividadsController < ApplicationController
           redirect_to new_actividad_path
         end
       end
+    
+
+      @reqingreso = parametros_f[:requisitos_ingreso] #sacamos toda la info de 'requisitos_ingreso'
+      puts @reqingreso.to_json
+      @reqingreso.each do |f| #multiples 
+
+        @f = RequisitosIngreso.new(f)  #creamos una tupla de la tabla 'contenido' a partir de los parametros requeridos
+        @f.idactividad = @actividad.id #le asignamos el id del curriculum al que pertenece
+
+        if @f.valid? #verificamos que sea valido
+          @f.save!  #guardamos
+        else
+          @actividad.destroy   #si esta repetidos se destruye el curriculum y se regresa a la pagina anterior
+          flash[:notice] = "Requisitos de ingreso no validos"
+          redirect_to new_actividad_path
+        end
+      end
+
+      @reqegreso = parametros_f[:requisitos_egreso] #sacamos toda la info de 'requisitos_egreso'
+      puts @reqegreso.to_json
+      @reqegreso.each do |f| #multiples 
+
+        @f = RequisitosEgreso.new(f)  #creamos una tupla de la tabla 'contenido' a partir de los parametros requeridos
+        @f.idactividad = @actividad.id #le asignamos el id del curriculum al que pertenece
+
+        if @f.valid? #verificamos que sea valido
+          @f.save!  #guardamos
+        else
+          @actividad.destroy   #si esta repetidos se destruye el curriculum y se regresa a la pagina anterior
+          flash[:notice] = "Requisitos de egreso no validos"
+          redirect_to new_actividad_path
+        end
+      end
+
+      @reqperm = parametros_f[:requisitos_permanencia] #sacamos toda la info de 'requisitos_permanencia'
+      puts @reqperm.to_json
+      @reqperm.each do |f| #multiples 
+
+        @f = RequisitosPermanencium.new(f)  #creamos una tupla de la tabla 'contenido' a partir de los parametros requeridos
+        @f.idactividad = @actividad.id #le asignamos el id del curriculum al que pertenece
+
+        if @f.valid? #verificamos que sea valido
+          @f.save!  #guardamos
+        else
+          @actividad.destroy   #si esta repetidos se destruye el curriculum y se regresa a la pagina anterior
+          flash[:notice] = "Requisitos de permanencia no validos"
+          redirect_to new_actividad_path
+        end
+      end
+
+
     end
   end
 
