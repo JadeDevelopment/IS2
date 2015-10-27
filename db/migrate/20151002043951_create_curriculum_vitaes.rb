@@ -9,7 +9,7 @@ class CreateCurriculumVitaes < ActiveRecord::Migration
       t.integer :numero
       t.string :calle
       t.string :colonia
-      t.string :delegacion, :default => '?'
+      t.string :delegacion, :default => '?'                                     
       t.string :ciudad
       t.integer :cp
       t.string :institucion

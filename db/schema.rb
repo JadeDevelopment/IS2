@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020191706) do
+ActiveRecord::Schema.define(version: 20151024035312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,17 +145,18 @@ ActiveRecord::Schema.define(version: 20151020191706) do
 
   create_table "curso_de_actualizacions", force: :cascade do |t|
     t.string   "nombre_curso"
-    t.integer  "formacion_academica_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "año"
+    t.integer  "curriculum_vitae_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
-  add_index "curso_de_actualizacions", ["formacion_academica_id"], name: "index_curso_de_actualizacions_on_formacion_academica_id", using: :btree
+  add_index "curso_de_actualizacions", ["curriculum_vitae_id"], name: "index_curso_de_actualizacions_on_curriculum_vitae_id", using: :btree
 
   create_table "disciplinas", force: :cascade do |t|
     t.text     "nombredisciplina"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "experiencia_profesionals", force: :cascade do |t|
@@ -199,9 +200,32 @@ ActiveRecord::Schema.define(version: 20151020191706) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "prueba", force: :cascade do |t|
-    t.string "algo", limit: 20
+  create_table "ponentes", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "nombreusuario"
+    t.integer  "curriculum_vitae_id"
+    t.decimal  "salario"
   end
+
+  add_index "ponentes", ["curriculum_vitae_id"], name: "index_ponentes_on_curriculum_vitae_id", using: :btree
+  add_index "ponentes", ["email"], name: "index_ponentes_on_email", unique: true, using: :btree
+  add_index "ponentes", ["nombreusuario"], name: "index_ponentes_on_nombreusuario", unique: true, using: :btree
+  add_index "ponentes", ["reset_password_token"], name: "index_ponentes_on_reset_password_token", unique: true, using: :btree
 
   create_table "publico_dirigidos", force: :cascade do |t|
     t.text     "nombrepublico"
@@ -250,7 +274,7 @@ ActiveRecord::Schema.define(version: 20151020191706) do
   end
 
   create_table "telefono_curriculums", force: :cascade do |t|
-    t.integer  "num_telefono"
+    t.string   "num_telefono"
     t.integer  "curriculum_vitae_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -265,8 +289,12 @@ ActiveRecord::Schema.define(version: 20151020191706) do
   end
 
   add_foreign_key "contenidos", "actividads"
+  add_foreign_key "correo_curriculums", "curriculum_vitaes"
   add_foreign_key "curriculum_vitaes", "areas_especializacions"
-  add_foreign_key "curso_de_actualizacions", "formacion_academicas"
+  add_foreign_key "curso_de_actualizacions", "curriculum_vitaes"
+  add_foreign_key "experiencia_profesionals", "curriculum_vitaes"
   add_foreign_key "formacion_academicas", "curriculum_vitaes"
+  add_foreign_key "ponentes", "curriculum_vitaes"
   add_foreign_key "reconocimientos", "curriculum_vitaes"
+  add_foreign_key "telefono_curriculums", "curriculum_vitaes"
 end

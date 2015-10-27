@@ -1,8 +1,6 @@
 ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation
 
-  #AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')
-
   index do
     selectable_column
     id_column

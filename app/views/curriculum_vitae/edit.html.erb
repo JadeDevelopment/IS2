@@ -1,0 +1,235 @@
+<h1>Editing CV</h1>
+<section id="form-cv">
+  <div class="container">
+    <div class="row">
+      <%= form_for @cv, :html => {:class => "form-horizontal form-cv"}, url: curriculum_vitae_path(@cv), method: :patch do |f| %>
+        <h2>Datos personales</h2>
+
+        <div class="row2">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="curriculum_vitae_rfc" class="col-xs-3 control-label">RFC</label>
+              <div class="col-xs-9">
+                <%= f.text_field :rfc, class: "form-control", :required => true, :pattern => '[A-Z]*[0-9]*', :placeholder => "RFC" %>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="curriculum_vitae_nombre" class="col-xs-2 control-label">Nombre(s)</label>
+              <div class="col-xs-10">
+                <%= f.text_field :nombre, class: "form-control", :required => true, :pattern => '^[A-Z][a-z]+(\s[A-Z][a-z]+)*$', :placeholder => "Juan Carlos" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row2">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="curriculum_vitae_appaterno" class="col-xs-2 control-label">Apellido Paterno</label>
+              <div class="col-xs-10">
+                <%= f.text_field :appaterno, class: "form-control", :required => true, :pattern => '^[A-Z][a-z]+(\s[a-z])*+(\s[A-Z][a-z]+)*$', :placeholder => "Pérez"%>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="curriculum_vitae_apmaterno" class="col-xs-2 control-label">Apellido Materno</label>
+              <div class="col-xs-10">
+                <%= f.text_field :apmaterno, class: "form-control", :required => true, :pattern => '^[A-Z][a-z]+(\s[a-z])*+(\s[A-Z][a-z]+)*$', :placeholder => "López" %>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="row2">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="curriculum_vitae_fecha_nacimiento" class="col-xs-3 control-label">Fecha de Nacimiento </label>
+              <div class="col-xs-9">
+                <%= f.date_field :fecha_nacimiento, class: "form-control", :required => true , max: "1996-12-31"%>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-5" id="telefonos">
+            <div class="form-group">
+            	<% @cv.telefono_curriculum.each do |telefonocurriculum| %>
+    				<%= f.fields_for telefonocurriculum, index: telefonocurriculum.id do |tel| %>
+    					<%= tel.label :num_telefono, class: "col-xs-2 control-label" %>
+              			<div class="col-xs-8">
+              				<%= tel.number_field :num_telefono, class: "form-control", :required => true %>
+              			</div>
+              		<% end -%>
+              	<% end -%>
+           	</div>
+          </div>
+          <div class="col-sm-2">
+            <div class="col-xs-12">
+              <%= link_to 'Agregar telefono', '#', :id => 'my-link-4' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="curriculum_vitae_reconocimiento__correo_curriculum_correo" class="col-xs-2 control-label">Correo Electrónico:</label>
+              <div class="col-xs-10">
+                <input type="text" value="" name="curriculum_vitae[correo_curriculum][][correo]" id="curriculum_vitae_reconocimiento__correo_curriculum_correo" required="required" pattern=".*@.*" placeholder="exmaple@domain.ext" class="form-control-horizontal">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-xs-7">¿Desea que se publique en internet como contacto de información académica para los interesados?</label>
+              <div class="col-xs-5">
+                <label for="curriculum_vitae_reconocimiento__correo_curriculum_publicacion" >Sí</label>
+                <input type="radio" name="curriculum_vitae[correo_curriculum][][publicacion]" id="curriculum_vitae_reconocimiento__correo_curriculum_publicacion" value="t" checked> 
+                <label for="curriculum_vitae_reconocimiento__correo_curriculum_publicacion">No</label>
+                <input type="radio" id="curriculum_vitae_reconocimiento__correo_curriculum_publicacion" name="curriculum_vitae[correo_curriculum][][publicacion]" value="f">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="col-sm-5">
+            <div class="form-group">
+              <label for="curriculum_vitae_calle" class="col-xs-2 control-label">Calle&nbsp;&nbsp;</label>
+              <div class="col-xs-10 ">
+                <%= f.text_field :calle, class: "form-control", :required => true %>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-2">
+            <div class="form-group">
+              <label for="curriculum_vitae_numero" class="col-xs-2 control-label">No</label>
+              <div class="col-xs-10">
+                <%= f.number_field :numero, class: "form-control", :required => true , in: 1..9999%>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-5">
+            <div class="form-group">
+              <label for="curriculum_vitae_colonia" class="col-xs-3 control-label">Colonia</label>
+              <div class="col-xs-9">
+                <%= f.text_field :colonia, class: "form-control", :required => true %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="curriculum_vitae_delegacion" class="col-xs-3 control-label">Delegacion</label>
+              <div class="col-xs-9">
+                <%= f.text_field :delegacion, class: "form-control", :required => true %>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="curriculum_vitae_ciudad" class="col-xs-3 control-label">Ciudad</label>
+              <div class="col-xs-9">
+                <%= f.text_field :ciudad, class: "form-control", :required => true %>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="curriculum_vitae_cp" class="col-xs-3 control-label">CP</label>
+              <div class="col-xs-9">
+                <%= f.number_field :cp, in: 00001...99999, class: "form-control", :required => true %>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="curriculum_vitae_institucion" class="col-xs-3 control-label">Institución</label>
+              <div class="col-xs-9">
+                <%= f.text_field :institucion, class: "form-control", :required => true %>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="form-group">
+              <%= f.label :areas_especializacion_id %>
+              <%= f.collection_select(:areas_especializacion_id, @areasespecializacion, :id, :area) %>
+            </div>
+          </div>
+        </div>
+      
+        <div id="formaciones"> 
+        	<h2>Formación académica</h2>
+        	<% @cv.formacion_academica.each do |formacionacademica| %>
+    			<%= f.fields_for formacionacademica, index: formacionacademica.id do |fa| %>
+    			<div id="formacion">
+    				<div class="row2">
+                		<div class="col-sm-1"></div>
+                		<div class="col-sm-5">
+                  			<div class="form-group">
+        						<%= fa.label :area_especialidad, class: "col-xs-3 control-label" %>
+        						<div class="col-xs-9">
+        							<%= fa.text_field :area_especialidad, class: "form-control", :required => true%>
+        						</div>
+      						</div>
+      					</div>
+      					<div class="col-sm-5">
+                  			<div class="form-group">
+	        					<%= fa.label :ultimo_grado, class: "col-xs-3 control-label" %>
+	        					<div class="col-xs-9">
+        							<%= fa.text_field :ultimo_grado, :required => true %>
+      							</div>
+      						</div>
+      					</div>
+      				</div>
+
+      				<div class="row2">
+                		<div class="col-sm-1"></div>
+                		<div class="col-sm-5">
+                  			<div class="form-group">
+                    			<div class="col-xs-1"></div>
+	        					<%= fa.label :año, class: "col-xs-2 control-label" %>
+	        					<div class="col-xs-7">
+        							<%= fa.text_field :año, :required => true %>
+
+                  				</div>
+                			</div>
+                		</div>
+                		<div class="col-md-5">
+                  			<div class="form-group">
+        						<%= fa.label :entidad_academica, class: "col-xs-3 control-label" %>
+        						<div class="col-xs-9">
+        							<%= fa.text_field :entidad_academica, :required => true %>
+        						</div>
+                  			</div>
+                		</div>
+              		</div>
+      				
+    			<% end %>
+    		<% end %>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="field col-md-9">
+            <%= f.submit %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

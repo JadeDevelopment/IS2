@@ -2,8 +2,10 @@
 
 one:
   nombre_curso: MyString
-  formacion_academica_id: 
+  año: 1
+  curriculum_vitae_id: 
 
 two:
   nombre_curso: MyString
-  formacion_academica_id: 
+  año: 1
+  curriculum_vitae_id: 
