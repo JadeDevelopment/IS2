@@ -1,0 +1,2 @@
+class PublicodirigidosController < ApplicationController
+end

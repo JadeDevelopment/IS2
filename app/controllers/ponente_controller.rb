@@ -1,4 +1,5 @@
 class PonenteController < ApplicationController
+  before_action :authenticate_ponente!
 
 	def index
 		redirect_to ponente_path(current_ponente.id)
@@ -12,7 +13,7 @@ class PonenteController < ApplicationController
   		end
 		
     	unless @user == current_ponente
-      		redirect_to :back, :alert => "No puedes acceder."
+      		redirect_to new_ponente_session_path, :alert => "No puedes acceder."
     	end
 	end
 end

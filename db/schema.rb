@@ -31,6 +31,42 @@ ActiveRecord::Schema.define(version: 20151024035312) do
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
+  create_table "actividads", force: :cascade do |t|
+    t.integer  "autorizado"
+    t.string   "nombre"
+    t.string   "nombremodulo"
+    t.text     "descripcion"
+    t.float    "duracionhoras"
+    t.integer  "numerosesiones"
+    t.string   "objetivoespecifico"
+    t.string   "objetivogeneral"
+    t.string   "materialdidactico"
+    t.text     "dias"
+    t.string   "horario"
+    t.string   "aula"
+    t.text     "duracion"
+    t.string   "fechainicio"
+    t.date     "fechafinal"
+    t.string   "cupomaximo"
+    t.integer  "cupominimo"
+    t.text     "metas"
+    t.float    "costogeneral"
+    t.float    "costoalumnos"
+    t.text     "materialesparaalumnos"
+    t.text     "materialesdealumnos"
+    t.integer  "idponente"
+    t.integer  "idtipo"
+    t.integer  "idmodalidad"
+    t.integer  "idareaacademica"
+    t.integer  "idmateria"
+    t.integer  "iddisciplina"
+    t.integer  "idpublicodirigido"
+    t.integer  "idsede"
+    t.text     "evaluacion"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -49,11 +85,33 @@ ActiveRecord::Schema.define(version: 20151024035312) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "area_academicas", force: :cascade do |t|
+    t.text     "nombrearea"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "areas_especializacions", force: :cascade do |t|
     t.string   "area"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "contenidos", force: :cascade do |t|
+    t.integer  "actividad_id"
+    t.integer  "numerotema"
+    t.text     "tema"
+    t.integer  "numerohoras"
+    t.text     "nombreponente"
+    t.date     "fechainicio"
+    t.date     "fechafinal"
+    t.text     "subtemas"
+    t.text     "bibliografia"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "contenidos", ["actividad_id"], name: "index_contenidos_on_actividad_id", using: :btree
 
   create_table "correo_curriculums", force: :cascade do |t|
     t.string   "correo"
@@ -95,6 +153,12 @@ ActiveRecord::Schema.define(version: 20151024035312) do
 
   add_index "curso_de_actualizacions", ["curriculum_vitae_id"], name: "index_curso_de_actualizacions_on_curriculum_vitae_id", using: :btree
 
+  create_table "disciplinas", force: :cascade do |t|
+    t.text     "nombredisciplina"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "experiencia_profesionals", force: :cascade do |t|
     t.string   "entidad"
     t.text     "experiencia"
@@ -116,6 +180,25 @@ ActiveRecord::Schema.define(version: 20151024035312) do
   end
 
   add_index "formacion_academicas", ["curriculum_vitae_id"], name: "index_formacion_academicas_on_curriculum_vitae_id", using: :btree
+
+  create_table "materia", force: :cascade do |t|
+    t.text     "nombremateria"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "modalidads", force: :cascade do |t|
+    t.text     "nombremodalidad"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "ponentes", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -144,6 +227,12 @@ ActiveRecord::Schema.define(version: 20151024035312) do
   add_index "ponentes", ["nombreusuario"], name: "index_ponentes_on_nombreusuario", unique: true, using: :btree
   add_index "ponentes", ["reset_password_token"], name: "index_ponentes_on_reset_password_token", unique: true, using: :btree
 
+  create_table "publico_dirigidos", force: :cascade do |t|
+    t.text     "nombrepublico"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "reconocimientos", force: :cascade do |t|
     t.string   "nombre_reconocimiento"
     t.integer  "curriculum_vitae_id"
@@ -153,8 +242,39 @@ ActiveRecord::Schema.define(version: 20151024035312) do
 
   add_index "reconocimientos", ["curriculum_vitae_id"], name: "index_reconocimientos_on_curriculum_vitae_id", using: :btree
 
+  create_table "requisitos_egresos", force: :cascade do |t|
+    t.text     "nombrerequisitosegreso"
+    t.integer  "idponente"
+    t.integer  "idactividad"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "requisitos_ingresos", force: :cascade do |t|
+    t.text     "nombrerequisitosingreso"
+    t.integer  "idponente"
+    t.string   "idactividad"
+    t.string   "integer"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "requisitos_permanencia", force: :cascade do |t|
+    t.text     "nombrerequisitospermanencia"
+    t.integer  "idponente"
+    t.integer  "idactividad"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "sedes", force: :cascade do |t|
+    t.text     "nombresede"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "telefono_curriculums", force: :cascade do |t|
-    t.string  "num_telefono"
+    t.string   "num_telefono"
     t.integer  "curriculum_vitae_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -162,6 +282,13 @@ ActiveRecord::Schema.define(version: 20151024035312) do
 
   add_index "telefono_curriculums", ["curriculum_vitae_id"], name: "index_telefono_curriculums_on_curriculum_vitae_id", using: :btree
 
+  create_table "tipos", force: :cascade do |t|
+    t.text     "nombretipo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "contenidos", "actividads"
   add_foreign_key "correo_curriculums", "curriculum_vitaes"
   add_foreign_key "curriculum_vitaes", "areas_especializacions"
   add_foreign_key "curso_de_actualizacions", "curriculum_vitaes"

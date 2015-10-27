@@ -1,0 +1,165 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>Autorización del curso</title>
+  
+<style type="text/css" media="all">
+	@import "estiloDeActividad.css";
+</style>
+<style type="text/css" media="all">
+	@import "style_for.css";
+</style>
+</head>
+<body>
+<div id="farouter">
+	<div id="outer">
+		<div id="wrap">
+			<div id="headermain">
+				<img src="https://www.unam.mx/sites/all/themes/unam/logo.png">
+			</div>
+
+			<div id="hmenu">
+				<div id="hnav">
+					<ul id="navlist">
+						<li><a href="ind">Actividades de Curso</a></li>
+						<li><a href="#">Cursos</a></li>
+						<li><a href="#">Solicitudes</a></li>
+						<li><a href="" id="active">Solicitud en Linea</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div id="main">
+				<div id="content">
+					<div id="nav">
+						<h1>Propuesta de un curso</h1>
+						<hr>
+						<div></div><br>
+						<form class="cform" action="#" method="post">
+							<h2 align="center">I.	INFORMACI&Oacute;N PARA LA OPERACI&Oacute;N Y LOG&Iacute;STICA</h2>
+							* Nombre de la actividad: 
+							<%=@actividad.nombre %>
+							<br><br>
+							* Tipo: &nbsp;&nbsp;
+							<%=@actividad.idtipo %>
+
+							<br><br>
+							* Modalidad:&nbsp;&nbsp;
+							<%=@actividad.idmodalidad %>
+
+							<br><br>
+							* Fecha Inicio: 
+							<%=@actividad.fechainicio %>
+
+							 <br><br>
+							 * Fecha Fin: 
+							 <%=@actividad.fechafinal %>
+							 <br><br>
+							
+
+							* Lugar:
+							 <%=@actividad.idsede %>
+							 <br>
+							  <%=@actividad.aula %>
+							
+							<br><br>
+							* Numero de Sesiones:
+							 <%=@actividad.numerosesiones %>
+
+							&nbsp;&nbsp;
+							* Numero de Horas:
+							 <%=@actividad.duracionhoras %>
+							&nbsp;&nbsp;
+							* Minimo inscritos:
+							<%=@actividad.cupominimo %>
+							&nbsp;&nbsp;
+							* Maximo inscritos:
+							<%=@actividad.cupomaximo %>
+							&nbsp;&nbsp;<br><br>
+							* Costo General: $
+							<%=@actividad.costogeneral %>
+							&nbsp;&nbsp;
+							* Costo Para Estudiantes: $ 
+							<%=@actividad.costoalumnos %>
+							 MXN &nbsp;&nbsp;
+
+							* Pago propuesto a docentes (Por hora): $ ? MXN<br><br>
+
+							* Material de apoyo requerido para clases:
+							<%=@actividad.materialesparaalumnos %>
+							<br><br>
+
+							* Equipo de c&oacute;mputo y software requerido: 
+							<br><br>
+
+							* Material requerido a los alumnos: 
+
+							<br><br>
+
+							* Material de apoyo para los alumnos:
+							<%=@actividad.materialesparaalumnos %> 
+							<br><br>
+
+							<h2 align="center">II. INFORMACI&Oacute;N ACAD&Eacute;MICA</h2>
+							<br>
+
+							<div style="position: inherit; float: left; margin-right:10px; ">* Descripcion del Curso:</div>
+							<%=@actividad.descripcion %>
+							<br><br>
+
+							* Objetivo General:
+							<%=@actividad.objetivogeneral %>
+							<br><br>
+
+							* Objetivo Especifico: 
+							<%=@actividad.objetivoespecifico %>
+							<br><br>
+
+							<div style="position: inherit; float: left; margin-right:10px; ">* Metas:</div> 
+							<%=@actividad.metas %>
+							<br><br>
+
+							* Campo de Conocimiento:
+							<%=@actividad.idareaacademica %>
+							<br><br>
+
+							* Dirigido a: 
+							<%=@actividad.idpublicodirigido %>
+							<br><br>
+
+							<hr>
+							<h3>* Datos del Docente:</h3>
+							
+							Nombre:
+							<%=@actividad.idponente %>
+							<br><br>
+							Grado:
+							<%=@actividad.idponente %>
+							<br><br>
+							Cargo:
+							<%=@actividad.idponente %>
+							<br><br>
+							Entidad o Empresa actual de adscripci&oacute;n:
+							<%=@actividad.idponente %>
+							<br><br>
+							<hr>
+						</form>
+						<div style="text-align:center;"><input type="submit" value="Autorizar" style="vertical-align:middle"> <input type="submit" value="Denegar" style="vertical-align:middle"></div>
+						<br>
+					</div>
+				</div>
+				
+			</div>
+		
+			<div id="clearer">&nbsp;</div>
+			<div id="footer">
+
+			</div> <!-- END footer -->
+		</div> <!-- END wrap -->
+	</div> <!-- END outer -->
+</div> <!-- END farouter -->
+
+</body>
+</html>

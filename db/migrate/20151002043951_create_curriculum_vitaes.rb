@@ -15,7 +15,7 @@ class CreateCurriculumVitaes < ActiveRecord::Migration
       t.string :institucion
       t.references :areas_especializacion, index: true, foreign_key: true
 
-      t.timestamps null: false
+      t.timestamps 
     end
 
     

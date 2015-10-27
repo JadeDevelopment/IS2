@@ -1,0 +1,2 @@
+class SedesController < ApplicationController
+end

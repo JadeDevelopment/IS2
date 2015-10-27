@@ -5,7 +5,7 @@ class CreateCursoDeActualizacions < ActiveRecord::Migration
       t.integer :año
       t.references :curriculum_vitae, index: true, foreign_key: true
 
-      t.timestamps null: false
+      t.timestamps 
     end
   end
 end
