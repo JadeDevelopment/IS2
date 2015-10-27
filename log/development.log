@@ -1,0 +1,141 @@
+
+
+Started GET "/ponentes/sign_in" for 127.0.0.1 at 2015-10-26 22:50:01 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (67.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Ponente::SessionsController#new as HTML
+  Rendered ponente/shared/_links.html.erb (11.0ms)
+  Rendered ponente/sessions/new.html.erb within layouts/application (340.6ms)
+Completed 200 OK in 51892ms (Views: 50890.0ms | ActiveRecord: 699.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-10-26 22:50:55 -0600
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 2913ms (Views: 2831.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/glyphicons-halflings-regular.woff" for 127.0.0.1 at 2015-10-26 22:51:01 -0600
+
+
+Started GET "/ponentes/actividads" for 127.0.0.1 at 2015-10-26 22:51:32 -0600
+
+ActionController::RoutingError (No route matches [GET] "/ponentes/actividads"):
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /home/yorchek/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/yorchek/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/yorchek/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.4ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (24.8ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (506.9ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (46.7ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (931.2ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.6ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.2ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.4ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.5ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (120.2ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (1.2ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (27.4ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (210.4ms)
+
+
+Started GET "/actividads" for 127.0.0.1 at 2015-10-26 22:51:57 -0600
+Processing by ActividadsController#index as HTML
+  [1m[35mActividad Load (166.7ms)[0m  SELECT "actividads".* FROM "actividads"
+  Rendered actividads/index.html.erb within layouts/application (353.9ms)
+Completed 200 OK in 3817ms (Views: 3147.7ms | ActiveRecord: 199.1ms)
+
+
+Started GET "/actividads/showSolicitud/1" for 127.0.0.1 at 2015-10-26 22:52:07 -0600
+Processing by ActividadsController#showSolicitud as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mActividad Load (1.9ms)[0m  [1mSELECT  "actividads".* FROM "actividads" WHERE "actividads"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered actividads/showSolicitud.html within layouts/application (20.2ms)
+Completed 200 OK in 2396ms (Views: 1913.6ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/actividads/showSolicitud/style_for.css" for 127.0.0.1 at 2015-10-26 22:52:09 -0600
+Processing by ActividadsController#showSolicitud as CSS
+  Parameters: {"id"=>"style_for"}
+  [1m[35mActividad Load (2.2ms)[0m  SELECT  "actividads".* FROM "actividads" WHERE "actividads"."id" = $1 LIMIT 1  [["id", 0]]
+Completed 404 Not Found in 11ms (ActiveRecord: 2.2ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Actividad with 'id'=style_for):
+  app/controllers/actividads_controller.rb:20:in `showSolicitud'
+
+
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (25.2ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (11.7ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.3ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (86.2ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.5ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.4ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.6ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.3ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (51.9ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (1.4ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.7ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (110.7ms)
+
+
+Started GET "/actividads/showSolicitud/estiloDeActividad.css" for 127.0.0.1 at 2015-10-26 22:52:10 -0600
+Processing by ActividadsController#showSolicitud as CSS
+  Parameters: {"id"=>"estiloDeActividad"}
+  [1m[36mActividad Load (1.6ms)[0m  [1mSELECT  "actividads".* FROM "actividads" WHERE "actividads"."id" = $1 LIMIT 1[0m  [["id", 0]]
+Completed 404 Not Found in 8ms (ActiveRecord: 1.6ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Actividad with 'id'=estiloDeActividad):
+  app/controllers/actividads_controller.rb:20:in `showSolicitud'
+
+
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (23.5ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.3ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.2ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (74.7ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.6ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.7ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.6ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.4ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (51.2ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (1.6ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.8ms)
+  Rendered /home/yorchek/.rvm/gems/ruby-2.1.5/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (104.9ms)
+
+
+Started GET "/actividads/new" for 127.0.0.1 at 2015-10-26 22:53:18 -0600
+Processing by ActividadsController#new as HTML
+  [1m[35mTipo Load (73.0ms)[0m  SELECT "tipos".* FROM "tipos"
+  [1m[36mModalidad Load (34.5ms)[0m  [1mSELECT "modalidads".* FROM "modalidads"[0m
+  [1m[35mSede Load (3.3ms)[0m  SELECT "sedes".* FROM "sedes"
+  [1m[36mAreaAcademica Load (25.5ms)[0m  [1mSELECT "area_academicas".* FROM "area_academicas"[0m
+  [1m[35mPublicoDirigido Load (46.1ms)[0m  SELECT "publico_dirigidos".* FROM "publico_dirigidos"
+  Rendered actividads/new.html.erb within layouts/application (580.2ms)
+Completed 200 OK in 2846ms (Views: 2434.7ms | ActiveRecord: 209.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-10-26 22:53:59 -0600
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 2051ms (Views: 2046.3ms | ActiveRecord: 0.0ms)
