@@ -131,7 +131,7 @@ class CurriculumVitaeController < ApplicationController
     end
   end
 
-  def edit
+  def edit#edit
     begin
       @cv = CurriculumVitae.find(params[:id])
     rescue
@@ -143,6 +143,12 @@ class CurriculumVitaeController < ApplicationController
     end
     @areasespecializacion = AreasEspecializacion.all
   end
+
+def update
+   @cv = CurriculumVitae.find(params[:id])
+end
+
+
 
   private
     def parametros

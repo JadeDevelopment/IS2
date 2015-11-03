@@ -1,4 +1,4 @@
-<html>
+|<html>
 	<body>	
 	<div id="farouter">
 		<div id="outer">
@@ -54,7 +54,7 @@
 							<br><br>
 							<%= f.label :Modalidad %><br>
 							&nbsp;&nbsp;
-							<%= f.collection_select(:idmodalidad, @modalidad, :id, :nombremodalidad) %>
+							<%= f.collection_select(:idmodalidad, Modalidad.all, :id, :nombremodalidad) %>
 
 
 							
@@ -70,19 +70,19 @@
 
 							   &nbsp;&nbsp;&nbsp; 
 							 <%= f.label :Dias %><br>
-							 <%= f.text_field :dias, class: "form-control-horizontal", :required => true , max: "1996-12-31"%>
+							 <%= f.text_field :dias, class: "form-control-horizontal", :required => true%>
 							
 							 <br><br>
 
 							   &nbsp;&nbsp;&nbsp; 
 							 <%= f.label :Horario_propuesto %><br>
-							 <%= f.text_field :horario, class: "form-control-horizontal", :required => true , max: "1996-12-31"%>
+							 <%= f.text_field :horario, class: "form-control-horizontal", :required => true%>
 							
 							 <br><br>
 
 							   &nbsp;&nbsp;&nbsp; 
 							 <%= f.label :Dias_de_duracion %><br>
-							 <%= f.text_field :duracion, class: "form-control-horizontal", :required => true , max: "1996-12-31"%>
+							 <%= f.text_field :duracion, class: "form-control-horizontal", :required => true %>
 							 <br><br>
 							 <%= f.label :Sede %><br>
 							 <%= f.collection_select(:idsede, Sede.all, :id, :nombresede) %>
@@ -122,7 +122,7 @@
 							<br><br>
 							&nbsp;&nbsp;
 
-							Pago propuesto a docentes (Por hora): $ <input type="text" name="p_x_hr" size="5" required> MXN
+							Pago propuesto a docentes (Por hora): $ <input type="number" min=0 value=0 name="p_x_hr" size="5" required> MXN
 
 							<br><br>
 							<%= f.label :Material_de_apoyo_requerido_para_clases %>:
@@ -171,6 +171,12 @@
 							
 							<%= f.collection_select(:idareaacademica, AreaAcademica.all, :id, :nombrearea) %>
 
+							<br><br>							
+
+							<%= f.label :Campo_De_Conocimiento%>
+							
+							<%= f.collection_select(:idmateria, Materium.all, :id, :nombremateria) %>
+
 							<br><br>
 
 								<%= f.label :Dirigido_a %>
@@ -181,9 +187,9 @@
 				
 							
 							<br><br>
-							<h3> Datos del Cuerpo Docente:</h3>
+							<h3 align="center"> Datos del Cuerpo Docente:</h3>
 							
-							
+
 							<br><br>	
 							Nombre:
 							
@@ -264,10 +270,11 @@
                   									</div>
                   								<label for="actividad_contenido__numerotema" class="col-xs-2 control-label">Numero de tema</label>
                   									<div class="col-xs-9">
-                    									<input type="number" name="actividad[contenido][][numerotema]" id="actividad_contenido__numerotema" class="form-control-horizontal" required />
+                    									<input type="number" min= 0 name="actividad[contenido][][numerotema]" id="actividad_contenido__numerotema" class="form-control-horizontal" required />
                   									</div>
                 							</div>
               							</div>
+
 
               							<div class="col-sm-5">
                 							<div class="form-group">
@@ -296,7 +303,7 @@
                 							<div class="form-group">
                   								<label for="actividad_contenido__numerohoras" class="col-xs-3 control-label">Numero de horas por tema</label>
                   								<div class="col-xs-9">
-                    								<input type="text" name="actividad[contenido][][numerohoras]" id="actividad_contenido__numerohoras" class="form-control" required />
+                    								<input type="number" min=0 name="actividad[contenido][][numerohoras]" id="actividad_contenido__numerohoras" class="form-control" required />
                   								</div>
                 							</div>
               							</div>
@@ -316,6 +323,7 @@
               							</div>
 
               							<div class="col-md-5">
+              								
                 							<div class="form-group">
                   								<label for="actividad_contenido__fechafinal" class="col-xs-3 control-label">Fecha de fin de tema</label>
                   								<div class="col-xs-9">
@@ -388,7 +396,7 @@
 <script>
     $(document).ready(function() {
       $('#my-link').click(function(event){
-        $('#contenidoycalendarizacion').append('<div id="contenido"><div class="row4"><div class="row2"><div class="col-sm-5"><div class="form-group"><div class="col-xs-1"></div><label for="actividad_contenido__numerotema" class="col-xs-2 control-label">Numero de tema</label><div class="col-xs-9"><input type="number" name="actividad[contenido][][numerotema]" id="actividad_contenido__numerotema" class="form-control-horizontal" required /></div></div></div><div class="col-sm-5"><div class="form-group"><label for="actividad_contenido__tema" class="col-xs-3 control-label">Nombre del tema</label><div class="col-xs-9"><input type="text" name="actividad[contenido][][tema]" id="  actividad_contenido_tema" class="form-control-horizontal" required /></div></div></div></div><div class="row2"><div class="col-sm-1"></div><div class="col-sm-5"><div class="form-group"><div class="col-xs-1"></div><label for="actividad_contenido__subtemas" class="col-xs-2 control-label">Subtema</label><div class="col-xs-7"><input type="text" name="actividad[contenido][][subtemas]" id="actividad_contenido__subtemas" class="form-control" required /></div></div></div><div class="col-md-5"><div class="form-group"><label for="actividad_contenido__numerohoras" class="col-xs-3 control-label">Numero de horas por tema</label><div class="col-xs-9"><input type="text" name="actividad[contenido][][numerohoras]" id="actividad_contenido__numerohoras" class="form-control" required /></div></div></div></div><div class="row3"><div class="col-sm-1"></div><div class="col-sm-5"><div class="form-group"><div class="col-xs-1"></div><label for="actividad_contenido__fechainicio" class="col-xs-2 control-label">Fecha de inicio del tema</label><div class="col-xs-7"><input type="text" name="actividad[contenido][][fechainicio]" id="actividad_contenido__fechainicio" class="form-control" required /></div></div></div><div class="col-md-5"><div class="form-group"><label for="actividad_contenido__fechafinal" class="col-xs-3 control-label">Fecha de fin de tema</label><div class="col-xs-9"><input type="text" name="actividad[contenido][][fechafinal]" id="actividad_contenido__fechafinal" class="form-control" required /></div></div></div></div><div class="col-sm-1"><div class="col-sm-5"></div><div><a href="#" id="delete-cont">eliminar</a></div></div></div></div> <!--termina contenido -->').on('click', '#delete-cont', function (e) { 
+        $('#contenidoycalendarizacion').append('<div id="contenido"><div class="row4"><div class="row2"><div class="col-sm-5"><div class="form-group"><div class="col-xs-1"></div><label for="actividad_contenido__numerotema" class="col-xs-2 control-label">Numero de tema</label><div class="col-xs-9"><input type="number" min= 0 name="actividad[contenido][][numerotema]" id="actividad_contenido__numerotema" class="form-control-horizontal" required /></div></div></div><div class="col-sm-5"><div class="form-group"><label for="actividad_contenido__tema" class="col-xs-3 control-label">Nombre del tema</label><div class="col-xs-9"><input type="text" name="actividad[contenido][][tema]" id="  actividad_contenido_tema" class="form-control-horizontal" required /></div></div></div></div><div class="row2"><div class="col-sm-1"></div><div class="col-sm-5"><div class="form-group"><div class="col-xs-1"></div><label for="actividad_contenido__subtemas" class="col-xs-2 control-label">Subtema</label><div class="col-xs-7"><input type="text" name="actividad[contenido][][subtemas]" id="actividad_contenido__subtemas" class="form-control" required /></div></div></div><div class="col-md-5"><div class="form-group"><label for="actividad_contenido__numerohoras" class="col-xs-3 control-label">Numero de horas por tema</label><div class="col-xs-9"><input type="text" name="actividad[contenido][][numerohoras]" id="actividad_contenido__numerohoras" class="form-control" required /></div></div></div></div><div class="row3"><div class="col-sm-1"></div><div class="col-sm-5"><div class="form-group"><div class="col-xs-1"></div><label for="actividad_contenido__fechainicio" class="col-xs-2 control-label">Fecha de inicio del tema</label><div class="col-xs-7"><input type="text" name="actividad[contenido][][fechainicio]" id="actividad_contenido__fechainicio" class="form-control" required /></div></div></div><div class="col-md-5"><div class="form-group"><label for="actividad_contenido__fechafinal" class="col-xs-3 control-label">Fecha de fin de tema</label><div class="col-xs-9"><input type="text" name="actividad[contenido][][fechafinal]" id="actividad_contenido__fechafinal" class="form-control" required /></div></div></div></div><div class="col-sm-1"><div class="col-sm-5"></div><div><a href="#" id="delete-cont">eliminar</a></div></div></div></div> <!--termina contenido -->').on('click', '#delete-cont', function (e) { 
           $(this).parent().parent().parent().remove();
           e.preventDefault();});
         $( "#contenido .row2 div .form-group div .primero" ).last().focus();

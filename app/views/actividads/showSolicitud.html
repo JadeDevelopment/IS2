@@ -39,66 +39,66 @@
 						<div></div><br>
 						<form class="cform" action="#" method="post">
 							<h2 align="center">I.	INFORMACI&Oacute;N PARA LA OPERACI&Oacute;N Y LOG&Iacute;STICA</h2>
-							* Nombre de la actividad: 
+							Nombre de la actividad: 
 							<%=@actividad.nombre %>
 							<br><br>
-							* Tipo: &nbsp;&nbsp;
-							<%=@actividad.idtipo %>
+							Tipo: &nbsp;&nbsp;
+							<%=Tipo.find(@actividad.idtipo).nombretipo %>
+													
 
 							<br><br>
-							* Modalidad:&nbsp;&nbsp;
-							<%=@actividad.idmodalidad %>
+							Modalidad:&nbsp;&nbsp;
+							<%=Modalidad.find(@actividad.idmodalidad).nombremodalidad %>
 
 							<br><br>
-							* Fecha Inicio: 
+							Fecha Inicio: 
 							<%=@actividad.fechainicio %>
 
 							 <br><br>
-							 * Fecha Fin: 
+							 Fecha Fin: 
 							 <%=@actividad.fechafinal %>
 							 <br><br>
 							
 
-							* Lugar:
-							 <%=@actividad.idsede %>
+							Lugar:
+							<%=Sede.find(@actividad.idsede).nombresede %>
 							 <br>
 							  <%=@actividad.aula %>
 							
 							<br><br>
-							* Numero de Sesiones:
+							Numero de Sesiones:
 							 <%=@actividad.numerosesiones %>
 
 							&nbsp;&nbsp;
-							* Numero de Horas:
+							Numero de Horas:
 							 <%=@actividad.duracionhoras %>
 							&nbsp;&nbsp;
-							* Minimo inscritos:
+							Minimo inscritos:
 							<%=@actividad.cupominimo %>
 							&nbsp;&nbsp;
-							* Maximo inscritos:
+							Maximo inscritos:
 							<%=@actividad.cupomaximo %>
 							&nbsp;&nbsp;<br><br>
-							* Costo General: $
+							Costo General: $
 							<%=@actividad.costogeneral %>
 							&nbsp;&nbsp;
-							* Costo Para Estudiantes: $ 
+							Costo Para Estudiantes: $ 
 							<%=@actividad.costoalumnos %>
 							 MXN &nbsp;&nbsp;
 
-							* Pago propuesto a docentes (Por hora): $ ? MXN<br><br>
+							Pago propuesto a docentes (Por hora): $ ? MXN<br><br>
 
-							* Material de apoyo requerido para clases:
-							<%=@actividad.materialesparaalumnos %>
+							Material de apoyo requerido para clases:
+							<%=@actividad.materialdidactico %>
 							<br><br>
 
-							* Equipo de c&oacute;mputo y software requerido: 
+						
+							Material requerido a los alumnos: 
+							<%=@actividad.materialesdealumnos %>
+
 							<br><br>
 
-							* Material requerido a los alumnos: 
-
-							<br><br>
-
-							* Material de apoyo para los alumnos:
+							Material de apoyo para los alumnos:
 							<%=@actividad.materialesparaalumnos %> 
 							<br><br>
 
@@ -121,12 +121,17 @@
 							<%=@actividad.metas %>
 							<br><br>
 
-							* Campo de Conocimiento:
-							<%=@actividad.idareaacademica %>
+							Area Academica:
+							<%=AreaAcademica.find(@actividad.idareaacademica).nombrearea %>
 							<br><br>
 
-							* Dirigido a: 
-							<%=@actividad.idpublicodirigido %>
+							Campo De Conocimiento
+							
+							<%= Materium.find(@actividad.idmateria).nombremateria %>
+
+							<br><br>
+							Dirigido a: 
+							<%=PublicoDirigido.find(@actividad.idpublicodirigido).nombrepublico %>
 							<br><br>
 
 							<hr>
@@ -145,6 +150,57 @@
 							<%=@actividad.idponente %>
 							<br><br>
 							<hr>
+							Procesos_de_Evaluación: 
+							<%=@actividad.evaluacion %>
+
+							<br><br>
+							Requisitos de ingreso:
+							<%=RequisitosIngreso.where(idactividad: @actividad.id).first.nombrerequisitosingreso %>
+							<br><br>
+							Requisitos de permanencia:
+							<%=RequisitosPermanencium.where(idactividad: @actividad.id).first.nombrerequisitospermanencia %>
+							<br><br>
+							Requisitos de egreso:
+							<%=RequisitosEgreso.where(idactividad: @actividad.id).first.nombrerequisitosegreso %>
+							<br><br>
+							<h4>Contenido y Calendarización</h4>
+							<br><br>
+							RFC del ponente:
+              					
+							<br><br>
+							Nombre del ponente: 
+								
+							<br><br>
+							
+							Numero de tema:
+							<%=Contenido.where(actividad_id: @actividad.id).first.numerotema %>
+							<br><br>
+							
+							Nombre del tema:
+							<%=Contenido.where(actividad_id: @actividad.id).second.tema %>
+							<br><br>
+							
+							Subtema:
+							<%=Contenido.where(actividad_id: @actividad.id).first.subtemas %>
+							<br><br>
+							
+							Numero de horas por tema:
+							<%=Contenido.where(actividad_id: @actividad.id).first.numerohoras %>
+							<br><br>
+														
+							Fecha de inicio del tema:
+							<%=Contenido.where(actividad_id: @actividad.id).first.fechainicio %>
+							<br><br>
+							
+							Fecha de fin del tema:
+							<%=Contenido.where(actividad_id: @actividad.id).first.fechafinal %>
+							<br><br>
+							
+							Bibliografía:
+							<%=Contenido.where(actividad_id: @actividad.id).first.bibliografia %>
+							
+							
+
 						</form>
 						<div style="text-align:center;"><input type="submit" value="Autorizar" style="vertical-align:middle"> <input type="submit" value="Denegar" style="vertical-align:middle"></div>
 						<br>

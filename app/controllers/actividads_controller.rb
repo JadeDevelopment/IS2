@@ -28,7 +28,7 @@ class ActividadsController < ApplicationController
   
     @actividads = Actividad.new 
 
-    @tipo = Tipo.all
+    
     @areas_especializacion = AreasEspecializacion.all
     @modalidad = Modalidad.all
     @area_academica = AreaAcademica.all
@@ -117,6 +117,11 @@ class ActividadsController < ApplicationController
 
     end
   end
+
+  def edit
+    @actividad = Actividad.find(params[:id])
+   end
+
 
   private
     def parametros

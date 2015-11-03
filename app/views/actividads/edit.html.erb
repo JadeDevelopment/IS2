@@ -1,0 +1,416 @@
+|<html>
+	<body>	
+	<div id="farouter">
+		<div id="outer">
+			<div id="wrap">
+				<div id="headermain">
+					<img src="https://www.unam.mx/sites/all/themes/unam/logo.png">
+				</div>
+
+				<div id="hmenu">
+					<div id="hnav">
+						<ul id="navlist">
+							<li><a href="index.html">Proximos Cursos</a></li>
+							<li><a href="#">Actividades de Curso</a></li>
+							<li><a href="#">Cat&aacute;logo de Curso</a></li>
+							<li><a href="#">Formas de Pago</a></li>
+							<li><a href="" id="active">Solicitud en Linea</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<section>
+					<% if flash[:notice].blank? == false %>
+    					<p><%= flash[:notice] %></p>
+  					<% end %>
+
+  					<%= form_for :actividad, :url => { :action => :update, :id => @actividad.id }, :method => :put do |f| %>
+  								
+						<div id="main">
+							<div id="content">
+							<div id="nav">
+						<h1>Editar curso</h1>
+						<hr>
+
+						
+						
+
+							<h2 align="center">I.	INFORMACI&Oacute;N PARA LA OPERACI&Oacute;N Y LOG&Iacute;STICA</h2>
+
+							<%= f.label :Nombre %><br>
+							&nbsp;&nbsp;
+
+							 <%= f.text_field :nombre, class: "cform", :required => true, :pattern => '^[A-Z][a-z]+(\s[a-z])*+(\s[A-Z][a-z]+)*$'  %>
+							 						
+							<br><br>
+
+							<%= f.label :Tipo %><br>
+							
+							<br>
+							<%= f.collection_select(:idtipo, Tipo.all, :id, :nombretipo) %>
+
+							
+							<br><br>
+							<%= f.label :Modalidad %><br>
+							&nbsp;&nbsp;
+							<%= f.collection_select(:idmodalidad, Modalidad.all, :id, :nombremodalidad) %>
+
+
+							
+							<br><br>
+							 <%= f.label :Fecha_de_inicio %><br>
+							  <%= f.date_field :fechainicio, class: "form-control-horizontal", :required => true , max: "1996-12-31"%>
+
+							  &nbsp;&nbsp;&nbsp; 
+							  <%= f.label :Fecha_de_fin %><br>
+							  <%= f.date_field :fechafinal, class: "form-control-horizontal", :required => true , max: "1996-12-31"%>
+
+							  <br><br>
+
+							   &nbsp;&nbsp;&nbsp; 
+							 <%= f.label :Dias %><br>
+							 <%= f.text_field :dias, class: "form-control-horizontal", :required => true%>
+							
+							 <br><br>
+
+							   &nbsp;&nbsp;&nbsp; 
+							 <%= f.label :Horario_propuesto %><br>
+							 <%= f.text_field :horario, class: "form-control-horizontal", :required => true%>
+							
+							 <br><br>
+
+							   &nbsp;&nbsp;&nbsp; 
+							 <%= f.label :Dias_de_duracion %><br>
+							 <%= f.text_field :duracion, class: "form-control-horizontal", :required => true %>
+							 <br><br>
+							 <%= f.label :Sede %><br>
+							 <%= f.collection_select(:idsede, Sede.all, :id, :nombresede) %>
+							
+							<br><br>
+							
+
+							 <%= f.label :Numero_de_sesiones %><br>
+    						<%= f.number_field :numerosesiones, in: 00001...99999 %>
+							<br><br>
+							&nbsp;&nbsp;
+
+							<%= f.label :Numero_de_horas %><br>
+    						<%= f.number_field :duracionhoras, in: 00001...99999 %>
+    						<br><br>
+							&nbsp;&nbsp;
+
+							
+							<%= f.label :Minimo_de_inscritos %><br>
+    						<%= f.number_field :cupominimo, in: 00001...99999 %>
+    						<br><br>
+							&nbsp;&nbsp;
+
+							<%= f.label :Máximo_de_inscritos %><br>
+    						<%= f.number_field :cupomaximo, in: 00001...99999 %>
+    						<br><br>
+							&nbsp;&nbsp;
+
+							<%= f.label :Costo_publico_general %><br>
+    						$<%= f.number_field :costogeneral, in: 00001...99999 %>MXN
+    						<br><br>
+							&nbsp;&nbsp;
+
+							
+							<%= f.label :Costo_para_alumnos %><br>
+    						<%= f.number_field :costoalumnos, in: 00001...99999 %> MXN 
+							<br><br>
+							&nbsp;&nbsp;
+
+							Pago propuesto a docentes (Por hora): $ <input type="text" name="p_x_hr" size="5" required> MXN
+
+							<br><br>
+							<%= f.label :Material_de_apoyo_requerido_para_clases %>:
+							<%= f.text_field :materialdidactico, :placeholder => "Proyector, Bocinas, Computadoras, Software especial etc." %>
+							
+							<br><br>
+
+							<%= f.label :Material_requerido_a_los_alumnos %>
+							<%= f.text_field :materialesdealumnos, :placeholder => "Los alumnos deberán llevar memorias USB etc."%>
+
+							<br><br>
+							<%= f.label :Material_de_apoyo_para_los_alumnos %>
+							<%= f.text_field :materialesparaalumnos, :placeholder => "Se les proporcionará a los alumnos carpetas, CD's etc."%>
+
+							<br><br>
+		
+							<h2 align="center">II. INFORMACI&Oacute;N ACAD&Eacute;MICA</h2>
+							<br>
+
+							<div style="position: inherit; float: left; margin-right:10px; ">
+							<%= f.label :Descripcion_del_Curso %>:
+												
+							</div>
+							<%= f.text_field :descripcion %>
+							<br><br>
+
+							<%= f.label :Objetivo_general %>:
+							
+							<%= f.text_field :objetivogeneral %>
+							<br><br>
+
+							
+							<%= f.label :Objetivo_Especifico %>
+							<%= f.text_field :objetivoespecifico %>
+							<br><br>
+
+							<div style="position: inherit; float: left; margin-right:10px; ">
+								<%= f.label :Metas %>
+							</div> 
+							
+							<%= f.text_field :metas %>
+
+							<br><br>							
+
+							<%= f.label :Area_academica %>
+							
+							<%= f.collection_select(:idareaacademica, AreaAcademica.all, :id, :nombrearea) %>
+
+							<br><br>							
+
+							<%= f.label :Campo_De_Conocimiento%>
+							
+							<%= f.collection_select(:idmateria, Materium.all, :id, :nombremateria) %>
+
+							<br><br>
+
+								<%= f.label :Dirigido_a %>
+							<%= f.collection_select(:idpublicodirigido, PublicoDirigido.all, :id, :nombrepublico) %>
+
+					
+
+				
+							
+							<br><br>
+							<h3 align="center"> Datos del Cuerpo Docente:</h3>
+							
+
+							<br><br>	
+							Nombre:
+							
+							<br><br>
+
+							Grado:
+							
+							<br><br>
+							
+							Cargo:
+							<input class="textf" type="text" name="doc_cargo" size="25" required>
+							<br><br>
+
+							Entidad o Empresa actual de adscripci&oacute;n:
+							
+							<br><br>
+							<hr>
+
+							<div style="position: inherit; float: left; margin-right:10px; ">
+							<%= f.label :Procesos_de_Evaluación %>
+
+							</div>
+							<%= f.text_field :evaluacion, :placeholder => "Se evaluará con Examenes, exposiciones etc."%>
+							
+
+							<br><br>
+
+						
+							<div class="row1" id="req_ingreso">
+            					<div class="form-group">
+              						<label for="actividad_requisitos_ingreso_nombrerequisitosingreso" class="col-xs-2 control-label">Requisitos de ingreso</label>
+              							<div class="col-xs-8">
+                							<input type="text" value=<%=RequisitosIngreso.where(idactividad: @actividad.id).first.nombrerequisitosingreso %> name="actividad[requisitos_ingreso][][nombrerequisitosingreso]" id="actividad_requisitos_ingreso_nombrerequisitosingreso" class="form-control">
+              							</div>
+            					</div>
+          					</div>
+							<br><br>
+
+							<div class="row2" id="req_permanencia">
+            					<div class="form-group">
+              						<label for="actividad_requisitos_permanencia_nombrerequisitospermanencia" class="col-xs-2 control-label">Requisitos de permanencia</label>
+              							<div class="col-xs-8">
+                							<input type="text" value=<%=RequisitosPermanencium.where(idactividad: @actividad.id).first.nombrerequisitospermanencia %> name="actividad[requisitos_permanencia][][nombrerequisitospermanencia]" id="actividad_requisitos_permanencia_nombrerequisitospermanencia" class="form-control">
+              							</div>
+            					</div>
+          					</div>
+          					<br><br>	
+
+          					<div class="row3" id="req_egreso">
+            					<div class="form-group">
+              						<label for="actividad_requisitos_egreso_nombrerequisitosegreso" class="col-xs-2 control-label">Requisitos de egreso</label>
+              							<div class="col-xs-8">
+                							<input type="text" value=<%=RequisitosEgreso.where(idactividad: @actividad.id).first.nombrerequisitosegreso %> name="actividad[requisitos_egreso][][nombrerequisitosegreso]" id="actividad_requisitos_egreso_nombrerequisitosegreso" class="form-control">
+              							</div>
+            					</div>
+          					</div>
+							
+				
+							 <div id="contenidoycalendarizacion"> 
+							 	<br><br>
+          				        <h4>Contenido y Calendarización</h4>
+
+
+          				        
+								RFC del ponente:
+              					
+								<br><br>
+								Nombre del ponente: 
+								
+								<br><br>
+
+
+          						<div id="contenido">
+          							<% @actividad.contenido.each do |contenido| %>
+    								<%= f.fields_for contenido, index: contenido.id do |co| %>
+            						<div class="row2">
+              							<div class="col-sm-5">
+                							<div class="form-group">
+                								<div class="col-xs-1">
+                  									</div>
+                  								<label for="actividad_contenido__numerotema" class="col-xs-2 control-label">Numero de tema</label>
+                  									<div class="col-xs-9">
+                  										<%= co.text_field :numerotema, class: "form-control", :required => true%>
+
+                    									<!--<input type="number"  value=<%=Contenido.where(actividad_id: @actividad.id).first.numerotema %>  min= 0 name="actividad[contenido][][numerotema]" id="actividad_contenido__numerotema" class="form-control-horizontal" required />-->
+                  									</div>
+                							</div>
+              							</div>
+
+
+              							<div class="col-sm-5">
+                							<div class="form-group">
+                  								<label for="actividad_contenido__tema" class="col-xs-3 control-label">Nombre del tema</label>
+                  									<div class="col-xs-9">
+                  										<%= co.text_field :tema, class: "form-control", :required => true%>
+                    									<!--<input type="text" value=<%=Contenido.where(actividad_id: @actividad.id).first.tema %>  name="actividad[contenido][][tema]" id="  actividad_contenido_tema" class="form-control-horizontal" required />-->
+                  									</div>
+                							</div>
+              							</div>
+            						</div>
+
+            						<div class="row2">
+              							<div class="col-sm-1"></div>
+              								<div class="col-sm-5">
+                								<div class="form-group">
+                  									<div class="col-xs-1">
+                  									</div>
+                  									<label for="actividad_contenido__subtemas" class="col-xs-2 control-label">Subtema</label>
+                  								<div class="col-xs-7">
+                  									<%= co.text_field :subtemas, class: "form-control", :required => true%>
+                    								<!--<input type="text" value=<%=Contenido.where(actividad_id: @actividad.id).first.subtemas %> name="actividad[contenido][][subtemas]" id="actividad_contenido__subtemas" class="form-control" required />-->
+                  								</div>
+                							</div>
+              							</div>
+
+              							<div class="col-md-5">
+                							<div class="form-group">
+                  								<label for="actividad_contenido__numerohoras" class="col-xs-3 control-label">Numero de horas por tema</label>
+                  								<div class="col-xs-9">
+                  									<%= co.text_field :numerohoras, class: "form-control", :required => true%>
+                    								<!--<input type="number" value=<%=Contenido.where(actividad_id: @actividad.id).first.numerohoras %>   min=0 name="actividad[contenido][][numerohoras]" id="actividad_contenido__numerohoras" class="form-control" required />-->
+                  								</div>
+                							</div>
+              							</div>
+            						</div>
+
+            						<div class="row3">
+              							<div class="col-sm-1"></div>
+              								<div class="col-sm-5">
+                								<div class="form-group">
+                  									<div class="col-xs-1">
+                  									</div>
+                  									<label for="actividad_contenido__fechainicio" class="col-xs-2 control-label">Fecha de inicio del tema</label>
+                  								<div class="col-xs-7">
+                  									<%= co.text_field :fechainicio, class: "form-control", :required => true%>
+                    								<!--<input type="text" value=<%=Contenido.where(actividad_id: @actividad.id).first.fechainicio %>  name="actividad[contenido][][fechainicio]" id="actividad_contenido__fechainicio" class="form-control" required />-->
+                  								</div>
+                							</div>
+              							</div>
+
+              							<div class="col-md-5">
+                							<div class="form-group">
+                  								<label for="actividad_contenido__fechafinal" class="col-xs-3 control-label">Fecha de fin de tema</label>
+                  								<div class="col-xs-9">
+                  									<%= co.text_field :fechafinal, class: "form-control", :required => true%>
+                    								<!--<input type="text" value=<%=Contenido.where(actividad_id: @actividad.id).first.fechafinal %>  name="actividad[contenido][][fechafinal]" id="actividad_contenido__fechafinal" class="form-control" required />-->
+                  								</div>
+                							</div>
+              							</div>
+            						</div>
+
+									<div class="row4">
+										<div class="col-sm-1">
+          									<div class="col-sm-5"></div>
+          									<%= link_to 'Agregar otro tema', '#', :id => 'my-link' %>
+        								</div>
+        							</div>
+		          				
+									<% end %>
+    								<% end %>
+	          					</div> <!--termina contenido -->
+
+        					</div> <!--fin contenidoycalendarizacion -->
+							
+							<div class="row5">
+								<div class="col-sm-1"></div>
+              					<div class="col-sm-1"></div>
+              					<div class="col-sm-5">
+	                				<div class="form-group">
+                  						<div class="col-xs-1">
+                  						</div>
+                  						<label for="actividad_contenido__bibliografia" class="col-xs-2 control-label">Bibliografía</label>
+                  						<div class="col-xs-7">
+                  							<input type="text" value=<%=Contenido.where(actividad_id: @actividad.id).first.bibliografia%> name="actividad[contenido][][bibliografia]" id="actividad_contenido_bibliografia" class="form-control">
+    	              					</div>
+        	        				</div>
+            	  				</div>	
+            				</div>
+            				
+			
+
+            				<br><br>
+							<div class="row6" style="text-align:center;">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-5">
+									 <%= f.submit %>
+								<!--<input type="submit" value="Actualizar Solicitud" style="vertical-align:middle">-->
+								</div>
+							</div>
+
+          						
+							
+					
+					</div>
+				</div>
+			</div>
+		<% end %>
+		</section>
+	</div>
+</div>
+	
+</div>
+
+		
+			<div id="clearer">&nbsp;</div>
+			<div id="footer">
+
+			</div> <!-- END footer -->
+	</body>
+</html>
+
+
+	<%= javascript_include_tag "jquery-2.1.3.min" %>
+
+<script>
+    $(document).ready(function() {
+      $('#my-link').click(function(event){
+        $('#contenidoycalendarizacion').append('<div id="contenido"><div class="row4"><div class="row2"><div class="col-sm-5"><div class="form-group"><div class="col-xs-1"></div><label for="actividad_contenido__numerotema" class="col-xs-2 control-label">Numero de tema</label><div class="col-xs-9"><input type="number" min= 0 name="actividad[contenido][][numerotema]" id="actividad_contenido__numerotema" class="form-control-horizontal" required /></div></div></div><div class="col-sm-5"><div class="form-group"><label for="actividad_contenido__tema" class="col-xs-3 control-label">Nombre del tema</label><div class="col-xs-9"><input type="text" name="actividad[contenido][][tema]" id="  actividad_contenido_tema" class="form-control-horizontal" required /></div></div></div></div><div class="row2"><div class="col-sm-1"></div><div class="col-sm-5"><div class="form-group"><div class="col-xs-1"></div><label for="actividad_contenido__subtemas" class="col-xs-2 control-label">Subtema</label><div class="col-xs-7"><input type="text" name="actividad[contenido][][subtemas]" id="actividad_contenido__subtemas" class="form-control" required /></div></div></div><div class="col-md-5"><div class="form-group"><label for="actividad_contenido__numerohoras" class="col-xs-3 control-label">Numero de horas por tema</label><div class="col-xs-9"><input type="text" name="actividad[contenido][][numerohoras]" id="actividad_contenido__numerohoras" class="form-control" required /></div></div></div></div><div class="row3"><div class="col-sm-1"></div><div class="col-sm-5"><div class="form-group"><div class="col-xs-1"></div><label for="actividad_contenido__fechainicio" class="col-xs-2 control-label">Fecha de inicio del tema</label><div class="col-xs-7"><input type="text" name="actividad[contenido][][fechainicio]" id="actividad_contenido__fechainicio" class="form-control" required /></div></div></div><div class="col-md-5"><div class="form-group"><label for="actividad_contenido__fechafinal" class="col-xs-3 control-label">Fecha de fin de tema</label><div class="col-xs-9"><input type="text" name="actividad[contenido][][fechafinal]" id="actividad_contenido__fechafinal" class="form-control" required /></div></div></div></div><div class="col-sm-1"><div class="col-sm-5"></div><div><a href="#" id="delete-cont">eliminar</a></div></div></div></div> <!--termina contenido -->').on('click', '#delete-cont', function (e) { 
+          $(this).parent().parent().parent().remove();
+          e.preventDefault();});
+        $( "#contenido .row2 div .form-group div .primero" ).last().focus();
+        event.preventDefault(); // Prevent link from following its href
+      });
+	});
+</script>

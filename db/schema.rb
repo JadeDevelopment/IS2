@@ -145,18 +145,17 @@ ActiveRecord::Schema.define(version: 20151024035312) do
 
   create_table "curso_de_actualizacions", force: :cascade do |t|
     t.string   "nombre_curso"
-    t.integer  "año"
-    t.integer  "curriculum_vitae_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.integer  "formacion_academica_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_index "curso_de_actualizacions", ["curriculum_vitae_id"], name: "index_curso_de_actualizacions_on_curriculum_vitae_id", using: :btree
+  add_index "curso_de_actualizacions", ["formacion_academica_id"], name: "index_curso_de_actualizacions_on_formacion_academica_id", using: :btree
 
   create_table "disciplinas", force: :cascade do |t|
     t.text     "nombredisciplina"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "experiencia_profesionals", force: :cascade do |t|
@@ -193,13 +192,6 @@ ActiveRecord::Schema.define(version: 20151024035312) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string   "title"
-    t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "ponentes", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -226,6 +218,17 @@ ActiveRecord::Schema.define(version: 20151024035312) do
   add_index "ponentes", ["email"], name: "index_ponentes_on_email", unique: true, using: :btree
   add_index "ponentes", ["nombreusuario"], name: "index_ponentes_on_nombreusuario", unique: true, using: :btree
   add_index "ponentes", ["reset_password_token"], name: "index_ponentes_on_reset_password_token", unique: true, using: :btree
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "prueba", force: :cascade do |t|
+    t.string "algo", limit: 20
+  end
 
   create_table "publico_dirigidos", force: :cascade do |t|
     t.text     "nombrepublico"
@@ -274,7 +277,7 @@ ActiveRecord::Schema.define(version: 20151024035312) do
   end
 
   create_table "telefono_curriculums", force: :cascade do |t|
-    t.string   "num_telefono"
+    t.integer  "num_telefono"
     t.integer  "curriculum_vitae_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -289,12 +292,9 @@ ActiveRecord::Schema.define(version: 20151024035312) do
   end
 
   add_foreign_key "contenidos", "actividads"
-  add_foreign_key "correo_curriculums", "curriculum_vitaes"
   add_foreign_key "curriculum_vitaes", "areas_especializacions"
-  add_foreign_key "curso_de_actualizacions", "curriculum_vitaes"
-  add_foreign_key "experiencia_profesionals", "curriculum_vitaes"
+  add_foreign_key "curso_de_actualizacions", "formacion_academicas"
   add_foreign_key "formacion_academicas", "curriculum_vitaes"
   add_foreign_key "ponentes", "curriculum_vitaes"
   add_foreign_key "reconocimientos", "curriculum_vitaes"
-  add_foreign_key "telefono_curriculums", "curriculum_vitaes"
 end
