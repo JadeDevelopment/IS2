@@ -1,7 +1,8 @@
 class CurriculumVitae < ActiveRecord::Base
   belongs_to :areas_especializacion, touch: true
 
-  validates_uniqueness_of :rfc
+  validates :rfc, uniqueness: { message: "El RFC ya esta registrado" }
+
   validates :rfc, :nombre, :apmaterno, :appaterno, :fecha_nacimiento, :numero, :calle, :colonia, :ciudad, :cp, :institucion, :areas_especializacion_id, :presence => true
 
   has_many :formacion_academica, dependent: :destroy

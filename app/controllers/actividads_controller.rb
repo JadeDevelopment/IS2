@@ -1,6 +1,5 @@
 class ActividadsController < ApplicationController
-
-
+  before_action :authenticate_ponente!, except: [:index]
 
   def show
     

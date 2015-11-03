@@ -9,6 +9,8 @@ AdminUser.create!(email: 'admin@example.com', password: 'password', password_con
 AreasEspecializacion.create!(area: 'Computación')
 AreasEspecializacion.create!(area: 'Biología')
 AreasEspecializacion.create!(area: 'Actuaría')
+AreasEspecializacion.create!(:area => 'Matemáticas')
+AreasEspecializacion.create!(:area => 'Física')
 
  Tipo.create!(:nombretipo => 'Curso')
     Tipo.create!(:nombretipo => 'Diplomado')
@@ -23,11 +25,6 @@ AreasEspecializacion.create!(area: 'Actuaría')
     Sede.create!(:nombresede => 'SEAyC')
     Sede.create!(:nombresede => 'CCH Naucalpan')
     Sede.create!(:nombresede => 'Departamento de física de la facultad de ciencias')
-
-    AreasEspecializacion.create!(:area => 'Matemáticas')
-    AreasEspecializacion.create!(:area => 'Física')
-    AreasEspecializacion.create!(:area => 'Biologia')
-    AreasEspecializacion.create!(:area => 'Computación')
 
     Modalidad.create!(:nombremodalidad => 'Presencial')
     Modalidad.create!(:nombremodalidad => 'Semi Presencial')

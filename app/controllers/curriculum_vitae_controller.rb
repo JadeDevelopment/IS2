@@ -19,6 +19,7 @@ class CurriculumVitaeController < ApplicationController
   	@areasespecializacion = AreasEspecializacion.all #cargamos todas las areas de epecialización
   end
 
+  #iniciamos el create
   def create
     @paramss = parametros_f
     puts @paramss
@@ -26,17 +27,21 @@ class CurriculumVitaeController < ApplicationController
 
   	@cv = CurriculumVitae.new(parametros)  #creamos un objeto curriculum vitae a partir de los parametros requeridos
     puts @cv.to_json
+    @cv.save!
+    rescue ActiveRecord::RecordInvalid    
 
-    if @cv.save!  #verificamos si se puede guardar
+
+    #verificamos si se puede guardar
+    if @cv.save  
       puts @cv.to_json
 
       @poenten.update(curriculum_vitae_id: @cv.id)
 
-
-      @fa = parametros_f[:formacion_academica] #sacamos todos las formaciones academicas a partir de los parametros dados
+      #multiples formaciones academicas
+      @fa = parametros_f[:formacion_academica]
       puts @fa.to_json
 
-      @fa.each do |f| #multiples formaciones academicas
+      @fa.each do |f| 
 
         @f = FormacionAcademica.new(f)  #creamos formaciones academicas a partir de los parametros requeridos
         @f.curriculum_vitae_id = @cv.id #le asignamos el id del curriculum al que pertenece
@@ -49,11 +54,13 @@ class CurriculumVitaeController < ApplicationController
           redirect_to new_curriculum_vitae_path
         end
       end  
+      #fin multiples formaciones academicas
 
+      #multiples reconocimientos
       @rec = parametros_f[:reconocimiento]  #sacamos todos los reconocimientos asociados al curriculum
       puts @rec.to_json
 
-      @rec.each do |r| #por si hay muchos reconocimientos
+      @rec.each do |r| 
 
         @r = Reconocimiento.new(r) #creamos un objeto a partir de los parametros requeridos
         @r.curriculum_vitae_id = @cv.id #asignamos el id del curriculum al que pertenece
@@ -62,7 +69,9 @@ class CurriculumVitaeController < ApplicationController
           @r.save!
         end
       end
+      #fin multiples reconocimientos
 
+      #multiples correos
       @correos= parametros_f[:correo_curriculum]
       @correos.each do |cor|
         begin
@@ -80,7 +89,9 @@ class CurriculumVitaeController < ApplicationController
           redirect_to new_curriculum_vitae_path
         end
       end
+      #fin multiples correos
 
+      #multiples cursos de actualizacion
       @cursos = parametros_f[:curso_de_actualizacion]
       puts @cursos.to_json
       @cursos.each do |curso|
@@ -91,7 +102,9 @@ class CurriculumVitaeController < ApplicationController
           @curso.save!
         end
       end
+      #fin multiples cursos de actualizacion
 
+      #fin multiples telefonos
       @telefonos = parametros_f[:telefono_curriculum]
       puts @telefonos.to_json
       @telefonos.each do |tel|
@@ -102,6 +115,7 @@ class CurriculumVitaeController < ApplicationController
           @tel.save!
         end
       end
+      #fin multiples telefonos
 
       @expprofs = parametros_f[:experiencia_profesional]
       @expprofs.each do |exp|
@@ -114,7 +128,7 @@ class CurriculumVitaeController < ApplicationController
       end
     else #si ya existe regresa a la pagina anterior
       flash[:notice] = "Curriculum no valido"
-      render template: "curriculum_vitae/new"
+      render template: "curriculum_vitae/new" and return
     end
     redirect_to  @poenten#si se pudo guardar manda al index
   end

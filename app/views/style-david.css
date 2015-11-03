@@ -13,14 +13,6 @@
 #wrap {
 	}
 	
-#headermain {
-	letter-spacing: 0.2em;
-	margin: 0 0 0 220px;
-	padding: 0 0px 0px 0px;
-	width: 70%;
-	font: normal 100% Times; 
-	background-color: #000;
-	}
 
 #main {
 	padding-left:5px;
@@ -99,20 +91,6 @@ background: rgb(100,100,100);
 	background: rgb(100,100,100);
 	}
 
-a {
-	color: #8C0000; 
-	text-decoration: none; 
-	}
-	
-a:visited { 
-	color: #8C0000; 
-	text-decoration: none; 
-	}
-	
-a:hover { 
-	color: #8C0000; 
-	text-decoration: underline; 
-	}
 	
 acronym, abbr { 
 	border-bottom: #333; 
@@ -123,23 +101,7 @@ blockquote {
 	color: #573D2E;
 	}
 	
-h2 {	
-	color: #8C0000;
-	font-size: 24px;
-	font-weight: normal;
-	}
-	
-h3 a {
-	color: #8C0000; 
-	}
-	
-h3 a:hover {
-	color: #8C0000;
-	}
-	
-h3 a:visited {
-	color: #8C0000;
-	}
+
 	
 .meta { 
 	color: #DCD3CE
@@ -153,15 +115,6 @@ h3 a:visited {
 	color: #884400;
 	}
 
-
-a{
-	text-decoration: none;
-	}
-	
-a img { 
-	border: 2px solid #573D2E; 
-	padding: 2px;
-	}
 	
 acronym, abbr { 
 	border-bottom: 1px none; 
@@ -184,32 +137,6 @@ cite {
 	font-style: normal; 
 	}
 	
-#header{ 
-	color: #F2EEEC; 
-	text-decoration: none; 
-	}
-	
-#header a:hover { 
-	text-decoration: underline; 
-	}
-	
-h1 { 	
-	margin: 0; 
-	text-align: left; 
-	color: #AF5D62;
-	font-size:35px;
-	}
-	
-#hidden {
-	display:none;
-	}
-
-h2 {
-	font: 100% 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
-  	letter-spacing: 0.2em; 
-  	margin: 0 20px 20px 0; 
-  	padding: 20px 0 0 0; 
-  	}
   	
 h2#tagline {
 	margin:0; 
@@ -351,9 +278,6 @@ ul.post-meta span.post-meta-key {
 	font-size: 90%;
 	}
 	
-div{
-	display: block;
-}
 
 .meta {
 	font-size: .95em;

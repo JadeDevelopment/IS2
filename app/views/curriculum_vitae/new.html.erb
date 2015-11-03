@@ -97,7 +97,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_fecha_nacimiento" class="col-xs-3 control-label">Fecha de Nacimiento </label>
               <div class="col-xs-9">
-                <%= f.date_field :fecha_nacimiento, class: "form-control", :required => true , max: "1996-12-31"%>
+                <%= f.date_field :fecha_nacimiento, class: "form-control", :required => true, min: "1950-01-01", max: "1996-12-31"%>
               </div>
             </div>
           </div>
@@ -118,9 +118,9 @@
         </div>
 
         <div class="row2">
-          <div class="col-sm-6">
+          <div class="col-sm-5">
             <div class="form-group">
-              <label for="curriculum_vitae_reconocimiento__correo_curriculum_correo" class="col-xs-2 control-label">Correo Electrónico:</label>
+              <label for="curriculum_vitae_correo_curriculum_correo" class="col-xs-2 control-label">Correo Electrónico:</label>
               <div class="col-xs-10">
                 <input type="text" value="" name="curriculum_vitae[correo_curriculum][][correo]" id="curriculum_vitae_reconocimiento__correo_curriculum_correo" required="required" pattern=".*@.*" placeholder="exmaple@domain.ext" class="form-control-horizontal">
               </div>
@@ -211,7 +211,7 @@
           <div class="col-sm-5">
             <div class="form-group">
               <%= f.label :areas_especializacion_id %>
-              <%= f.collection_select(:areas_especializacion_id, @areasespecializacion, :id, :area) %>
+              <%= f.collection_select(:areas_especializacion_id, AreasEspecializacion.all, :id, :area, {:multiple => true}) %>
             </div>
           </div>
         </div>
@@ -356,14 +356,16 @@
           </div>
 
           <div id="reconocimiento">
-            <div class="row2">
-              <div class="col-sm-5">
+            
+              <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="curriculum_vitae_reconocimiento__nombre_reconocimiento">Nombre reconocimiento</label>
-                  <input type="text" name="curriculum_vitae[reconocimiento][][nombre_reconocimiento]" id="curriculum_vitae_reconocimiento__nombre_reconocimiento" class="form-control-horizontal"/>
+                  <label for="curriculum_vitae_reconocimiento__nombre_reconocimiento" class="col-xs-3 control-label">Nombre reconocimiento</label>
+                  <div class="col-xs-7">
+                    <input type="text" name="curriculum_vitae[reconocimiento][][nombre_reconocimiento]" id="curriculum_vitae_reconocimiento__nombre_reconocimiento" class="form-control-horizontal"/>
+                  </div>
+                </div>
               </div>
-              </div>
-            </div>
+            
           </div>
         </div>
 
@@ -390,7 +392,11 @@
         event.preventDefault(); // Prevent link from following its href
       });
       $('#my-link2').click(function(event){
-        $('#reconocimientos').append('<div id="reconocimiento"><div class="field"><label for="curriculum_vitae_reconocimiento__nombre_reconocimiento">Nombre reconocimiento</label><br><input type="text" name="curriculum_vitae[reconocimiento][][nombre_reconocimiento]" id="curriculum_vitae_reconocimiento__nombre_reconocimiento" required /></div></div>');
+        $('#curriculum_vitae_reconocimiento__nombre_reconocimiento').attr("required", "true");
+        $('#reconocimientos').append('<div class="col-sm-6"><div class="form-group"><label for="curriculum_vitae_reconocimiento__nombre_reconocimiento" class="col-xs-3 control-label">Nombre reconocimiento</label><div class="col-xs-7"><input type="text" name="curriculum_vitae[reconocimiento][][nombre_reconocimiento]" id="curriculum_vitae_reconocimiento__nombre_reconocimiento" class="form-control-horizontal" required/></div><div class="col-xs-2"><a href="#" id="delete-rec">eliminar</a></div></div></div>').on('click', '#delete-rec', function(e){
+            $(this).parent().parent().parent().remove();
+            e.preventDefault();
+        });
         event.preventDefault(); // Prevent link from following its href
       });
       $('#add-curso').click(function(event){
@@ -402,7 +408,8 @@
         event.preventDefault();
       });
       $('#my-link-4').click(function(event){
-        $('#telefonos').append('<div class="form-group"><label for="curriculum_vitae_telefono_curriculum_num_telefono" class="col-xs-2 control-label">Telefono</label><div class="col-xs-8"><input type="number" value="" name="curriculum_vitae[telefono][][num_telefono]" id="curriculum_vitae_telefono" required></div><div class="col-xs-2"><a href="#" id="offsite">elimina</a></div></div>').on('click', '#offsite', function (e) { 
+        $('#curriculum_vitae_telefono_curriculum_num_telefono').attr("required", "true");
+        $('#telefonos').append('<div class="form-group"><label for="curriculum_vitae_telefono_curriculum_num_telefono" class="col-xs-2 control-label">Telefono</label><div class="col-xs-8"><input type="text" value="" name="curriculum_vitae[telefono_curriculum][][num_telefono]" id="curriculum_vitae_telefono_curriculum_num_telefono" class="form-control" pattern="[0-9.]+" required></div><div class="col-xs-2"><a href="#" id="offsite">elimina</a></div></div>').on('click', '#offsite', function (e) { 
           $(this).parent().parent().remove();
           e.preventDefault();});
         $( "#telefonos .form-group div input" ).last().focus();
