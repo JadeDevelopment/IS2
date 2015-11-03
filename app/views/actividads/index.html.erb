@@ -10,6 +10,7 @@
     <tr>
       <td><%= actividad.nombre %></td>
       <td><%= link_to 'Ver', :action => :showSolicitud, :id => actividad.id %></td>
+      <td><%= link_to 'Editar', :action => :edit, :id => actividad.id %></td>
     </tr>
   <% end %>
 </table>
