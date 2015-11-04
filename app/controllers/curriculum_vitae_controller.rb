@@ -145,7 +145,7 @@ class CurriculumVitaeController < ApplicationController
     end
   end
 
-  def edit#edit
+  def edit
     begin
       @cv = CurriculumVitae.find(params[:id])
     rescue
@@ -159,7 +159,21 @@ class CurriculumVitaeController < ApplicationController
   end
 
 def update
-   @cv = CurriculumVitae.find(params[:id])
+  @cv = CurriculumVitae.find(params[:id])
+  #@cv.update()
+  #redirect_to @cv
+  if @cv.update_attributes(parametros)
+    @cor = parametros_f[correo_curriculum]
+    puts @cor.to_json
+    @cor.each do |c|
+      puts c.to_json
+      @correoc = Correo.find(c.id)
+      @Correoc.update_attributes(c)
+    end
+    redirect_to :action => :show, :id => @cv.id
+  else
+    render 'edit'
+  end
 end
 
 

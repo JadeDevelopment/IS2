@@ -2,7 +2,7 @@
 <section id="form-cv">
   <div class="container">
     <div class="row">
-      <%= form_for @cv, :html => {:class => "form-horizontal form-cv"}, url: curriculum_vitae_path(@cv), method: :patch do |f| %>
+      <%= form_for @cv, :html => {:class => "form-horizontal form-cv"}, :url => { :action => :update, :id => @cv.id }, :method => :put do |f| %>
         <h2>Datos personales</h2>
 
         <div class="row2">
@@ -77,10 +77,14 @@
         <div class="row2">
           <div class="col-sm-6">
             <div class="form-group">
-              <label for="curriculum_vitae_reconocimiento__correo_curriculum_correo" class="col-xs-2 control-label">Correo Electrónico:</label>
-              <div class="col-xs-10">
-                <input type="text" value="" name="curriculum_vitae[correo_curriculum][][correo]" id="curriculum_vitae_reconocimiento__correo_curriculum_correo" required="required" pattern=".*@.*" placeholder="exmaple@domain.ext" class="form-control-horizontal">
-              </div>
+              <% @cv.correo_curriculum.each do |correocurriculum| %>
+                <%= f.fields_for correocurriculum, index: correocurriculum.id do |cor| %>
+                  <%= cor.label :correo, class: "col-xs-2 control-label" %>
+                    <div class="col-xs-8">
+                      <%= cor.text_field :correo, class: "form-control", :required => true %>
+                    </div>
+                  <% end -%>
+                <% end -%>
             </div>
           </div>
 
