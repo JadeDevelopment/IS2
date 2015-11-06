@@ -15,8 +15,8 @@ Rails.application.routes.draw do
    get "actividads/showSolicitud/:id" => "actividads#showSolicitud"
    get "actividads/:id/edit" => "actividads#edit"#para editar un curso
    
-     # get "actividads" => "actividads#index"
-
+  post  "/curriculum_vitae/:id" => "curriculum_vitae#update"
+  
   resources :administracion
   resources :ponente
 

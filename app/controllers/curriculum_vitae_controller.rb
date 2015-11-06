@@ -163,12 +163,12 @@ def update
   #@cv.update()
   #redirect_to @cv
   if @cv.update_attributes(parametros)
-    @cor = parametros_f[correo_curriculum]
+    @cor = parametros_f[:correo_curriculum]
     puts @cor.to_json
     @cor.each do |c|
       puts c.to_json
-      @correoc = Correo.find(c.id)
-      @Correoc.update_attributes(c)
+      @correoc = CorreoCurriculum.find(c[0])
+      @correoc.update(correo: c[1][:correo])
     end
     redirect_to :action => :show, :id => @cv.id
   else
@@ -183,7 +183,7 @@ end
       params.require(:curriculum_vitae).permit(:rfc, :nombre, :appaterno, :apmaterno, :fecha_nacimiento, :numero, :calle, :colonia, :delegacion, :ciudad, :cp, :institucion, :areas_especializacion_id)
     end
 
-    def parametros_f
+    def parametros_f#hay metodos que permiten mandar hash de listas, e.d. debe recibir una lista
       params.require(:curriculum_vitae).permit!
     end
 end
