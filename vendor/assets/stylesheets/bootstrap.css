@@ -6819,17 +6819,20 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
-#navigation {
-  display: block;
-  height: 45px;
-}
-@media (max-width: 800px){
-  #navigation {
-    display: block;
+@media (min-width: 800px){
+  #navigation{
+    margin-top: -40px
   }
 }
 #header {
     background-image: none;
     border-bottom: none;
     padding: 0;
+}
+.hexdots-loader {
+  margin: 60px 45%;
+}
+
+#logo:hover {
+  background: transparent;
 }
