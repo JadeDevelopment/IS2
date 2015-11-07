@@ -2,8 +2,10 @@
 <section id="form-cv">
   <div class="container">
     <div class="row">
-      <%= form_for @cv, :html => {:class => "form-horizontal form-cv"}, :url => { :action => :update, :id => @cv.id }, :method => :put do |f| %>
+      <%= form_for @cv, :html => {:class => "form-horizontal form-cv"}, :url => { :action => :update, :id => @cv.id }, :method => :patch do |f| %>
+   
         <h2>Datos personales</h2>
+
 
         <div class="row2">
           <div class="col-sm-4">
@@ -77,28 +79,18 @@
         <div class="row2">
           <div class="col-sm-6">
             <div class="form-group">
-              <% @cv.correo_curriculum.each do |correocurriculum| %>
-                <%= f.fields_for correocurriculum, index: correocurriculum.id do |cor| %>
+             <% @cv.correo_curriculum.each do |correocurriculum| %>
+                <%= f.fields_for correocurriculum, index: correocurriculum.id do |cor| %>-
                   <%= cor.label :correo, class: "col-xs-2 control-label" %>
                     <div class="col-xs-8">
                       <%= cor.text_field :correo, class: "form-control", :required => true %>
+
                     </div>
-                  <% end -%>
+                <% end -%>
                 <% end -%>
             </div>
           </div>
 
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label class="col-xs-7">¿Desea que se publique en internet como contacto de información académica para los interesados?</label>
-              <div class="col-xs-5">
-                <label for="curriculum_vitae_reconocimiento__correo_curriculum_publicacion" >Sí</label>
-                <input type="radio" name="curriculum_vitae[correo_curriculum][][publicacion]" id="curriculum_vitae_reconocimiento__correo_curriculum_publicacion" value="t" checked> 
-                <label for="curriculum_vitae_reconocimiento__correo_curriculum_publicacion">No</label>
-                <input type="radio" id="curriculum_vitae_reconocimiento__correo_curriculum_publicacion" name="curriculum_vitae[correo_curriculum][][publicacion]" value="f">
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="row2">

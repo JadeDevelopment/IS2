@@ -177,7 +177,7 @@
 							<br><br>
 							
 							Nombre del tema:
-							<%=Contenido.where(actividad_id: @actividad.id).second.tema %>
+							<%=Contenido.where(actividad_id: @actividad.id).first.tema %>
 							<br><br>
 							
 							Subtema:
