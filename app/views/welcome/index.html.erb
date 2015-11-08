@@ -43,6 +43,12 @@
                   <% end-%>
                   <li><%= link_to "Mi Cuenta", ponente_path(current_ponente.id) %></li>
                   <li><%= link_to "Salir", destroy_ponente_session_path, :method => 'delete' %></li>
+                <% end -%>
+                <% if current_usuario -%>
+                  <li><a href="#">Formas de Pago</a></li>
+                  <li><a href="#">Inscripción</a></li>
+                  <li><%= link_to "Mi Cuenta", usuario_path(current_usuario.id) %></li>
+                  <li><%= link_to "Salir", destroy_usuario_session_path, :method => 'delete' %></li>
                 <% else -%>
                   <li><a href="#">Formas de Pago</a></li>
                   <li><a href="#">Inscripción</a></li>

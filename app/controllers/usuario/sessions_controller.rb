@@ -22,7 +22,7 @@ protect_from_forgery with: :exception
     set_flash_message(:notice, :signed_in) if is_flashing_format?
     sign_in(resource_name, resource)
     yield resource if block_given?
-    respond_with resource, location: ponente_path(current_usuario.id)
+    respond_with resource, location: usuario_path(current_usuario.id)
   end
 
   # DELETE /resource/sign_out

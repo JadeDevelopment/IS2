@@ -41,9 +41,25 @@ prepend_before_filter :require_no_authentication, only: [:new, :create, :cancel]
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+
+    resource_updated = update_resource(resource, account_update_params)
+    yield resource if block_given?
+    if resource_updated
+      if is_flashing_format?
+        flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
+          :update_needs_confirmation : :updated
+        set_flash_message :notice, flash_key
+      end
+      sign_in resource_name, resource, bypass: true
+      respond_with resource, location: usuario_path(current_usuario.id)
+    else
+      clean_up_passwords resource
+      respond_with resource
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -63,7 +79,7 @@ prepend_before_filter :require_no_authentication, only: [:new, :create, :cancel]
     def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:nombre, :appaterno, :apmaterno, :institucion, :email, :password, :password_confirmation) }
       devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password, :remember_me) }
-      devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:nombre, :appaterno, :apmaterno, :institucion, :email, :password, :password_confirmation, :current_password) }
+      devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:nombre, :appaterno, :apmaterno, :institucion, :numerodecuenta, :email, :password, :password_confirmation, :current_password) }
     end
 
     # If you have extra params to permit, append them to the sanitizer.
@@ -72,9 +88,9 @@ prepend_before_filter :require_no_authentication, only: [:new, :create, :cancel]
     end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.for(:account_update) << :attribute
-  # end
+    def configure_account_update_params
+      devise_parameter_sanitizer.for(:account_update) << [:nombre, :appaterno, :apmaterno, :institucion, :numerodecuenta]
+    end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
