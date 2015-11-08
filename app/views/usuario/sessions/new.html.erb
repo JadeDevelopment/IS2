@@ -35,8 +35,8 @@
                   </a>
                           
                   <ul class="dropdown-menu">
-                    <li class="active"><%= link_to "Ponente", new_ponente_session_path %></li>
-                    <li><%= link_to "Alumno", new_usuario_session_path %></li>
+                    <li><%= link_to "Ponente", new_ponente_session_path %></li>
+                    <li class="active"><%= link_to "Alumno", new_usuario_session_path %></li>
                   </ul>
                 </li>
                 <li class="dropdown">
@@ -108,7 +108,7 @@
             <% end %>
           </div>
           <div class="panel-footer ">
-            <%= render "ponente/shared/links" %>
+            <%= render "usuario/shared/links" %>
           </div>
         </div>
       </div>

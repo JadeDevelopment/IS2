@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :usuarios, controllers: { sessions: 'usuario/sessions', registrations: 'usuario/registrations', confirmations: 'usuario/confirmations' }
   devise_for :ponentes, controllers: { sessions: 'ponente/sessions', registrations: 'ponente/registrations', confirmations: 'ponente/confirmations' }
 
   root 'welcome#index'
@@ -11,7 +12,6 @@ Rails.application.routes.draw do
 
   resources :actividads
 
-
    get "actividads/showSolicitud/:id" => "actividads#showSolicitud"
    get "actividads/:id/edit" => "actividads#edit"#para editar un curso
    
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   
   resources :administracion
   resources :ponente
+  resources :usuario
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -7,7 +7,7 @@
 
 #form-cv{
   padding-top: 30px;
-  padding-bottom: 30px;
+  max-width:1200px;
 }
 
 .row2{
@@ -26,20 +26,19 @@
 .form-cv{
   border-width:  2px;
   border-style: solid;
-  margin-left: 3%;
-  margin-right: 3%;
+  margin-left: 5px;
+  margin-right: 5px;
 }
-
-@media(min-width: 990px){
+@media(min-width: 1200px){
+  #main {
+    max-width: 
+  }
   .form-cv {
     border-width:  2px;
     border-style: solid;
-    padding-left: 35px;
-    margin-left: 7%;
-    margin-right: 7%;
-  }
-
-  .input-cv {
-    margin-left: -35px;
+    width: 980px;
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: -35px;
   }
 }

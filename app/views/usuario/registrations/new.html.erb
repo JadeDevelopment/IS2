@@ -1,4 +1,4 @@
-<body class="html front not-logged-in no-sidebars page-inicio page-panels">
+<body class="html front not-logged-in no-sidebars page-inicio page-panels" style="width:100%">
   <div id="page">
     <!--header-->
     <header class="header" id="header" role="banner">
@@ -41,8 +41,8 @@
                     </a>
                           
                     <ul class="dropdown-menu">
-                      <li><a href="/ponentes/sign_in">Ponente</a></li>
-                      <li><a href="">Alumno</a></li>
+                      <li><%= link_to "Ponente", new_ponente_session_path %></li>
+                      <li><%= link_to "Alumno", new_usuario_session_path %></li>
                     </ul>
                   </li>
                   <li class="dropdown active">
@@ -50,8 +50,8 @@
                       Registrate <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                      <li class="active"><%= link_to "Ponente", new_ponente_registration_path %></li>
-                      <li><%= link_to "Alumno", new_usuario_registration_path %></li>
+                      <li><%= link_to "Ponente", new_ponente_registration_path %></li>
+                      <li class="active"><%= link_to "Alumno", new_usuario_registration_path %></li>
                     </ul>
                   </li>
                   <li><a href="#">Acerca de</a></li>
@@ -61,49 +61,70 @@
           </div><!--/.container-->
         </nav><!--/nav-->
       </div><!--/#panel de navegación-->
-  
-  
+
       <div class="container" style="margin-top:40px">
         <div class="col-sm-8 col-md-6 col-sm-offset-2">
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h3 class="panel-title">Registro Ponente</h3>
+              <h3 class="panel-title">Registro Alumno</h3>
             </div>
             <div class="panel-body">
               <div class="row">
-                <p class="notice"><%= notice %></p> <p class="alert"><%= alert %></p>
+                <p class="notice"><%= notice %></p>
+                <p class="notice"><%= alert %><p class="notice">
               </div>
               <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 separator">
                   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                    <%= devise_error_messages! %>
                     <div class="form-group">
                       <div class="input-group">
-                        <%= f.label :Nombre_de_Usuario %>
+                        <%= f.label :Nombres %>
                       </div>
                       <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                        <%= f.text_field :nombreusuario, autofocus: true, class: "form-control", :placeholder => "nombre", :required => "true" %>
+                        <%= f.text_field :nombre, autofocus: true, class: "form-control", :placeholder => "Nombre(s)" %>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <div class="input-group">
+                            <%= f.label :Apellido_Paterno %>
+                          </div>
+                          <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <%= f.text_field :appaterno, class: "form-control", :placeholder => "Apellido Paterno", :required => "true" %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <div class="input-group">
+                            <%= f.label :Apellido_Materno %>
+                          </div>
+                          <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <%= f.text_field :apmaterno, class: "form-control", :placeholder => "Apellido Materno", :required => "true" %>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group">
-                      <%= f.label :Correo_Electronico %>
                       <div class="input-group">
+                        <%= f.label :Correo_Electronico %>
                       </div>
                       <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                        <%= f.email_field :email, autofocus: true, class: "form-control", :placeholder => "ejemplo@dominio.com", :required => "true" %>
+                        <%= f.email_field :email, class: "form-control", :placeholder => "ejemplo@dominio.com", :required => "true" %>
                       </div>
                     </div>
-                    
-                      <div class="form-group">
-                        <div class="input-group">
-                          <% if @minimum_password_length %>
-                            <em>(<%= @minimum_password_length %> characters minimum)</em>
-                          <% end %>
-                        </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <% if @minimum_password_length %>
+                          <em>(<%= @minimum_password_length %> caracteres minimo)</em>
+                        <% end %>
                       </div>
-                    
+                    </div>
                     <div class="row">
                       <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
@@ -132,7 +153,7 @@
                       <%= f.submit "Registrarme" %>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6">
-                      <%= render "ponente/shared/links" %>
+                      <%= render "usuario/shared/links" %>
                     </div>
                   <% end %>
                 </div>

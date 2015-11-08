@@ -1,7 +1,7 @@
 class CreateDisciplinas < ActiveRecord::Migration
   def change
     create_table :disciplinas do |t|
-      t.text :NombreDisciplina
+      t.text :nombredisciplina
 
       t.timestamps 
     end

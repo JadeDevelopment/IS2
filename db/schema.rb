@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024035312) do
+ActiveRecord::Schema.define(version: 20151107145451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -277,7 +277,7 @@ ActiveRecord::Schema.define(version: 20151024035312) do
   end
 
   create_table "telefono_curriculums", force: :cascade do |t|
-    t.string  "num_telefono"
+    t.string   "num_telefono"
     t.integer  "curriculum_vitae_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -290,6 +290,36 @@ ActiveRecord::Schema.define(version: 20151024035312) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "usuarios", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "nombre"
+    t.string   "appaterno"
+    t.string   "apmaterno"
+    t.string   "institucion"
+    t.string   "numerodecuenta"
+    t.string   "rfc"
+  end
+
+  add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true, using: :btree
+  add_index "usuarios", ["rfc"], name: "index_usuarios_on_rfc", unique: true, using: :btree
+  add_index "usuarios", ["numerodecuenta"], name: "index_usuarios_on_numerodecuenta", unique: true, using: :btree
+  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "contenidos", "actividads"
   add_foreign_key "curriculum_vitaes", "areas_especializacions"
