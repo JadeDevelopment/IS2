@@ -106,7 +106,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_telefono_curriculum_num_telefono" class="col-xs-2 control-label">Telefono</label>
               <div class="col-xs-8">
-                <input type="text" value="" name="curriculum_vitae[telefono_curriculum][][num_telefono]" id="curriculum_vitae_telefono_curriculum_num_telefono" class="form-control" pattern="[0-9.]+" placeholder="55XXXXXX">
+                <%=TelefonoCurriculum.where(curriculum_vitae_id: @cv.id).first.num_telefono %>
               </div>
             </div>
           </div>
@@ -122,6 +122,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_correo_curriculum_correo" class="col-xs-2 control-label">Correo Electrónico:</label>
               <div class="col-xs-10">
+                <%=CorreoCurriculum.where(curriculum_vitae_id: @cv.id).first.correo %>
                 <input type="text" value="" name="curriculum_vitae[correo_curriculum][][correo]" id="curriculum_vitae_reconocimiento__correo_curriculum_correo" required="required" pattern=".*@.*" placeholder="exmaple@domain.ext" class="form-control-horizontal">
               </div>
             </div>
@@ -131,10 +132,7 @@
             <div class="form-group">
               <label class="col-xs-7">¿Desea que se publique en internet como contacto de información académica para los interesados?</label>
               <div class="col-xs-5">
-                <label for="curriculum_vitae_reconocimiento__correo_curriculum_publicacion" >Sí</label>
-                <input type="radio" name="curriculum_vitae[correo_curriculum][][publicacion]" id="curriculum_vitae_reconocimiento__correo_curriculum_publicacion" value="t" checked> 
-                <label for="curriculum_vitae_reconocimiento__correo_curriculum_publicacion">No</label>
-                <input type="radio" id="curriculum_vitae_reconocimiento__correo_curriculum_publicacion" name="curriculum_vitae[correo_curriculum][][publicacion]" value="f">
+                <%=CorreoCurriculum.where(curriculum_vitae_id: @cv.id).first.publicacion %>
               </div>
             </div>
           </div>
@@ -146,7 +144,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_calle" class="col-xs-2 control-label">Calle&nbsp;&nbsp;</label>
               <div class="col-xs-10 ">
-                <%= f.text_field :calle, class: "form-control", :required => true %>
+                <%= @cv.calle%>
               </div>
             </div>
           </div>
@@ -155,7 +153,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_numero" class="col-xs-2 control-label">No</label>
               <div class="col-xs-10">
-                <%= f.number_field :numero, class: "form-control", :required => true , in: 1..9999%>
+               <%= @cv.numero%>
               </div>
             </div>
           </div>
@@ -164,7 +162,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_colonia" class="col-xs-3 control-label">Colonia</label>
               <div class="col-xs-9">
-                <%= f.text_field :colonia, class: "form-control", :required => true %>
+                <%= @cv.colonia%>
               </div>
             </div>
           </div>
@@ -175,7 +173,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_delegacion" class="col-xs-3 control-label">Delegacion</label>
               <div class="col-xs-9">
-                <%= f.text_field :delegacion, class: "form-control", :required => true %>
+                <%= @cv.delegacion%>
               </div>
             </div>
           </div>
@@ -183,7 +181,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_ciudad" class="col-xs-3 control-label">Ciudad</label>
               <div class="col-xs-9">
-                <%= f.text_field :ciudad, class: "form-control", :required => true %>
+                <%= @cv.ciudad%>
               </div>
             </div>
           </div>
@@ -191,7 +189,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_cp" class="col-xs-3 control-label">CP</label>
               <div class="col-xs-9">
-                <%= f.number_field :cp, in: 00001...99999, class: "form-control", :required => true %>
+                <%= @cv.cp %>
               </div>
             </div>
           </div>
@@ -204,14 +202,13 @@
             <div class="form-group">
               <label for="curriculum_vitae_institucion" class="col-xs-3 control-label">Institución</label>
               <div class="col-xs-9">
-                <%= f.text_field :institucion, class: "form-control-horizontal", :required => true %>
+                <%= @cv.institucion %>
               </div>
             </div>
           </div>
           <div class="col-sm-5">
             <div class="form-group">
-              <%= f.label :areas_especializacion_id %>
-              <%= f.collection_select(:areas_especializacion_id, AreasEspecializacion.all, :id, :area, {:multiple => true}) %>
+              <%=AreasEspecializacion.find(@cv.areas_especializacion_id).area %>
             </div>
           </div>
         </div>
@@ -226,7 +223,7 @@
                 <div class="form-group">
                   <label for="curriculum_vitae_formacion_academica__area_especialidad" class="col-xs-3 control-label">Area de Especialidad</label>
                   <div class="col-xs-9">
-                    <input type="text" name="curriculum_vitae[formacion_academica][][area_especialidad]" id="curriculum_vitae_formacion_academica__area_especialidad" class="form-control-horizontal" required />
+                    <%=FormacionAcademica.where(curriculum_vitae_id: @cv.id).first.area_especialidad %>
                   </div>
                 </div>
               </div>
@@ -234,7 +231,7 @@
                 <div class="form-group">
                   <label for="curriculum_vitae_formacion_academica__ultimo_grado" class="col-xs-3 control-label">Último Grado</label>
                   <div class="col-xs-9">
-                    <input type="text" name="curriculum_vitae[formacion_academica][][ultimo_grado]" id="  curriculum_vitae_formacion_academica__ultimo_grado" class="form-control-horizontal" required />
+                    <%=FormacionAcademica.where(curriculum_vitae_id: @cv.id).first.ultimo_grado %>
                   </div>
                 </div>
               </div>
@@ -247,7 +244,7 @@
                   </div>
                   <label for="curriculum_vitae_formacion_academica__año" class="col-xs-2 control-label">Año</label>
                   <div class="col-xs-7">
-                    <input type="text" name="curriculum_vitae[formacion_academica][][año]" id="curriculum_vitae_formacion_academica__año" class="form-control" required />
+                    <%=FormacionAcademica.where(curriculum_vitae_id: @cv.id).first.año %>
                   </div>
                 </div>
               </div>
@@ -255,7 +252,7 @@
                 <div class="form-group">
                   <label for="curriculum_vitae_formacion_academica__entidad_academica" class="col-xs-3 control-label">Entidad  academica</label>
                   <div class="col-xs-9">
-                    <input type="text" name="curriculum_vitae[formacion_academica][][entidad_academica]" id="curriculum_vitae_formacion_academica__entidad_academica" class="form-control" required />
+                    <%=FormacionAcademica.where(curriculum_vitae_id: @cv.id).first.entidad_academica %>
                   </div>
                 </div>
               </div>
@@ -264,7 +261,7 @@
         </div>
         <div class="row2">
           <div class="col-sm-4"></div>
-          <%= link_to 'Agregar más', '#', :id => 'my-link' %>
+          
         </div>
 
         <div id="cursos">
@@ -276,7 +273,7 @@
                 <div class="form-group primero">
                   <label for="curriculum_vitae_curso_de_actualizacion__nombre_curso" class="col-xs-3 control-label">Nombre del Curso</label>
                   <div class="col-xs-9">
-                    <input type="text" name="curriculum_vitae[curso_de_actualizacion[][nombre_curso]" id="curriculum_vitae_curso_de_actualizacion__nombre_curso" class="form-control" />
+                    <%=CursoDeActualizacion.where(formacion_academica_id: @formacion_academica.id).first.nombre_curso %>             
                   </div>
                 </div>
               </div>
@@ -284,16 +281,16 @@
                 <div class="form-group">
                   <label for="curriculum_vitae_curso_de_actualizacion__año" class="col-xs-2 control-label">Año</label>
                   <div class="col-xs-10">
-                    <input type="text" name="curriculum_vitae[curso_de_actualizacion][][año]" id="curriculum_vitae_curso_de_actualizacion__año" class="form-control" />
+                    <%=CursoDeActualizacion.where(formacion_academica_id: @formacion_academica.id).first.año %>
                   </div>
-                </div>
+                </div>|
               </div>
             </div>
           </div>
         </div>
         <div class="row2">
           <div class="col-sm-4"></div>
-          <%= link_to 'Agregar más cursos de actualización', '#', :id => 'add-curso' %><br>
+          
         </div>
         
         <div id="Experiencia_academica">
@@ -301,30 +298,44 @@
           <div class="row2">
             <div class="form-group col-md-9">
               <label for="experiencia_docente">Experiencia docente:</label>
+              <%=CursoDeActualizacion.where(formacion_academica_id: @formacion_academica.id).first.año %>
               <input type="text" name="experiencia_docente" id="experiencia_docente" class="form-control-horizontal">
             </div>
           </div>
 
           Cargos académicos y/o académico-administrativos:
-          <input type="text" name="cargos" id="cargos"><br>
+          <%=CargoAcademico.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_cargo_academico %><br>
 
-          Revisor
-          <input type="checkbox" checked="true">
+          Revisor De Tesis
+          <%=RevisorDeTesis.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_revisor_de_tesis %><br>
 
-          otros
-          <input type="text"><br>
+          <br>
 
           <label for="publicaciones">Publicaciones</label>
-          <input type="text" name="publicaciones" id="publicaciones"><br>
+          <%=Publicaciones.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_publicaciones %><br>
 
-          Ponencias / Conferencias / Congresos
-          <input type="text" name=""><br>
+          Ponencias 
+          <%=Ponencia.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_ponencias %><br>
 
-          <label for="formacion_rh">Formación de recursos humanos (Incluir dirección de tesis, asesorías, tutorías)</label>
-          <input type="text" name="formacion_rh" id="formacion_rh"><br>
+          Conferencias
+          <%=Conferencium.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_conferencia %><br>
+
+          Congresos
+          <%=Congreso.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_congreso %><br>
+
+          <h2>Formación de recursos humanos </h2>
+          
+          <label for="formacion_rh">Dirección de tesis</label>
+          <%=DireccionTesis.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_direccion_tesis %><br>
+         
+          <label for="formacion_rh">Asesorías Impartidas</label>
+          <%=AsesoriasImpartidas.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_asesorias_impartidas %><br>
+         
+          <label for="formacion_rh">Tutorías Impartidas</label>
+          <%=TutoriasImpartidas.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_tutorias_impartidas %><br>
 
           <label for="cursos_impartidos">Cursos impartidos (últimos 3 años)</label>
-          <input type="text" name="cursos_impartidos" id="cursos_impartidos" value="">
+          <%=CursosImpartido.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_cursos_impartidos %>
         </div>
 
         <div id="exprofs">
@@ -336,14 +347,14 @@
                 <div class="form-group">
                   <label for="curriculum_vitae_experiencia_profesional_entidad">Entidad académica o empresa de adscripción</label>
                   <div>
+                    <%=EntidadAcademica.where(id_experiencia_profesional: @experiencia_profesional.id).first.nombre_entidad_academica %>
                     <input type="text" name="curriculum_vitae[experiencia_profesional][][entidad]" id="curriculum_vitae_experiencia_profesional_entidad" value="" required>
                   </div>
                 </div>
               </div>
               <div class="col-sm-5">
                 <div class="form-group">
-                  <label for="curriculum_vitae_experiencia_profesional_experiencia">Experiencia en el área del curso que propone</label>
-                  <input type="text" name="curriculum_vitae[experiencia_profesional][][experiencia]" id="curriculum_vitae_experiencia_profesional_experiencia" required>
+                  
                 </div>
               </div>
             </div>
@@ -352,16 +363,18 @@
 
         <div id="reconocimientos">
           <div>
-            <%= link_to 'Agregar más reconocimientos', '#', :id => 'my-link2' %>
+            
           </div>
 
           <div id="reconocimiento">
-            
+            <h2>Reconocimientos</h2>
+
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="curriculum_vitae_reconocimiento__nombre_reconocimiento" class="col-xs-3 control-label">Nombre reconocimiento</label>
                   <div class="col-xs-7">
-                    <input type="text" name="curriculum_vitae[reconocimiento][][nombre_reconocimiento]" id="curriculum_vitae_reconocimiento__nombre_reconocimiento" class="form-control-horizontal"/>
+                    <%=Reconocimiento.where(curriculum_vitae_id: @cv.id).first.nombre_reconocimiento %>
+                   
                   </div>
                 </div>
               </div>
@@ -371,7 +384,7 @@
 
         <div class="row2">
           <div class="field col-md-9">
-            <%= f.submit %>
+           
           </div>
         </div>
       <% end %>
