@@ -1,9 +1,9 @@
 class CreateRequisitosPermanencia < ActiveRecord::Migration
   def change
     create_table :requisitos_permanencia do |t|
-      t.text :NombreRequisitosPermanencia
-      t.integer :IdPonente
-      t.integer :IdActividad
+      t.text :nombrerequisitospermanencia
+      t.integer :idponente
+      t.integer :idactividad
 
       t.timestamps 
     end

@@ -1,7 +1,10 @@
 class CurriculumVitaeController < ApplicationController
   before_action :authenticate_ponente!
   def index
-
+    if current_ponente.curriculum_vitae_id
+      @ponente = Ponente.find(current_ponente.id)
+      redirect_to @ponente
+    end
   end
 
   def new
@@ -13,22 +16,16 @@ class CurriculumVitaeController < ApplicationController
     @cv = CurriculumVitae.new
     @cv.delegacion = ""
 
-    # 1.times {@cv.formacion_academica.build}
-    # 1.times {@cv.reconocimiento.build}
-
   	@areasespecializacion = AreasEspecializacion.all #cargamos todas las areas de epecialización
   end
 
   #iniciamos el create
   def create
-    @paramss = parametros_f
-    puts @paramss
+
     @poenten = Ponente.find(current_ponente.id)
 
   	@cv = CurriculumVitae.new(parametros)  #creamos un objeto curriculum vitae a partir de los parametros requeridos
-    puts @cv.to_json
-    @cv.save!
-    rescue ActiveRecord::RecordInvalid    
+    puts @cv.to_json   
 
 
     #verificamos si se puede guardar
@@ -57,7 +54,7 @@ class CurriculumVitaeController < ApplicationController
       #fin multiples formaciones academicas
 
       #multiples reconocimientos
-      @rec = parametros_f[:reconocimiento]  #sacamos todos los reconocimientos asociados al curriculum
+      @rec = parametros_f[:reconocimientos]  #sacamos todos los reconocimientos asociados al curriculum
       puts @rec.to_json
 
       @rec.each do |r| 

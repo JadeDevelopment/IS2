@@ -180,12 +180,13 @@ ActiveRecord::Schema.define(version: 20151108062027) do
 
   create_table "curso_de_actualizacions", force: :cascade do |t|
     t.string   "nombre_curso"
-    t.integer  "formacion_academica_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "año"
+    t.integer  "curriculum_vitae_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
-  add_index "curso_de_actualizacions", ["formacion_academica_id"], name: "index_curso_de_actualizacions_on_formacion_academica_id", using: :btree
+  add_index "curso_de_actualizacions", ["curriculum_vitae_id"], name: "index_curso_de_actualizacions_on_curriculum_vitae_id", using: :btree
 
   create_table "cursos_impartidos", force: :cascade do |t|
     t.text     "nombre_cursos_impartidos"
@@ -195,7 +196,7 @@ ActiveRecord::Schema.define(version: 20151108062027) do
   end
 
   create_table "direccion_teses", force: :cascade do |t|
-    t.text     "nombre_direccion_tesis"
+    t.text     "nombre_cursos_impartidos"
     t.integer  "id_experiencia_academica"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
@@ -203,8 +204,8 @@ ActiveRecord::Schema.define(version: 20151108062027) do
 
   create_table "disciplinas", force: :cascade do |t|
     t.text     "nombredisciplina"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "empresas", force: :cascade do |t|
@@ -303,10 +304,6 @@ ActiveRecord::Schema.define(version: 20151108062027) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "prueba", force: :cascade do |t|
-    t.string "algo", limit: 20
-  end
-
   create_table "publicaciones", force: :cascade do |t|
     t.text     "nombre_publicaciones"
     t.integer  "id_experiencia_academica"
@@ -389,10 +386,43 @@ ActiveRecord::Schema.define(version: 20151108062027) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "usuarios", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "nombre"
+    t.string   "appaterno"
+    t.string   "apmaterno"
+    t.string   "institucion"
+    t.string   "numerodecuenta"
+    t.string   "rfc"
+  end
+
+  add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true, using: :btree
+  add_index "usuarios", ["numerodecuenta"], name: "index_usuarios_on_numerodecuenta", unique: true, using: :btree
+  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
+  add_index "usuarios", ["rfc"], name: "index_usuarios_on_rfc", unique: true, using: :btree
+
   add_foreign_key "contenidos", "actividads"
+  add_foreign_key "correo_curriculums", "curriculum_vitaes"
   add_foreign_key "curriculum_vitaes", "areas_especializacions"
-  add_foreign_key "curso_de_actualizacions", "formacion_academicas"
+  add_foreign_key "curso_de_actualizacions", "curriculum_vitaes"
+  add_foreign_key "experiencia_profesionals", "curriculum_vitaes"
   add_foreign_key "formacion_academicas", "curriculum_vitaes"
   add_foreign_key "ponentes", "curriculum_vitaes"
   add_foreign_key "reconocimientos", "curriculum_vitaes"
+  add_foreign_key "telefono_curriculums", "curriculum_vitaes"
 end
