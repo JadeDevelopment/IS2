@@ -26,8 +26,6 @@ class CurriculumVitaeController < ApplicationController
 
   	@cv = CurriculumVitae.new(parametros)  #creamos un objeto curriculum vitae a partir de los parametros requeridos
     puts @cv.to_json
-    @cv.save!
-    rescue ActiveRecord::RecordInvalid    
 
 
     #verificamos si se puede guardar

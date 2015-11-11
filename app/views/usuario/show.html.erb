@@ -30,6 +30,7 @@
                 <li><a href="#">Catálogo Cursos</a></li>
                 <li><a href="#">Formas de Pago</a></li>
                 <li><a href="#">Inscripción</a></li>
+                <li><%= link_to "Editar", edit_usuario_registration_path %></li>
                 <li><%= link_to "Mi Cuenta", usuario_path(current_usuario.id) %></li>
                 <li><%= link_to "Salir", destroy_usuario_session_path, :method => 'delete' %></li>
               </ul>
