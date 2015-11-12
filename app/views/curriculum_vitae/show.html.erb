@@ -56,8 +56,10 @@
           <div class="col-sm-4">
             <div class="form-group">
               <label for="curriculum_vitae_rfc" class="col-xs-3 control-label">RFC</label>
-              <div class="col-xs-9">
-                <%=@cv.rfc %>
+              <div class="col-xs-9" align="center">
+                <p class="col-xs-9">
+                  <%=@cv.rfc %>
+                </p>
               </div>
             </div>
           </div>
@@ -66,9 +68,9 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="curriculum_vitae_nombre" class="col-xs-2 control-label">Nombre(s)</label>
-              <div class="col-xs-10">
-               <%=@cv.nombre %>
-              </div>
+              
+               <p class="col-xs-2 control-label" align="center"><%=@cv.nombre %></p>
+              
             </div>
           </div>
         </div>
@@ -78,7 +80,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_appaterno" class="col-xs-2 control-label">Apellido Paterno</label>
               <div class="col-xs-10">
-                <%=@cv.appaterno %>
+                <p class="col-xs-10"> <%=@cv.appaterno %></p>
               </div>
             </div>
           </div>
@@ -86,7 +88,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_apmaterno" class="col-xs-2 control-label">Apellido Materno</label>
               <div class="col-xs-10">
-               <%=@cv.apmaterno %>
+               <p class="col-xs-10"><%=@cv.apmaterno %></p>
               </div>
             </div>
           </div>
@@ -97,7 +99,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_fecha_nacimiento" class="col-xs-3 control-label">Fecha de Nacimiento </label>
               <div class="col-xs-9">
-               <%=@cv.fecha_nacimiento %>
+               <p class="col-xs-9" align = "center"><%=@cv.fecha_nacimiento %></p>
               </div>
             </div>
           </div>
@@ -106,13 +108,13 @@
             <div class="form-group">
               <label for="curriculum_vitae_telefono_curriculum_num_telefono" class="col-xs-2 control-label">Telefono</label>
               <div class="col-xs-8">
-                <%=TelefonoCurriculum.where(curriculum_vitae_id: @cv.id).first.num_telefono %>
+                <p class="col-xs-8"><%=TelefonoCurriculum.where(curriculum_vitae_id: @cv.id).first.num_telefono %></p>
               </div>
             </div>
           </div>
           <div class="col-sm-2">
             <div class="col-xs-12">
-              <%= link_to 'Agregar telefono', '#', :id => 'my-link-4' %>
+              
             </div>
           </div>
         </div>
@@ -122,8 +124,8 @@
             <div class="form-group">
               <label for="curriculum_vitae_correo_curriculum_correo" class="col-xs-2 control-label">Correo Electrónico:</label>
               <div class="col-xs-10">
-                <%=CorreoCurriculum.where(curriculum_vitae_id: @cv.id).first.correo %>
-                <input type="text" value="" name="curriculum_vitae[correo_curriculum][][correo]" id="curriculum_vitae_reconocimiento__correo_curriculum_correo" required="required" pattern=".*@.*" placeholder="exmaple@domain.ext" class="form-control-horizontal">
+                <p class="col-xs-2 control-label"><%=CorreoCurriculum.where(curriculum_vitae_id: @cv.id).first.correo %></p>
+                
               </div>
             </div>
           </div>
@@ -132,7 +134,7 @@
             <div class="form-group">
               <label class="col-xs-7">¿Desea que se publique en internet como contacto de información académica para los interesados?</label>
               <div class="col-xs-5">
-                <%=CorreoCurriculum.where(curriculum_vitae_id: @cv.id).first.publicacion %>
+                <p class="col-xs-7"><%=CorreoCurriculum.where(curriculum_vitae_id: @cv.id).first.publicacion %></p>
               </div>
             </div>
           </div>
@@ -143,9 +145,9 @@
           <div class="col-sm-5">
             <div class="form-group">
               <label for="curriculum_vitae_calle" class="col-xs-2 control-label">Calle&nbsp;&nbsp;</label>
-              <div class="col-xs-10 ">
-                <%= @cv.calle%>
-              </div>
+              
+                <p class="col-xs-2 control-label"><%= @cv.calle%></p>
+              
             </div>
           </div>
 
@@ -153,7 +155,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_numero" class="col-xs-2 control-label">No</label>
               <div class="col-xs-10">
-               <%= @cv.numero%>
+               <p class="col-xs-2 control-label" align="center"><%= @cv.numero%></p>
               </div>
             </div>
           </div>
@@ -162,7 +164,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_colonia" class="col-xs-3 control-label">Colonia</label>
               <div class="col-xs-9">
-                <%= @cv.colonia%>
+                <p class="col-xs-3 control-label"><%= @cv.colonia%></p>
               </div>
             </div>
           </div>
@@ -273,7 +275,8 @@
                 <div class="form-group primero">
                   <label for="curriculum_vitae_curso_de_actualizacion__nombre_curso" class="col-xs-3 control-label">Nombre del Curso</label>
                   <div class="col-xs-9">
-                    <%=CursoDeActualizacion.where(formacion_academica_id: @formacion_academica.id).first.nombre_curso %>             
+
+                    <%=CursoDeActualizacion.where(formacion_academica_id: (@formacion_academica = FormacionAcademica.find_by curriculum_vitae_id: @cv.id)).first.nombre_curso %>             
                   </div>
                 </div>
               </div>
@@ -281,9 +284,9 @@
                 <div class="form-group">
                   <label for="curriculum_vitae_curso_de_actualizacion__año" class="col-xs-2 control-label">Año</label>
                   <div class="col-xs-10">
-                    <%=CursoDeActualizacion.where(formacion_academica_id: @formacion_academica.id).first.año %>
+                    <%=CursoDeActualizacion.where(formacion_academica_id: (@formacion_academica = FormacionAcademica.find_by curriculum_vitae_id: @cv.id)).first.año %> 
                   </div>
-                </div>|
+                </div>
               </div>
             </div>
           </div>
@@ -303,7 +306,12 @@
             </div>
           </div>
 
-          Cargos académicos y/o académico-administrativos:
+
+          Cargos académicos :
+
+          <%=CargoAcademico.where(id_experiencia_academica: (@experiencia_academica = ExperienciaAcademica.find_by id_curriculum_vitae: @cv.id)).first.nombre_cargo_academico %> 
+         
+          Cargos académico-administrativos:
           <%=CargoAcademico.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_cargo_academico %><br>
 
           Revisor De Tesis
@@ -312,7 +320,7 @@
           <br>
 
           <label for="publicaciones">Publicaciones</label>
-          <%=Publicaciones.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_publicaciones %><br>
+          <%=Publicacione.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_publicaciones %><br>
 
           Ponencias 
           <%=Ponencia.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_ponencias %><br>
@@ -329,37 +337,24 @@
           <%=DireccionTesis.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_direccion_tesis %><br>
          
           <label for="formacion_rh">Asesorías Impartidas</label>
-          <%=AsesoriasImpartidas.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_asesorias_impartidas %><br>
+          <%=AsesoriasImpartida.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_asesorias_impartidas %><br>
          
           <label for="formacion_rh">Tutorías Impartidas</label>
-          <%=TutoriasImpartidas.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_tutorias_impartidas %><br>
+          <%=TutoriasImpartida.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_tutorias_impartidas %><br>
 
           <label for="cursos_impartidos">Cursos impartidos (últimos 3 años)</label>
           <%=CursosImpartido.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_cursos_impartidos %>
         </div>
 
-        <div id="exprofs">
+       
           <h2>Experiencia profesional</h2>
-          <div id="experiencia">
-            <div class="row2">
-              <div class="col-sm-1"></div>
-              <div class="col-sm-5">
-                <div class="form-group">
-                  <label for="curriculum_vitae_experiencia_profesional_entidad">Entidad académica o empresa de adscripción</label>
-                  <div>
-                    <%=EntidadAcademica.where(id_experiencia_profesional: @experiencia_profesional.id).first.nombre_entidad_academica %>
-                    <input type="text" name="curriculum_vitae[experiencia_profesional][][entidad]" id="curriculum_vitae_experiencia_profesional_entidad" value="" required>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-5">
-                <div class="form-group">
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          Entidad académica de adscripción
+          <%=EntidadAcademica.where(id_experiencia_profesional: (@experiencia_profesional = ExperienciaProfesional.find_by curriculum_vitae_id: @cv.id)).first.nombre_entidad_academica %>
+
+          <br>
+          Empresa de adscripción
+           <%=EntidadAcademica.where(id_experiencia_profesional: @experiencia_profesional.id).first.nombre_entidad_academica %>
+                    
 
         <div id="reconocimientos">
           <div>

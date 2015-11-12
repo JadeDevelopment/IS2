@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151108062027) do
+ActiveRecord::Schema.define(version: 20151109004703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,14 +179,12 @@ ActiveRecord::Schema.define(version: 20151108062027) do
   add_index "curriculum_vitaes", ["areas_especializacion_id"], name: "index_curriculum_vitaes_on_areas_especializacion_id", using: :btree
 
   create_table "curso_de_actualizacions", force: :cascade do |t|
-    t.string   "nombre_curso"
-    t.integer  "año"
-    t.integer  "curriculum_vitae_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.text     "nombre_curso"
+    t.text     "año"
+    t.integer  "formacion_academica_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
-
-  add_index "curso_de_actualizacions", ["curriculum_vitae_id"], name: "index_curso_de_actualizacions_on_curriculum_vitae_id", using: :btree
 
   create_table "cursos_impartidos", force: :cascade do |t|
     t.text     "nombre_cursos_impartidos"
@@ -196,7 +194,7 @@ ActiveRecord::Schema.define(version: 20151108062027) do
   end
 
   create_table "direccion_teses", force: :cascade do |t|
-    t.text     "nombre_cursos_impartidos"
+    t.text     "nombre_direccion_tesis"
     t.integer  "id_experiencia_academica"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
@@ -204,8 +202,8 @@ ActiveRecord::Schema.define(version: 20151108062027) do
 
   create_table "disciplinas", force: :cascade do |t|
     t.text     "nombredisciplina"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "empresas", force: :cascade do |t|
@@ -221,6 +219,14 @@ ActiveRecord::Schema.define(version: 20151108062027) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
+
+  create_table "experiencia_academicas", force: :cascade do |t|
+    t.integer  "id_curriculum_vitae"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "experiencia_academicas", ["id_curriculum_vitae"], name: "index_experiencia_academicas_on_curriculum_vitae_id", using: :btree
 
   create_table "experiencia_docentes", force: :cascade do |t|
     t.text     "nombre_experiencia_docente"
@@ -302,6 +308,10 @@ ActiveRecord::Schema.define(version: 20151108062027) do
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "prueba", force: :cascade do |t|
+    t.string "algo", limit: 20
   end
 
   create_table "publicaciones", force: :cascade do |t|
@@ -417,12 +427,8 @@ ActiveRecord::Schema.define(version: 20151108062027) do
   add_index "usuarios", ["rfc"], name: "index_usuarios_on_rfc", unique: true, using: :btree
 
   add_foreign_key "contenidos", "actividads"
-  add_foreign_key "correo_curriculums", "curriculum_vitaes"
   add_foreign_key "curriculum_vitaes", "areas_especializacions"
-  add_foreign_key "curso_de_actualizacions", "curriculum_vitaes"
-  add_foreign_key "experiencia_profesionals", "curriculum_vitaes"
   add_foreign_key "formacion_academicas", "curriculum_vitaes"
   add_foreign_key "ponentes", "curriculum_vitaes"
   add_foreign_key "reconocimientos", "curriculum_vitaes"
-  add_foreign_key "telefono_curriculums", "curriculum_vitaes"
 end

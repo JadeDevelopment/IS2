@@ -1,44 +1,47 @@
-<body class="html front not-logged-in no-sidebars page-inicio page-panels">
-  <div id="page">
-    <!--header-->
-    <header class="header" id="header" role="banner">
-      <a href="/" title="Inicio" rel="home" class="header__logo" id="logo">
-        <img src="https://www.unam.mx/sites/all/themes/unam/logo.png" alt="Inicio" class="header__logo-image" />
-      </a>
-    </header><!--/header-->
+<header id="header">
+  <div class="top-bar">
+    <div class="container">
+      <div class="row">
+        <!-- Application logo -->
+        <div class="col-sm-10 col-sm-offset-1" id="headermain">
+          <a class="navbar-brand" href="index" id="logo-unam">
+            <img src="https://www.unam.mx/sites/all/themes/unam/logo.png">
+          </a>
+        </div>
+      </div>
+    </div><!--/.container-->
+  </div><!--/.top-bar-->
 
-    <div id="main">
-      <!--#panel de navegación-->
-      <div id="navigation">
-        <!--nav-->
-        <nav class="navbar navbar-default" role="navigation">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <!--boton (margen menor a 800px)-->
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-            </div><!--/boton-->
+  <nav class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
 
-            <!--.barra de navegación que collapsa-->
-            <div class="collapse navbar-collapse">
-              <ul class="nav navbar-nav">
-                <li><a href="/">Inicio</a></li>
-                <li><a href="#">Catálogo Cursos</a></li>
-                <li><a href="#">Mis Cursos</a></li>
-                <li class="active"><%= link_to "Crear Curriculum", new_curriculum_vitae_path %></li>
-                <li><%= link_to "Mi Cuenta", ponente_path(current_ponente.id) %></li>
-                <li><%= link_to "Salir", destroy_ponente_session_path, :method => 'delete' %></li>
-              </ul>
-            </div><!--/.barra de navegación que collapsa-->
-          </div><!--/.container-->
-        </nav><!--/nav-->
-      </div><!--/#panel de navegación-->
       
-    
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Inicio</a></li>
+              <li><a href="#">Próximos Cursos</a></li>
+              <li><a href="#">Actividades en Curso</a></li>
+              <li><a href="#">Catálogo Cursos</a></li>
+              <li><a href="#">Acerca de</a></li>
+              <li class="active"><%= link_to "Mi Cuenta", ponente_path(current_ponente.id) %></li>
+              <li><%= link_to "Salir", destroy_ponente_session_path, :method => 'delete' %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div><!--/.container-->
+  </nav><!--/nav-->
+</header><!--/header-->
 
 <section id="form-cv">
   <% if flash[:notice].blank? == false %>
@@ -119,7 +122,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_correo_curriculum_correo" class="col-xs-2 control-label">Correo Electrónico:</label>
               <div class="col-xs-10">
-                <input type="text" value="" name="curriculum_vitae[correo_curriculum][][correo]" id="curriculum_vitae_correo_curriculums_correo" required="required" pattern=".*@.*" placeholder="exmaple@domain.ext" class="form-control-horizontal">
+                <input type="text" value="" name="curriculum_vitae[correo_curriculum][][correo]" id="curriculum_vitae_correo_curriculum_correo" required="required" pattern=".*@.*" placeholder="exmaple@domain.ext" class="form-control-horizontal">
 
               </div>
             </div>
@@ -224,6 +227,7 @@
                 <div class="form-group">
                   <label for="curriculum_vitae_formacion_academicas__area_especialidad" class="col-xs-3 control-label">Area de Especialidad</label>
                   <div class="col-xs-9">
+
                     <input type="text" name="curriculum_vitae[formacion_academica][][area_especialidad]" id="curriculum_vitae_formacion_academica_area_especialidad" class="form-control-horizontal" required />
                   </div>
                 </div>
@@ -304,12 +308,16 @@
             </div>
           </div>
 
-          Cargos académicos y/o académico-administrativos:
+          Cargos académicos:
           <input type="text" name="curriculum_vitae[cargo_academico][][nombre_cargo_academico]" id="curriculum_vitae_cargo_academico_nombre_cargo_academico" class="form-control" />
           <br>
 
+          Cargos académico-administrativos:
+          <input type="text" name="curriculum_vitae[cargo_academico_admin][][nombre_cargo_academico_admin]" id="curriculum_vitae_cargo_academico_admin_nombre_cargo_academico_admin" class="form-control" />
+          <br>
+
           Revisor De tesis
-          <input type="checkbox" checked="true" value="Si">
+          <input type="checkbox" checked="true" value="Si"  name="curriculum_vitae[revisor_de_teses][][nombre_revisor_de_tesis]" id="curriculum_vitae_revisor_de_teses_nombre_revisor_de_tesis" class="form-control" >
           <br><br>
 
           <label for="publicaciones">Publicaciones</label>
@@ -323,7 +331,7 @@
           <input type="text" name="curriculum_vitae[conferencia][][nombre_conferencia]" id="curriculum_vitae_conferencia_nombre_conferencia" class="form-control" /><br>
 
           <label for="congresos">Congresos</label>
-          <input type="text" name="curriculum_vitae[congresos][][nombre_congreso]" id="curriculum_vitae_congresos_nombre_congreso" class="form-control" /><br>
+          <input type="text" name="curriculum_vitae[congreso][][nombre_congreso]" id="curriculum_vitae_congreso_nombre_congreso" class="form-control" /><br>
         
           <h2>Formación de recursos humanos </h2>
           
@@ -349,16 +357,17 @@
               <div class="col-sm-1"></div>
               <div class="col-sm-5">
                 <div class="form-group">
-                  <label for="curriculum_vitae_experiencia_profesional_entidad">Entidad académica o empresa de adscripción</label>
+                  <label for="curriculum_vitae_entidad_academica_nombre_entidad_academica">Entidad Academica de adscripción</label>
                   <div>
-                    <input type="text" name="curriculum_vitae[experiencia_profesional][][entidad]" id="curriculum_vitae_experiencia_profesional_entidad" value="" required>
+                    <input type="text" name="curriculum_vitae[entidad_academica][][nombre_entidad_academica]" id="curriculum_vitae_entidad_academica_nombre_entidad_academica" value="" required>
                   </div>
                 </div>
               </div>
               <div class="col-sm-5">
                 <div class="form-group">
-                  <label for="curriculum_vitae_experiencia_profesional_experiencia">Experiencia en el área del curso que propone</label>
-                  <input type="text" name="curriculum_vitae[experiencia_profesional][][experiencia]" id="curriculum_vitae_experiencia_profesional_experiencia" required>
+                   <label for="curriculum_vitae_empresa_nombre_nombre_empresa">Empresa de adscripción</label>
+                  <div>
+                    <input type="text" name="curriculum_vitae[empresa][][nombre_empresa]" id="curriculum_vitae_empresa_nombre_nombre_empresa" value="" required>
                 </div>
               </div>
             </div>
@@ -373,7 +382,7 @@
             <div class="form-group">
               <label for="curriculum_vitae_reconocimiento__nombre_reconocimiento" class="col-xs-3 control-label">Nombre reconocimiento</label>
                <div class="col-xs-7">
-                <input type="text" name="curriculum_vitae[reconocimientos][][nombre_reconocimiento]" id="curriculum_vitae_reconocimientos__nombre_reconocimiento" class="form-control-horizontal"/>
+                <input type="text" name="curriculum_vitae[reconocimiento][][nombre_reconocimiento]" id="curriculum_vitae_reconocimiento__nombre_reconocimiento" class="form-control-horizontal"/>
               </div>
             </div>
           </div>
@@ -394,9 +403,6 @@
     </div>
   </div>
 </section>
-
-    </div>
-  </div>
   
 
 <%= javascript_include_tag "jquery-2.1.3.min" %>
@@ -440,5 +446,3 @@
       });
     });
 </script>
-
-</body>
