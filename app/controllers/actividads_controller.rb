@@ -1,5 +1,9 @@
 class ActividadsController < ApplicationController
-  before_action :authenticate_ponente!, except: [:index]
+  before_action :authenticate_ponente!, except: [:index, :show]
+
+  def myactividads
+    @actividads = Actividad.where(idponente: current_ponente.id)
+  end
 
   def show
     
@@ -9,7 +13,6 @@ class ActividadsController < ApplicationController
   	#	 :horario => '9:00 hrs - 18:00 hrs', :aula => 'Tlahuizcalpan', :duracion => '3sesiones', :fechainicio => '01-01-2015', :fechafinal => '01-01-2015', 
   	#	 :cupomaximo => 10, :cupominimo => 5, :metas => 'Metas', :costogeneral => 4005.5, :costoalumnos => 229.2, :materialesparaalumnos => 'Recipientes', 
   	#	 :materialesdealumnos => 'Bata', :idcontenido => 1, :idponente => 1, :idtipo => 1, :idmodalidad => 1, :idareaacademica => 1, :idmateria => 1, :iddisciplina => 1, :idpublicodirigido => 1, :idsede => 1, :evaluacion => 'Examenes')
-
    
   	@actividad = Actividad.find(params[:id])
 
@@ -20,13 +23,16 @@ class ActividadsController < ApplicationController
   end
 
   def index
-    @actividads = Actividad.all
+    @actividads = Actividad.where(autorizado: 1)
   end
 
   def new
-  
-    @actividads = Actividad.new 
+    unless current_ponente.curriculum_vitae_id
+      flash[:notice] = "Necesitas crear tu curriculum vitae para poder continuar"
+      redirect_to new_curriculum_vitae_path
+    end
 
+    @actividads = Actividad.new 
     
     @areas_especializacion = AreasEspecializacion.all
     @modalidad = Modalidad.all
@@ -42,6 +48,7 @@ class ActividadsController < ApplicationController
     puts @paramss
 
     @actividad = Actividad.new(parametros)  #creamos un objeto 'actividad' a partir de los parametros requeridos
+    @actividad.idponente = current_ponente.id
     puts @actividad.to_json
 
     if @actividad.save!  #verificamos si se puede guardar
@@ -112,15 +119,21 @@ class ActividadsController < ApplicationController
           redirect_to new_actividad_path
         end
       end
-
-
     end
+    redirect_to  @actividad
   end
 
   def edit
-    @actividad = Actividad.find(params[:id])
-   end
-
+    begin
+      @actividad = Actividad.find(params[:id])
+      unless @actividad.idponente = current_ponente.id and @actividad.autorizado != 1
+      flash[:notice] = "No tiene acceso."
+      redirect_to current_ponente
+    end
+    rescue
+      redirect_to current_ponente, :alert => "Verifique el id del ."
+    end
+  end
 
   private
     def parametros
@@ -131,4 +144,3 @@ class ActividadsController < ApplicationController
       params.require(:actividad).permit!
     end
 end
-

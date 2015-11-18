@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109004703) do
+ActiveRecord::Schema.define(version: 20151108062027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,12 +179,13 @@ ActiveRecord::Schema.define(version: 20151109004703) do
   add_index "curriculum_vitaes", ["areas_especializacion_id"], name: "index_curriculum_vitaes_on_areas_especializacion_id", using: :btree
 
   create_table "curso_de_actualizacions", force: :cascade do |t|
-    t.text     "nombre_curso"
-    t.text     "año"
+    t.string   "nombre_curso"
     t.integer  "formacion_academica_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "curso_de_actualizacions", ["formacion_academica_id"], name: "index_curso_de_actualizacions_on_formacion_academica_id", using: :btree
 
   create_table "cursos_impartidos", force: :cascade do |t|
     t.text     "nombre_cursos_impartidos"
@@ -194,7 +195,7 @@ ActiveRecord::Schema.define(version: 20151109004703) do
   end
 
   create_table "direccion_teses", force: :cascade do |t|
-    t.text     "nombre_direccion_tesis"
+    t.text     "nombre_cursos_impartidos"
     t.integer  "id_experiencia_academica"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
@@ -219,14 +220,6 @@ ActiveRecord::Schema.define(version: 20151109004703) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
-
-  create_table "experiencia_academicas", force: :cascade do |t|
-    t.integer  "id_curriculum_vitae"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-  end
-
-  add_index "experiencia_academicas", ["id_curriculum_vitae"], name: "index_experiencia_academicas_on_curriculum_vitae_id", using: :btree
 
   create_table "experiencia_docentes", force: :cascade do |t|
     t.text     "nombre_experiencia_docente"
@@ -418,16 +411,15 @@ ActiveRecord::Schema.define(version: 20151109004703) do
     t.string   "apmaterno"
     t.string   "institucion"
     t.string   "numerodecuenta"
-    t.string   "rfc"
   end
 
   add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true, using: :btree
   add_index "usuarios", ["numerodecuenta"], name: "index_usuarios_on_numerodecuenta", unique: true, using: :btree
   add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
-  add_index "usuarios", ["rfc"], name: "index_usuarios_on_rfc", unique: true, using: :btree
 
   add_foreign_key "contenidos", "actividads"
   add_foreign_key "curriculum_vitaes", "areas_especializacions"
+  add_foreign_key "curso_de_actualizacions", "formacion_academicas"
   add_foreign_key "formacion_academicas", "curriculum_vitaes"
   add_foreign_key "ponentes", "curriculum_vitaes"
   add_foreign_key "reconocimientos", "curriculum_vitaes"

@@ -72,7 +72,8 @@ Rails.application.configure do
     password: 'Gimnasioalas3:00'
   }
   # ActionMailer Config
-  config.action_mailer.default_url_options = { :host => 'immense-wave-3466.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  #config.action_mailer.default_url_options = { :host => 'immense-wave-3466.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
