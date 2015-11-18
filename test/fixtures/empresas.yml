@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre_empresa: MyText
+  id_experiencia_profesional: 1
+
+two:
+  nombre_empresa: MyText
+  id_experiencia_profesional: 1

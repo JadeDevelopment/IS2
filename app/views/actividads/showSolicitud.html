@@ -39,164 +39,170 @@
 						<div></div><br>
 						<form class="cform" action="#" method="post">
 							<h2 align="center">I.	INFORMACI&Oacute;N PARA LA OPERACI&Oacute;N Y LOG&Iacute;STICA</h2>
-							Nombre de la actividad: 
+							<label>Nombre de la actividad: </label>
 							<%=@actividad.nombre %>
 							<br><br>
-							Tipo: &nbsp;&nbsp;
+							<label>Tipo:</label> &nbsp;&nbsp;
 							<%=Tipo.find(@actividad.idtipo).nombretipo %>
 													
 
 							<br><br>
-							Modalidad:&nbsp;&nbsp;
+							<label>Modalidad:</label>&nbsp;&nbsp;
 							<%=Modalidad.find(@actividad.idmodalidad).nombremodalidad %>
 
 							<br><br>
-							Fecha Inicio: 
+							<label>Fecha Inicio: </label>
 							<%=@actividad.fechainicio %>
 
 							 <br><br>
-							 Fecha Fin: 
+							 <label>Fecha Fin: </label>
 							 <%=@actividad.fechafinal %>
 							 <br><br>
 							
 
-							Lugar:
+							<label>Lugar:</label>
 							<%=Sede.find(@actividad.idsede).nombresede %>
 							 <br>
 							  <%=@actividad.aula %>
 							
 							<br><br>
-							Numero de Sesiones:
+							<label>Numero de Sesiones:</label>
 							 <%=@actividad.numerosesiones %>
 
 							&nbsp;&nbsp;
-							Numero de Horas:
+							<label>Numero de Horas:</label>
 							 <%=@actividad.duracionhoras %>
 							&nbsp;&nbsp;
-							Minimo inscritos:
+							<label>Minimo inscritos:</label>
 							<%=@actividad.cupominimo %>
 							&nbsp;&nbsp;
-							Maximo inscritos:
+							<label>Maximo inscritos:</label>
 							<%=@actividad.cupomaximo %>
 							&nbsp;&nbsp;<br><br>
-							Costo General: $
+							<label>Costo General:</label> $
 							<%=@actividad.costogeneral %>
 							&nbsp;&nbsp;
-							Costo Para Estudiantes: $ 
+							<label>Costo Para Estudiantes:</label> $ 
 							<%=@actividad.costoalumnos %>
 							 MXN &nbsp;&nbsp;
 
-							Pago propuesto a docentes (Por hora): $ ? MXN<br><br>
+							<label>Pago propuesto a docentes (Por hora):</label> $  MXN<br><br>
 
-							Material de apoyo requerido para clases:
+							<label>Material de apoyo requerido para clases:</label>
 							<%=@actividad.materialdidactico %>
 							<br><br>
 
 						
-							Material requerido a los alumnos: 
+							<label>Material requerido a los alumnos: </label>
 							<%=@actividad.materialesdealumnos %>
 
 							<br><br>
 
-							Material de apoyo para los alumnos:
+							<label>Material de apoyo para los alumnos:</label>
 							<%=@actividad.materialesparaalumnos %> 
 							<br><br>
 
 							<h2 align="center">II. INFORMACI&Oacute;N ACAD&Eacute;MICA</h2>
 							<br>
 
-							<div style="position: inherit; float: left; margin-right:10px; ">* Descripcion del Curso:</div>
+							<div style="position: inherit; float: left; margin-right:10px; ">
+								<label> Descripcion del Curso:</label>
+							</div>
 							<%=@actividad.descripcion %>
 							<br><br>
 
-							* Objetivo General:
+							<label>Objetivo General:</label>
 							<%=@actividad.objetivogeneral %>
 							<br><br>
 
-							* Objetivo Especifico: 
+							<label>Objetivo Especifico: </label>
 							<%=@actividad.objetivoespecifico %>
 							<br><br>
 
-							<div style="position: inherit; float: left; margin-right:10px; ">* Metas:</div> 
+							<div style="position: inherit; float: left; margin-right:10px; ">
+								<label> Metas:</label>
+							</div> 
 							<%=@actividad.metas %>
 							<br><br>
 
-							Area Academica:
+							<label>Area Academica:</label>
 							<%=AreaAcademica.find(@actividad.idareaacademica).nombrearea %>
 							<br><br>
 
-							Campo De Conocimiento
+							<label>Campo De Conocimiento</label>
 							
 							<%= Materium.find(@actividad.idmateria).nombremateria %>
 
 							<br><br>
-							Dirigido a: 
+							<label>Dirigido a: </label>
 							<%=PublicoDirigido.find(@actividad.idpublicodirigido).nombrepublico %>
 							<br><br>
 
 							<hr>
-							<h3>* Datos del Docente:</h3>
+							<h3>
+								<label> Datos del Docente:</label>
+							</h3>
 							
-							Nombre:
+							<label>Nombre:</label>
 							<%=@actividad.idponente %>
 							<br><br>
-							Grado:
+							<label>Grado:</label>
 							<%=@actividad.idponente %>
 							<br><br>
-							Cargo:
+							<label>Cargo:</label>
 							<%=@actividad.idponente %>
 							<br><br>
-							Entidad o Empresa actual de adscripci&oacute;n:
+							<label>Entidad o Empresa actual de adscripci&oacute;n:</label>
 							<%=@actividad.idponente %>
 							<br><br>
 							<hr>
-							Procesos_de_Evaluación: 
+							<label>Procesos_de_Evaluación: </label>
 							<%=@actividad.evaluacion %>
 
 							<br><br>
-							Requisitos de ingreso:
+							<label>Requisitos de ingreso:</label>
 							<%=RequisitosIngreso.where(idactividad: @actividad.id).first.nombrerequisitosingreso %>
 							<br><br>
-							Requisitos de permanencia:
+							<label>Requisitos de permanencia:</label>
 							<%=RequisitosPermanencium.where(idactividad: @actividad.id).first.nombrerequisitospermanencia %>
 							<br><br>
-							Requisitos de egreso:
+							<label>Requisitos de egreso:</label>
 							<%=RequisitosEgreso.where(idactividad: @actividad.id).first.nombrerequisitosegreso %>
 							<br><br>
 							<h4>Contenido y Calendarización</h4>
 							<br><br>
-							RFC del ponente:
+							<label>RFC del ponente:</label>
               					
 							<br><br>
-							Nombre del ponente: 
+							<label>Nombre del ponente: </label>
 								
 							<br><br>
 							
-							Numero de tema:
+							<label>Numero de tema:</label>
 							<%=Contenido.where(actividad_id: @actividad.id).first.numerotema %>
 							<br><br>
 							
-							Nombre del tema:
+							<label>Nombre del tema:</label>
 							<%=Contenido.where(actividad_id: @actividad.id).first.tema %>
 							<br><br>
 							
-							Subtema:
+							<label>Subtema:</label>
 							<%=Contenido.where(actividad_id: @actividad.id).first.subtemas %>
 							<br><br>
 							
-							Numero de horas por tema:
+							<label>Numero de horas por tema:</label>
 							<%=Contenido.where(actividad_id: @actividad.id).first.numerohoras %>
 							<br><br>
 														
-							Fecha de inicio del tema:
+							<label>Fecha de inicio del tema:</label>
 							<%=Contenido.where(actividad_id: @actividad.id).first.fechainicio %>
 							<br><br>
 							
-							Fecha de fin del tema:
+							<label>Fecha de fin del tema:</label>
 							<%=Contenido.where(actividad_id: @actividad.id).first.fechafinal %>
 							<br><br>
 							
-							Bibliografía:
+							<label>Bibliografía:</label>
 							<%=Contenido.where(actividad_id: @actividad.id).first.bibliografia %>
 							
 							

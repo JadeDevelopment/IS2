@@ -2,16 +2,8 @@ class ActividadsController < ApplicationController
   before_action :authenticate_ponente!, except: [:index]
 
   def show
-    
-  	#Actividad.create!(:autorizado => 0, :nombre => 'Taller de Lobos', :nombremodulo => 'Modulo?', :descripcion => 'Taller para aprender sobre ranas de México', 
-  	#	:duracionhoras => 200, :numerosesiones => 3, :objetivoespecifico => 'Saber cuales ranas son venenosas', 
-  	#	:objetivogeneral => 'Aprender sobre ranas venenosas', :materialdidactico => 'N/A', :dias => 'Lunes, Miercoles, Viernes',
-  	#	 :horario => '9:00 hrs - 18:00 hrs', :aula => 'Tlahuizcalpan', :duracion => '3sesiones', :fechainicio => '01-01-2015', :fechafinal => '01-01-2015', 
-  	#	 :cupomaximo => 10, :cupominimo => 5, :metas => 'Metas', :costogeneral => 4005.5, :costoalumnos => 229.2, :materialesparaalumnos => 'Recipientes', 
-  	#	 :materialesdealumnos => 'Bata', :idcontenido => 1, :idponente => 1, :idtipo => 1, :idmodalidad => 1, :idareaacademica => 1, :idmateria => 1, :iddisciplina => 1, :idpublicodirigido => 1, :idsede => 1, :evaluacion => 'Examenes')
-
    
-  	@actividad = Actividad.find(params[:id])
+  	@ponente = Ponente.find(params[:id])
 
   end
 
@@ -19,15 +11,34 @@ class ActividadsController < ApplicationController
       @actividad = Actividad.find(params[:id])    
   end
 
+  def showActividades
+    begin
+      @cv = CurriculumVitae.find(params[:id])
+      @actividad = Actividad.find(params[:id])#?
+    rescue
+      @ponente = Ponente.find(current_ponente.curriculum_vitae_id)
+      
+    end
+    
+    unless @cv.id == current_ponente.curriculum_vitae_id
+      redirect_to :back, :alert => "No puedes acceder."
+    end
+
+      @actividad = Actividad.find(params[:id])    
+  end
+
+
   def index
     @actividads = Actividad.all
   end
 
   def new
-  
+ 
     @actividads = Actividad.new 
 
-    
+    @ponente = Ponente.find(current_ponente.id)#obtenemos el ponente que esta creando la actividad
+    @actividads.idponente = @ponente.id#asociamos la actividad con el id de ponente
+
     @areas_especializacion = AreasEspecializacion.all
     @modalidad = Modalidad.all
     @area_academica = AreaAcademica.all
@@ -36,6 +47,7 @@ class ActividadsController < ApplicationController
     @publico_dirigido = PublicoDirigido.all
   end
 
+
   def create
 
     @paramss = parametros_f
@@ -43,6 +55,10 @@ class ActividadsController < ApplicationController
 
     @actividad = Actividad.new(parametros)  #creamos un objeto 'actividad' a partir de los parametros requeridos
     puts @actividad.to_json
+
+    @ponente = Ponente.find(current_ponente.id)#obtenemos el ponente que esta creando la actividad
+    @actividad.idponente = @ponente.id#asociamos la actividad con el id de ponente
+
 
     if @actividad.save!  #verificamos si se puede guardar
       puts @actividad.to_json
