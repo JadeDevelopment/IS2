@@ -12,8 +12,9 @@ Rails.application.routes.draw do
 
   resources :actividads
 
-   get "actividads/showSolicitud/:id" => "actividads#showSolicitud"
-   get "actividads/:id/edit" => "actividads#edit"#para editar un curso
+  get "actividads/showSolicitud/:id" => "actividads#showSolicitud"
+  get "actividads/:id/edit" => "actividads#edit"#para editar un curso
+  get "myactividads" => "actividads#myactividads"
    
   post  "/curriculum_vitae/:id" => "curriculum_vitae#update"
   

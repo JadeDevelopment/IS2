@@ -24,8 +24,8 @@ class CurriculumVitaeController < ApplicationController
     @paramss = parametros_f
     puts @paramss
     @poenten = Ponente.find(current_ponente.id)
-
-    @cv = CurriculumVitae.new(parametros)  #creamos un objeto curriculum vitae a partir de los parametros requeridos
+    
+  	@cv = CurriculumVitae.new(parametros)  #creamos un objeto curriculum vitae a partir de los parametros requeridos
     puts @cv.to_json
 
     #verificamos si se puede guardar
@@ -57,7 +57,7 @@ class CurriculumVitaeController < ApplicationController
       #fin multiples formaciones academic.formacion_academica_idas
 
       #multiples reconocimientos
-      @rec = parametros_f[:reconocimiento]  #sacamos todos los reconocimientos asociados al curriculum
+      @rec = parametros_f[:reconocimientos]  #sacamos todos los reconocimientos asociados al curriculum
       puts @rec.to_json
 
       @rec.each do |r|
