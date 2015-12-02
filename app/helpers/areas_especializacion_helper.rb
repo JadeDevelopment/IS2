@@ -1,0 +1,2 @@
+module AreasEspecializacionHelper
+end

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  num_telefono: 1
+  curriculum_vitae_id: 
+
+two:
+  num_telefono: 1
+  curriculum_vitae_id: 

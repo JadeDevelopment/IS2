@@ -1,0 +1,410 @@
+<body class="html front not-logged-in no-sidebars page-inicio page-panels">
+  <div id="page">
+    <!--header-->
+    <header class="header" id="header" role="banner">
+      <a href="/" title="Inicio" rel="home" class="header__logo" id="logo">
+        <img src="https://www.unam.mx/sites/all/themes/unam/logo.png" alt="Inicio" class="header__logo-image" />
+      </a>
+    </header><!--/header-->
+
+    <div id="main">
+      <!--#panel de navegación-->
+      <div id="navigation">
+        <!--nav-->
+        <nav class="navbar navbar-default" role="navigation">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <!--boton (margen menor a 800px)-->
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div><!--/boton-->
+
+            <!--.barra de navegación que collapsa-->
+            <div class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/actividads">Catálogo Cursos</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mis Cursos <span class="caret"></span>
+                    </a>
+                          
+                    <ul class="dropdown-menu">
+                      <li><%= link_to "Crear Curso", new_actividad_path %></li>
+                      <li><a href="/myactividads">Cursos Propuestos</a></li>
+                    </ul>
+                </li>
+                <% if current_ponente.curriculum_vitae_id-%>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Curriculum Vitae <span class="caret"></span>
+                    </a>
+                          
+                    <ul class="dropdown-menu">
+                      <li class="active"><%= link_to "Ver Curriculum", CurriculumVitae.find(current_ponente.curriculum_vitae_id) %></li>
+                      <li><%= link_to "Editar Curriculum", edit_curriculum_vitae_path(current_ponente.curriculum_vitae_id)%></li>
+                    </ul>
+                  </li>
+
+                <% else -%>
+                  <li><%= link_to "Crear Curriculum", new_curriculum_vitae_path %></li>
+                <% end-%>
+                <li><%= link_to "Mi Cuenta", ponente_path(current_ponente.id) %></li>
+                <li><%= link_to "Salir", destroy_ponente_session_path, :method => 'delete' %></li>
+              </ul>
+            </div><!--/.barra de navegación que collapsa-->
+          </div><!--/.container-->
+        </nav><!--/nav-->
+      </div><!--/#panel de navegación-->
+
+
+<section id="form-cv">
+  <% if flash[:notice].blank? == false %>
+    <p><%= flash[:notice] %></p>
+  <% end %>
+  <div class="container">
+    <div class="row">
+      <%= form_for @cv, :html => {:class => "form-horizontal form-cv"}, url: curriculum_vitae_index_path do |f| %>
+        <h2>Datos personales</h2>
+
+        <div class="row2">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="curriculum_vitae_rfc" class="col-xs-3 control-label">RFC</label>
+              <div class="col-xs-9" align="center">
+                <p class="col-xs-9">
+                  <%=@cv.rfc %>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="curriculum_vitae_nombre" class="col-xs-2 control-label">Nombre(s)</label>
+              
+               <p class="col-xs-2 control-label" align="center"><%=@cv.nombre %></p>
+              
+            </div>
+          </div>
+        </div>
+        
+        <div class="row2">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="curriculum_vitae_appaterno" class="col-xs-2 control-label">Apellido Paterno</label>
+              <div class="col-xs-10">
+                <p class="col-xs-10"> <%=@cv.appaterno %></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="curriculum_vitae_apmaterno" class="col-xs-2 control-label">Apellido Materno</label>
+              <div class="col-xs-10">
+               <p class="col-xs-10"><%=@cv.apmaterno %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="row2">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="curriculum_vitae_fecha_nacimiento" class="col-xs-3 control-label">Fecha de Nacimiento </label>
+              <div class="col-xs-9">
+               <p class="col-xs-9" align = "center"><%=@cv.fecha_nacimiento %></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-5" id="telefonos">
+            <div class="form-group">
+              <label for="curriculum_vitae_telefono_curriculum_num_telefono" class="col-xs-2 control-label">Telefono</label>
+              <div class="col-xs-8">
+                <p class="col-xs-8"><%=TelefonoCurriculum.where(curriculum_vitae_id: @cv.id).first.num_telefono %></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="col-sm-5">
+            <div class="form-group">
+              <label for="curriculum_vitae_correo_curriculum_correo" class="col-xs-2 control-label">Correo Electrónico:</label>
+              <div class="col-xs-10">
+                <p class="col-xs-2 control-label"><%=CorreoCurriculum.where(curriculum_vitae_id: @cv.id).first.correo %></p>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-xs-7">¿Desea que se publique en internet como contacto de información académica para los interesados?</label>
+              <div class="col-xs-5">
+                <p class="col-xs-7"><%=CorreoCurriculum.where(curriculum_vitae_id: @cv.id).first.publicacion %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row2">
+
+          <div class="col-sm-5">
+            <div class="form-group">
+              <label for="curriculum_vitae_calle" class="col-xs-2 control-label">Calle&nbsp;&nbsp;</label>
+              
+                <p class="col-xs-2 control-label"><%= @cv.calle%></p>
+              
+            </div>
+          </div>
+
+          <div class="col-sm-2">
+            <div class="form-group">
+              <label for="curriculum_vitae_numero" class="col-xs-2 control-label">No</label>
+              <div class="col-xs-10">
+               <p class="col-xs-2 control-label" align="center"><%= @cv.numero%></p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-5">
+            <div class="form-group">
+              <label for="curriculum_vitae_colonia" class="col-xs-3 control-label">Colonia</label>
+              <div class="col-xs-9">
+                <p class="col-xs-3 control-label"><%= @cv.colonia%></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="curriculum_vitae_delegacion" class="col-xs-3 control-label">Delegacion</label>
+              <div class="col-xs-9">
+                <%= @cv.delegacion%>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="curriculum_vitae_ciudad" class="col-xs-3 control-label">Ciudad</label>
+              <div class="col-xs-9">
+                <%= @cv.ciudad%>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="curriculum_vitae_cp" class="col-xs-3 control-label">CP</label>
+              <div class="col-xs-9">
+                <%= @cv.cp %>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="curriculum_vitae_institucion" class="col-xs-3 control-label">Institución</label>
+              <div class="col-xs-9">
+                <%= @cv.institucion %>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <label for="curriculum_vitae_institucion" class="col-xs-3 control-label">Area de Especialización </label>
+            <div class="form-group">
+              <%=AreasEspecializacion.find(@cv.areas_especializacion_id).area %>
+            </div>
+          </div>
+        </div>
+      
+        <div id="formaciones"> 
+          <h2>Formación académica</h2>
+          <h4>Áreas de Especialización</h4>
+          <div id="formacion">
+            <div class="row2">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-5">
+                <div class="form-group">
+                  <label for="curriculum_vitae_formacion_academica__area_especialidad" class="col-xs-3 control-label">Area de Especialidad</label>
+                  <div class="col-xs-9">
+                    <%=FormacionAcademica.where(curriculum_vitae_id: @cv.id).first.area_especialidad %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-5">
+                <div class="form-group">
+                  <label for="curriculum_vitae_formacion_academica__ultimo_grado" class="col-xs-3 control-label">Último Grado</label>
+                  <div class="col-xs-9">
+                    <%=FormacionAcademica.where(curriculum_vitae_id: @cv.id).first.ultimo_grado %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row2">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-5">
+                <div class="form-group">
+                  <div class="col-xs-1">
+                  </div>
+                  <label for="curriculum_vitae_formacion_academica__año" class="col-xs-2 control-label">Año</label>
+                  <div class="col-xs-7">
+                    <%=FormacionAcademica.where(curriculum_vitae_id: @cv.id).first.año %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="curriculum_vitae_formacion_academica__entidad_academica" class="col-xs-3 control-label">Entidad  academica</label>
+                  <div class="col-xs-9">
+                    <%=FormacionAcademica.where(curriculum_vitae_id: @cv.id).first.entidad_academica %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="col-sm-4"></div>
+          
+        </div>
+
+        <div id="cursos">
+          <h2>Cursos de actualización (últimos cinco años)</h2>
+          <div id="curso">
+            <div class="row2">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-5">
+                <div class="form-group primero">
+                  <label for="curriculum_vitae_curso_de_actualizacion__nombre_curso" class="col-xs-3 control-label">Nombre del Curso</label>
+                  <div class="col-xs-9">
+
+                    <%=CursoDeActualizacion.where(formacion_academica_id: (@formacion_academica = FormacionAcademica.find_by curriculum_vitae_id: @cv.id)).first.nombre_curso %>             
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="curriculum_vitae_curso_de_actualizacion__año" class="col-xs-2 control-label">Año</label>
+                  <div class="col-xs-10">
+                    <%=CursoDeActualizacion.where(formacion_academica_id: (@formacion_academica = FormacionAcademica.find_by curriculum_vitae_id: @cv.id)).first.año %> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="col-sm-4"></div>
+          
+        </div>
+        
+        <div id="Experiencia_academica">
+          <h2>Experiencia Academica</h2>
+          <div class="row2">
+            <div class="form-group col-md-9">
+              <label for="experiencia_docente">Experiencia docente:</label>
+              <%=ExperienciaDocente.where(id_experiencia_academica: (@experiencia_academica = ExperienciaAcademica.find_by id_curriculum_vitae: @cv.id)).first.nombre_experiencia_docente %> 
+            </div>
+          </div>
+
+          <label>Cargos académicos :</label>
+
+          <%=CargoAcademico.where(id_experiencia_academica: (@experiencia_academica = ExperienciaAcademica.find_by id_curriculum_vitae: @cv.id)).first.nombre_cargo_academico %> 
+         
+          <label>Cargos académico-administrativos:</label>
+          <%=CargoAcademico.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_cargo_academico %><br>
+
+          <label>Revisor De Tesis</label>
+          <%=RevisorDeTesis.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_revisor_de_tesis %><br>
+
+          <br>
+
+          <label for="publicaciones">Publicaciones</label>
+          <%=Publicacione.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_publicaciones %><br>
+
+          <label>Ponencias </label>
+          <%=Ponencia.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_ponencias %><br>
+
+          <label>Conferencias</label>
+          <%=Conferencium.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_conferencia %><br>
+
+          <label>Congresos</label>
+          <%=Congreso.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_congreso %><br>
+
+          <h2>Formación de recursos humanos </h2>
+          
+          <label for="formacion_rh">Dirección de tesis</label>
+          <%=DireccionTesis.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_direccion_tesis %><br>
+         
+          <label for="formacion_rh">Asesorías Impartidas</label>
+          <%=AsesoriasImpartida.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_asesorias_impartidas %><br>
+         
+          <label for="formacion_rh">Tutorías Impartidas</label>
+          <%=TutoriasImpartida.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_tutorias_impartidas %><br>
+
+          <label for="cursos_impartidos">Cursos impartidos (últimos 3 años)</label>
+          <%=CursosImpartido.where(id_experiencia_academica: @experiencia_academica.id).first.nombre_cursos_impartidos %>
+        </div>
+
+       
+          <h2>Experiencia profesional</h2>
+
+          <label>Entidad académica de adscripción</label>
+          <%=EntidadAcademica.where(id_experiencia_profesional: (@experiencia_profesional = ExperienciaProfesional.find_by curriculum_vitae_id: @cv.id)).first.nombre_entidad_academica %>
+
+          <br>
+          <label>Empresa de adscripción</label>
+           <%=EntidadAcademica.where(id_experiencia_profesional: @experiencia_profesional.id).first.nombre_entidad_academica %>
+                    
+
+        <div id="reconocimientos">
+          <div>
+            
+          </div>
+
+          <div id="reconocimiento">
+            <h2>Reconocimientos</h2>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="curriculum_vitae_reconocimiento__nombre_reconocimiento" class="col-xs-3 control-label">Nombre reconocimiento</label>
+                  <div class="col-xs-7">
+                    <%=Reconocimiento.where(curriculum_vitae_id: @cv.id).first.nombre_reconocimiento %>
+                   
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="field col-md-9">
+           
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+      
+    </div>
+  </div>
+</body>

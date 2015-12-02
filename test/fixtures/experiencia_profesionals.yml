@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  entidad: MyString
+  experiencia: MyText
+  curriculum_vitae_id: 
+
+two:
+  entidad: MyString
+  experiencia: MyText
+  curriculum_vitae_id: 

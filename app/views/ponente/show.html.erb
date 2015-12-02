@@ -1,0 +1,64 @@
+<body class="html front not-logged-in no-sidebars page-inicio page-panels">
+  <div id="page">
+    <!--header-->
+    <header class="header" id="header" role="banner">
+      <a href="/" title="Inicio" rel="home" class="header__logo" id="logo">
+        <img src="https://www.unam.mx/sites/all/themes/unam/logo.png" alt="Inicio" class="header__logo-image" />
+      </a>
+    </header><!--/header-->
+
+    <div id="main">
+      <!--#panel de navegación-->
+      <div id="navigation">
+        <!--nav-->
+        <nav class="navbar navbar-default" role="navigation">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <!--boton (margen menor a 800px)-->
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div><!--/boton-->
+
+            <!--.barra de navegación que collapsa-->
+            <div class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Inicio</a></li>
+                <li><a href="/actividads">Catálogo Cursos</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mis Cursos <span class="caret"></span>
+                    </a>
+                          
+                    <ul class="dropdown-menu">
+                      <li><%= link_to "Crear Curso", new_actividad_path %></li>
+                      <li><a href="/myactividads">Cursos Propuestos</a></li>
+                    </ul>
+                </li>
+                <% if current_ponente.curriculum_vitae_id-%>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Curriculum Vitae <span class="caret"></span>
+                    </a>
+                          
+                    <ul class="dropdown-menu">
+                      <li><%= link_to "Ver Curriculum", CurriculumVitae.find(@user.curriculum_vitae_id) %></li>
+                      <li><%= link_to "Editar Curriculum", edit_curriculum_vitae_path(current_ponente.curriculum_vitae_id)%></li>
+                    </ul>
+                  </li>
+
+                <% else -%>
+                  <li><%= link_to "Crear Curriculum", new_curriculum_vitae_path %></li>
+                <% end-%>
+                <li><%= link_to "Mi Cuenta", ponente_path(current_ponente.id) %></li>
+                <li><%= link_to "Salir", destroy_ponente_session_path, :method => 'delete' %></li>
+              </ul>
+            </div><!--/.barra de navegación que collapsa-->
+          </div><!--/.container-->
+        </nav><!--/nav-->
+      </div><!--/#panel de navegación-->
+      
+    </div>
+  </div>
+</body>

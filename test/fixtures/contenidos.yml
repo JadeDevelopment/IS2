@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  numerotema: 1
+  tema: MyText
+  numerohoras: 1
+  nombreponente: MyText
+  fechainicio: 2015-10-19
+  fechafinal: 2015-10-19
+  subtemas: MyText
+  bibliografia: MyText
+
+two:
+  numerotema: 1
+  tema: MyText
+  numerohoras: 1
+  nombreponente: MyText
+  fechainicio: 2015-10-19
+  fechafinal: 2015-10-19
+  subtemas: MyText
+  bibliografia: MyText

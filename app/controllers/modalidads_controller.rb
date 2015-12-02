@@ -1,0 +1,2 @@
+class ModalidadsController < ApplicationController
+end

@@ -1,0 +1,186 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>Autorización del curso</title>
+  
+<style type="text/css" media="all">
+	@import "style.css";
+</style>
+<style type="text/css" media="all">
+	@import "style_for.css";
+</style>
+</head>
+<body>
+<div id="farouter">
+	<div id="outer">
+		<div id="wrap">
+			<div id="headermain">
+				<img src="https://www.unam.mx/sites/all/themes/unam/logo.png">
+			</div>
+
+			<div id="hmenu">
+				<div id="hnav">
+					<ul id="navlist">
+						<li><a href="ind">Actividades de Curso</a></li>
+						<li><a href="#">Cursos</a></li>
+						<li><a href="#">Solicitudes</a></li>
+						<li><a href="" id="active">Solicitud en Linea</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div id="main">
+				<div id="content">
+					<div id="nav">
+						<h1>Propuesta de un curso</h1>
+						<hr>
+						<div>&nbsp;Llene el formato de solicitud. Luego al enviar ser&aacute; puesto a revisi&oacute;n para la aprobaci&oacute;n</div><br>
+						<form class="cform" action="#" method="post">
+							<h2 align="center">I.	INFORMACI&Oacute;N PARA LA OPERACI&Oacute;N Y LOG&Iacute;STICA</h2>
+							* Nombre de la actividad: 
+							<%=@actividad.Nombre %>
+							<br><br>
+							* Tipo: &nbsp;&nbsp;
+							<%=@actividad.IdTipo %>
+
+							<br><br>
+							* Modalidad:&nbsp;&nbsp;
+							<%=@actividad.IdModalidad %>
+
+							<br><br>
+							* Fecha Inicio: 
+							<%=@actividad.FechaInicio %>
+
+							 <br><br>
+							 * Fecha Fin: 
+							 <%=@actividad.FechaFinal %>
+							 <br><br>
+							
+
+							* Lugar:
+							 <%=@actividad.IdSede %>
+							 <br>
+							  <%=@actividad.Aula %>
+							
+							<br><br>
+							* Numero de Sesiones:
+							 <%=@actividad.NumeroSesiones %>
+
+							&nbsp;&nbsp;
+							* Numero de Horas:
+							 <%=@actividad.DuracionHoras %>
+							&nbsp;&nbsp;
+							* Minimo inscritos:
+							<%=@actividad.CupoMinimo %>
+							&nbsp;&nbsp;
+							* Maximo inscritos:
+							<%=@actividad.CupoMaximo %>
+							&nbsp;&nbsp;<br><br>
+							* Costo General: $
+							<%=@actividad.CostoGeneral %>
+							&nbsp;&nbsp;
+							* Costo Para Estudiantes: $ 
+							<%=@actividad.CostoAlumnos %>
+							 MXN &nbsp;&nbsp;
+
+							* Pago propuesto a docentes (Por hora): $ ? MXN<br><br>
+
+							* Material de apoyo requerido para clases:
+							<%=@actividad.MaterialesParaAlumnos %>
+							<br><br>
+
+							* Equipo de c&oacute;mputo y software requerido: 
+							<br><br>
+
+							* Material requerido a los alumnos: 
+
+							<br><br>
+
+							* Material de apoyo para los alumnos:
+							<%=@actividad.MaterialesParaAlumnos %> 
+							<br><br>
+
+							<h2 align="center">II. INFORMACI&Oacute;N ACAD&Eacute;MICA</h2>
+							<br>
+
+							<div style="position: inherit; float: left; margin-right:10px; ">* Descripcion del Curso:</div>
+							<%=@actividad.Descripcion %>
+							<br><br>
+
+							* Objetivo General:
+							<%=@actividad.ObjetivoGeneral %>
+							<br><br>
+
+							* Objetivo Especifico: 
+							<%=@actividad.ObjetivoEspecifico %>
+							<br><br>
+
+							<div style="position: inherit; float: left; margin-right:10px; ">* Metas:</div> 
+							<%=@actividad.Metas %>
+							<br><br>
+
+							* Campo de Conocimiento:
+							<%=@actividad.IdAreaAcademica %>
+							<br><br>
+
+							* Dirigido a: 
+							<%=@actividad.IdPublicoDirigido %>
+							<br><br>
+
+							<hr>
+							<h3>* Datos del Docente:</h3>
+							
+							Nombre:
+							<%=@actividad.IdPonente %>
+							<br><br>
+							Grado:
+							<%=@actividad.IdPonente %>
+							<br><br>
+							Cargo:
+							<%=@actividad.IdPonente %>
+							<br><br>
+							Entidad o Empresa actual de adscripci&oacute;n:
+							<%=@actividad.IdPonente %>
+							<br><br>
+							<hr>
+
+							<div style="position: inherit; float: left; margin-right:10px; ">* Procesos de Evaluaci&oacute;n:</div>
+							<%=@actividad.Evaluacion %>
+							<br><br>
+
+							* Requisitos de ingreso: 
+							<%=@requisitos_ingreso.NombreRequisitosIngreso %>
+							<br><br>
+							* Requisitos de permanencia: 
+							<%=@requisitos_permanencia.NombreRequisitosPermanencia %>
+							<br><br>
+							* Requisitos de egreso: 
+							<%=@requisitos_egreso.NombreRequisitosEgreso %>
+							<br><br>
+
+							<div style="position: inherit; float: left; margin-right:10px; ">* Bibliografia:</div>
+							<%=@contenido.Bibliografia %>
+							<br><br>
+
+							
+							<br>
+						</form>
+						<div style="text-align:center;"><input type="submit" value="Autorizar" style="vertical-align:middle"> <input type="submit" value="Denegar" style="vertical-align:middle"></div>
+						<br>
+					</div>
+				</div>
+				
+			</div>
+
+			<div id="clearer">&nbsp;</div>
+			<div id="footer">
+
+			</div> <!-- END footer -->
+		</div> <!-- END wrap -->
+	</div> <!-- END outer -->
+</div> <!-- END farouter -->
+
+</body>
+</html>

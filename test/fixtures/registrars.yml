@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  idactividad: 1
+  idinteresado: 1
+  nombreactividad: MyText
+
+two:
+  idactividad: 1
+  idinteresado: 1
+  nombreactividad: MyText
