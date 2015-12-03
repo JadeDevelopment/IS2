@@ -33,7 +33,11 @@ class ActividadsController < ApplicationController
 
 
   def index
-    @actividads = Actividad.where(autorizado: 1)
+    if current_usuario
+      @actividads = Actividad.where("autorizado = 1 and id not in (select idactividad from registrars where idinteresado = ?)", current_usuario.id)
+    else
+      @actividads = Actividad.where(autorizado: 1)
+    end
 
   end
 

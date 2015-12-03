@@ -3,7 +3,7 @@ class RegistrarController < ApplicationController
 
 
     def index
-      @reg = Registrar.all
+      @reg = Registrar.where(idinteresado: current_usuario.id)
       
     end
 
@@ -35,15 +35,32 @@ class RegistrarController < ApplicationController
     puts @paramss
 
     @reg = Registrar.new(parametros)  #creamos un objeto 'registrar' a partir de los parametros requeridos
-    #@reg.idinteresado = Usuario.find(current_usuario.id)
+    @reg.idinteresado = current_usuario.id
     puts @reg.to_json
     
     if @reg.valid? #verificamos que sea valido
-     @reg.save!  #guardamos
-     redirect_to root_path#registrar_index_path
+      @reg.save!  #guardamos
+      #redirect_to root_path#registrar_index_path
+      redirect_to action: "verifica", id: @reg.idactividad
     end
 
 	end
+
+  def verifica
+    @reg = Registrar.where(idactividad: params[:id]).count
+    @act = Actividad.find(params[:id])
+    @minimo = @act.cupominimo
+    @users = Usuario.where("id in (select idinteresado from registrars where idactividad = ?)", params[:id])
+    if @reg == @minimo
+      puts "Si cumple el minimo"
+      @users.each do |user|
+        UsuarioMailer.disponible_email(user, @act).deliver_now
+      end
+      @pon = Ponente.find(@act.idponente)
+      PonenteMailer.disponible_email(@pon, @act).deliver_now
+    end
+    redirect_to current_usuario
+  end
 
 	private
     	def parametros

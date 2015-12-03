@@ -17,10 +17,9 @@ Rails.application.routes.draw do
   get "actividads/:id/edit" => "actividads#edit"#para editar un curso
   get "myactividads" => "actividads#myactividads"
   get "/registrar" => "registrar#create"
-  get "/registrar/:id" => "registrar#show"
+  get "/miscursos" => "registrar#index"
+  get "/registrar/:id" => "registrar#verifica"
   
-
-
 
   post  "/curriculum_vitae/:id" => "curriculum_vitae#update"
   
